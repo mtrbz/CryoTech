@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>CryoTech | Calculadora Financeira</title>
+    <link rel="stylesheet" href="styles/style.css">
+</head>
+
+<body>
+   <ul class="navbar">
+          <li class="agora">
+            <a href="#">Calculadora</a>
+          </li>
+          <li>
+            <a href="index.html">Inicial</a>
+          </li>
+          <li>|</li>
+          <li>
+            <a href="login.html">Login</a>
+          </li>
+          <li>
+            <a href="cadastro.html">Cadastro</a>
+          </li>
+        </ul>
+
+    <h1>📊 Calculadora Financeira</h1>
+
+    <div>
+        Valor do Kg (R$):
+        <input placeholder="Ex: 50" type="number" id="input_kilo"> <br><br>
+
+        Quantidade vendida por mês (Kg):
+        <input placeholder="Ex: 2000" type="number" id="input_kiloMensal"> <br><br>
+
+        Perda de carne em Kg:
+        <input placeholder="Ex: 100" type="number" id="input_perda"> <br><br>
+
+        Selecione o serviço:
+        <select id="option_servico">
+            <option selected disabled value="0">Selecione uma opção</option>
+            <option value="transporte">Transporte Inteligente (R$ 1000/mês)</option>
+            <option value="camara">Câmara Fria Monitorada (R$ 1500/mês)</option>
+        </select> <br><br>
+
+        <button onclick="calcular()">Calcular</button>
+    </div>
+
+    <br>
+    <div id="resultado" style="font-size: 18px; font-weight: bold;"></div>
+
+    <script>
+        function calcular() {
+            var kilo = Number(input_kilo.value);
+            var kiloMensal = Number(input_kiloMensal.value);
+            var perda = Number(input_perda.value);
+            var servico = option_servico.value;
+
+            if (!kilo || !kiloMensal || !perda || servico == "0") {
+                resultado.innerHTML = "⚠️ Preencha todos os campos corretamente!";
+                return;
+            }
+
+            // Cálculos
+            var perdaAtual = perda * kilo; // perda em dinheiro
+            var reducao = perdaAtual * 0.85; // sistema reduz 85% das perdas
+            var custoSistema = servico == "transporte" ? 1000 : 1500;
+            var economiaLiquida = reducao - custoSistema;
+
+            var roi = ((reducao - custoSistema) / custoSistema) * 100; //É um indicador financeiro que mostra quanto lucro você tem em relação ao dinheiro investido.
+
+            // Exibição
+            resultado.innerHTML = `
+         Perda atual sem sistema: R$ ${perdaAtual.toFixed(2)} <br>
+         Economia com CryoTech: R$ ${reducao.toFixed(2)} <br>
+         Custo do serviço: R$ ${custoSistema.toFixed(2)} <br>
+         Economia líquida: R$ ${economiaLiquida.toFixed(2)} <br>
+         ROI estimado: ${roi.toFixed(1)}% 
+      `;
+        }
+    </script>
+</body>
+
+</html>
