@@ -22,3 +22,7 @@ O mercado global de carnes resfriadas e congeladas está em crescimento, e falha
 Esse controle não é apenas uma questão de boas práticas, mas também de economia. Descartes por falhas de resfriamento geram prejuízos elevados, enquanto o monitoramento contínuo permite ações preventivas, reduz desperdícios, aumenta o tempo de comercialização e minimiza riscos de multas sanitárias. Carnes frescas representam uma das categorias com maior taxa de desperdício, tornando esse controle crucial para a margem de lucro.
 
 </div>
+
+<div>
+  !(https://i.imgur.com/0dfRaFn.png)
+</div>
