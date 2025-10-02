@@ -23,6 +23,5 @@ Esse controle não é apenas uma questão de boas práticas, mas também de econ
 
 </div>
 
-<div>
-  ![Descrição da Imagem](https://i.imgur.com/0dfRaFn.png)
-</div>
+![Descrição da imagem](https://i.imgur.com/0dfRaFn.png)
+
