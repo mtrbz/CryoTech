@@ -24,5 +24,5 @@ Esse controle não é apenas uma questão de boas práticas, mas também de econ
 
 </div>
 
-![Descrição da imagem](https://i.imgur.com/0dfRaFn.png)
+
 
