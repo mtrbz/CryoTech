@@ -1,5 +1,5 @@
 # CryoTech
-https://github.com/mtrbz/CryoTech/blob/main/README.md
+![Descrição da imagem](https://i.imgur.com/0dfRaFn.png)
 CryoTech - Monitoramento de frigoríficos especializados na preservação das carnes
 
 <div>
