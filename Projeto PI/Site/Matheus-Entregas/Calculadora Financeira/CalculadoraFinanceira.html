@@ -23,6 +23,7 @@
         width: 50%;
         justify-content: center;
         margin: 20px;
+        margin-bottom: 400px;
     }
 
     .calculadora, .resultado {
@@ -36,25 +37,33 @@
         border-radius: 20px;
         padding: 30px;
         margin: 10px;
-        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5);
     }
 
     input {
         border-radius: 3px;
         width: 150px;
-        height: 20px;
+        height: 30px;
+        border-width: 1px;
+    }
+
+    select {
+        width: 100px;
+        height: 30px;
     }
     
     button {
         border: none;
         border-radius: 5px;
-        width: 100px;
+        width: 150px;
         height: 50px;
+        background-color: rgb(238, 238, 238);
     }
 
     button:hover {
         background-color: rgb(50, 109, 248);
         color: white;
+        transition: 0.5s;
     }
 
 </style>
@@ -85,7 +94,7 @@
             <label for="input_perda">Perda mensal atual (%): </label>
             <input type="number" id="input_perda" placeholder="EX: 12 Kgs">
             <br>
-            <label for="input_qtdFreezer">Quantidade de freezers/câmaras: </label>
+            <label for="input_qtdFreezer">Quantidade de freezers: </label>
             <input type="number" id="input_qtdFreezer" placeholder="Ex: 10">
             <br>
             <button onclick="calcular()">Calcular</button>  
@@ -139,7 +148,6 @@
        var estoquePreservado = valorEstoque - perdaAtual;
        var estoquePreservadoServico = valorEstoque - perdaComServico - valorServico;
        var economiaMensal = (perdaAtual - perdaComServico) - valorServico;
-       var roi = (economiaMensal / valorServico) * 100;
 
        resultado.innerHTML = `
        <b>Produto:</b> ${nome}<br>
@@ -156,7 +164,6 @@
        Estoque aproveitado: R$${estoquePreservadoServico.toFixed(2)}<br><br>
 
        <b>Economia líquida mensal:</b> R$${economiaMensal.toFixed(2)}<br>
-       <b>ROI:</b> ${roi.toFixed(2)}%<br>
        `;
     }
 </script>
