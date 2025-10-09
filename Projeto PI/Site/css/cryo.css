@@ -1,0 +1,116 @@
+* {
+    box-sizing: border-box;
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+}
+body {
+    margin: 0;
+}
+
+.header {
+    background: linear-gradient(background);
+    border-bottom: 10px solid #101449;
+}
+.header .container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 120px;}
+
+.container { 
+    width: 100%;
+    height: 100%;
+}
+
+
+.navbar {
+   display: flex;
+    list-style: none;
+    width: 100%;
+    justify-content: flex-end;
+    color: #101449;
+    font-size: 25px;
+     padding: 0px ;
+     margin-top: 10px;
+     margin-bottom: 30px;
+     
+  
+   
+}
+img {
+    position: absolute;
+    top: 10px;    
+    left: 10px;    
+    width: 200px;  
+    height: 70px;
+    padding: 0px 0px;
+}
+
+.navbar li {
+   margin-right: 60px; 
+
+}
+.navbar a {
+    color: black;
+    outline: none;
+    text-decoration: none;
+    
+    
+   
+}
+.navbar button{
+    width: 150px;
+    border-radius: 10px;
+    height: 40px;
+    width: 190px;
+    font-size: 20px;
+    color: white;
+    background-color: #101449;
+
+}
+
+.agora {
+    font-weight: bolder;
+}
+/* Fim da navbar */
+
+.banner{
+     height: 600px;
+    width: 100%;
+    background-image: url('../css/Imagens/backgroud-inicial.jpg');
+    background-size: cover;
+    position: relative;
+     background-position: center;
+     background-size: cover;
+     border-bottom: 8px solid rgba(0, 0, 0, 0.2);
+}
+.banner p {
+    display: flex;
+    font-size: 50px;
+   margin: 0;
+    padding-top: 200px;
+   background: rgba(0,0,0,0.4);
+   color: white;
+   width: 100%;
+   height: 100%;
+}
+.banner span{
+    margin-left: 40px;
+}
+.banner button{
+ position: absolute;      
+    bottom: 20px;            
+    right: 250px;             
+    padding: 10px 20px;
+    background-color: #101449; 
+    color: white;
+    border: none;
+    border-radius: 11px;
+    cursor: pointer;
+    width: 200px;
+    height: 60px;
+    font-size: 15px;
+    margin-bottom: 70px;
+}
+
+
+

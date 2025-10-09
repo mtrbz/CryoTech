@@ -9,13 +9,13 @@
   <title>CryoTech | Página Inicial</title>
 
   <link rel="stylesheet" href="css/cryo.css">
-  <link rel="icon" href="../Site/css/Imagens/CryoTECH1.pngg">
+  <link rel="icon" href="../Site/css/Imagens/CryoTECH1.png">
 </head>
 
 <body>
   <div class="header">
     <div class="container">
-      
+
       <ul class="navbar">
         <li class="agora">
           <a href="#">Pagina Inicial</a>
@@ -23,17 +23,31 @@
         <li>
           <a href="quemsomos.html">Quem somos</a>
         </li>
-      
+
         <li>
           <a href="solucoes.html">Soluções</a>
         </li>
         <li>
           <a href="contato.html">Contato</a>
         </li>
-          <li><img src="../Site/css/Imagens/CryoTECH1.png" alt=""></li>
+        <li><img src="../Site/css/Imagens/CryoTECH1.png" alt=""></li>
         <li><button onclick="cadastrar()">Cadastre-se</button></li>
       </ul>
     </div>
   </div>
   <!-- Fim da navbar -->
+  <div class="banner">
+    
+      <p>
+        <span>Do frigorífico ao cliente, <br>
+        a qualidade da sua carne está protegida.</span></p>
+          <button onclick="funciona()">Veja como funciona</button>
+
+  
+  </div>
 </body>
+<script>
+  function cadastrar() {
+    window.location.href = "cadastro.html";
+  }
+</script>
