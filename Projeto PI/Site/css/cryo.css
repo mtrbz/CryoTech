@@ -174,3 +174,101 @@ body {
 }
 
 /* Fim da aba Solução */
+
+/* login */
+
+.login {
+    margin: 0;
+    display: flex;
+    justify-content: start;
+    align-items: center;
+    width: 100%;
+    height: 1000px;
+    font-size: 30px;
+    background-image: url("https://cdn.awsli.com.br/1539/1539771/arquivos/cam-003.jpg");
+    background-size: cover;
+    background-position: center;
+}
+
+.login .container-login {
+    height: 100%;
+    width: 40%;
+    display: flex;
+    justify-content: start;
+    flex-direction: column;
+    align-items: center;
+    background-color: rgba(220, 220, 220, 0.95);
+    padding: 40px;
+    border-radius: 12px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+}
+
+.card-login {
+    padding: 150px;
+    display: flex;
+    justify-content: center;
+    text-align: center;
+    flex-direction: column;
+
+}
+
+.card-login h2 {
+    color: #101449;
+    margin-bottom: 10px;
+    font-size: 35px;
+
+}
+
+.campo {
+    display: flex;
+    flex-direction: column;
+    padding: 10px 0;
+    width: 100%;
+}
+
+.campo span {
+    color: #101449;
+    font-weight: bold;
+    margin-bottom: 5px;
+}
+
+.campo input {
+    border-radius: 10px;
+    border: 2px solid #8fd1db;
+    width: 100%;
+    height: 45px;
+    text-align: center;
+    font-size: 16px;
+    outline: none;
+}
+
+.campo input:focus {
+    border-color: #66a7b1;
+}
+
+.botoes {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.botao-login {
+    background-color: #101449;
+    color: white;
+    border: none;
+    width: 150px;
+    height: 40px;
+    display: flex;  
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    border-radius: 8px;
+    font-size: 16px;
+    margin-top: 20px;
+}
+
+.botao-login:hover {
+    background-color: #182080;
+}
+
+/* fim login /*
