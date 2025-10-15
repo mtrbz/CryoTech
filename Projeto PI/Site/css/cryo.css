@@ -177,6 +177,216 @@ body {
 }
 
 /* Fim da aba Solução */
+/* Inicio de sobre nós index */
+ .container-us{
+    background-color: #ffff;
+    display: grid;
+    grid-template-columns: 1.1fr 1fr;
+    gap: 56px;
+    align-items: start;
+    width: 100%;
+  margin: 0 auto;
+  padding: 56px 20px;
+  padding-left: 80px;
+
+ }
+
+ .container-us .titulo{
+    position: relative;
+    padding-left: 28px;
+ }
+
+ .container-us .titulo::before{
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 10px;
+    width: 8px;
+    height: 130px;
+    background: #101449;
+    border-radius: 3px;
+
+ }
+
+ .us-tutulo {
+    margin: 0 0 24px;
+    font-weight: 700;
+    letter-spacing: 0.2px;
+    font-size: 40px;
+ }
+
+ .bnt-us{
+    display: inline-block;
+    background: #101449;
+    color: #ffff;
+    text-decoration: none;
+    padding: 14px 85px;
+    border-radius: 16px;
+    font-weight: 600;
+    border: none;
+ }
+
+ .texto-direita {
+    padding-right: 80px;
+    margin-right: 60px;
+    font-size: 18.5px;
+ }
+
+/* Fim de sobre nós index */
+
+/* Inicio de conheca */
+.container-coneca {
+    width: 100%;
+    background-color: #c6d8e6;
+    padding: 30px 20px;
+  text-align: center;
+  font-family: system-ui, sans-serif;
+    
+}
+
+.container-coneca h2 {
+  font-size: 2rem;
+  font-weight: 700;
+  margin-bottom: 60px;
+}
+
+.etapas {
+    display: flex;
+    max-width: 1200px;
+    margin: 0 auto;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+    align-items: flex-end;
+    gap: 40px;
+    align-items: flex-end;
+}
+
+.etapa {
+    width: 250px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+}
+
+.etapa img {
+    width: 130px;
+    height: 130px;
+    object-fit: contain;
+    display: block;
+    margin: 0;
+}
+
+.etapa button {
+    background-color: #101449;
+    color: #ffff;
+    width: 200px;
+    height: 65px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    border-radius: 20px;
+    margin-top: 20px;
+}
+
+/* .aa {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+} */
+/* Fim de conheca */
+
+/* comeco de solução home */
+.container-solucoes {
+    --panel-top: 60px;  
+    --panel-bottom: 80px;  
+    --panel-shift: 60px;
+    position: relative;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 80px 20px;
+    display:grid;
+    grid-template-columns: 1fr 1.2fr;
+    align-items: center;
+    
+}
+
+.container-solucoes::before {
+content: "";
+position: absolute;
+top: 80px;
+bottom: 80px;
+/* height: 360px; */
+left: 10%;
+background-color: #c6d8e6;
+border-radius: 0;
+z-index:-1;
+right:0;
+width: 100vw;
+
+  top: calc(var(--panel-top) + var(--panel-shift));
+  bottom: calc(var(--panel-bottom) - var(--panel-shift));
+}
+
+.img-solucoes {
+    position: relative;
+    z-index: 1;
+    width: 400px;
+}
+
+.img-solucoes::before{
+    content: "";
+    position: absolute;
+    left: -30px;
+    top: 30px;
+    width: 300px;
+    height: 250px;
+    background-color: #101449;
+    z-index: -1;
+}
+
+
+
+.img-solucoes img {
+    width: 300px;
+    height: 250px;
+}
+
+
+
+.conteudo-solucoes {
+    position: relative;
+    z-index: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+}
+
+.conteudo-solucoes p {
+padding: 15px 0 0 20px;
+}
+
+.conteudo-solucoes button {
+ background-color: #101449;
+    color: #ffff;
+    width: 210px;
+    height: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    border-radius: 20px;
+    margin-top: 20px;
+    border: none;
+}
+
+
+
+/* fim de solução home */
 
 /* login */
 

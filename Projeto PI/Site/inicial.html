@@ -36,20 +36,73 @@
     </div>
   </div>
   <!-- Fim da navbar -->
+   <div class="container-pai">
   <div class="banner">
     
       <p>
         <span>Do frigorífico ao cliente, <br>
-        a qualidade da sua carne está protegida.</span>
-      </p>
-
-      <button onclick="funciona()">Veja como funciona</button>
+        a qualidade da sua carne está protegida.</span></p>
+          <button onclick="funciona()">Veja como funciona</button>
   </div>
-
-  <div id="footer">
-    <div id="container">
-      
+  <div class="container-us">
+    <div class="titulo">
+      <h2 class="us-tutulo">Conectamos o <br> setor alimentício <br> com IoT</h2>
+      <button onclick="SaberUs()" class="bnt-us">Saiba mais</button>
     </div>
+    <div class="texto-direita">
+     <p><b>Somos uma startup que nasceu com a missão de garantir a segurança da temperatura de todos os tipos de carnes congeladas, 
+      da produção até a entrega ao consumidor. </b></p>
+      <p><b>O futuro do setor alimentício descubra como ajudamos empresas a evitar perdas, 
+      garantir qualidade e eficácia e entrar em conformidade com as normas sanitárias. </b></p>
+      </div>
+  </div>
+  <div class="container-coneca">
+    <h2>Conheça o jeito CryoTech de monitorar</h2>
+    <div class="etapas">
+   
+          <div class="etapa">
+            <img src="../Site/css/Imagens/sensor.png">
+            <button onclick="revelarSensor()">Sensor</button>
+          </div>
+
+          <div class="etapa">
+            <img src="../Site/css/Imagens/setas.png">
+          </div>
+
+          <div class="etapa">
+            <img src="../Site/css/Imagens/graficos.png">
+            <button onclick="revelarGrafico()">Plataforma com gráficos</button>
+          </div>
+
+          <div class="etapa">
+            <img src="../Site/css/Imagens/setas.png">
+          </div>
+            
+          <div class="etapa">
+            <img src="../Site/css/Imagens/alerta.png">
+            <button onclick="revelarAlerta()">Alerta de prevenção de perda</button>
+          </div>
+
+          <div class="etapa">
+            <img src="../Site/css/Imagens/setas.png">
+          </div>
+            
+          <div class="etapa">
+            <img src="../Site/css/Imagens/relatorio.png">
+            <button onclick="revelarRelatorio()">Relatório</button>
+          </div>
+  </div>
+  </div>
+  <div class="container-solucoes">
+    <div class="img-solucoes">
+    <img src="../Site/css/Imagens/frigo_solucao.jpg">
+    </div>
+    <div class="conteudo-solucoes">
+    <p>A CryoTech traz dados e indicadores em tempo real para o controle de qualidade de carnes em indústrias, supermercados, 
+    centros de armazenamento e transportes, auxiliando a garantir que tudo está na temperatura ideal. Ganhe visibilidade total.</p>
+    <button onclick="SaberSolucoes()">Saiba Mais</button>
+    </div>
+  </div>
   </div>
 </body>
 <script>
