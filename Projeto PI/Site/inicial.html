@@ -111,7 +111,7 @@
       <div class="formulario">
 
         <label for="select_servico">Serviço desejado:</label>
-        <br>
+        
         <select id="select_servico">
           <option value="1" selected disabled>Selecione:</option>
           <option>Transporte</option>
@@ -138,7 +138,23 @@
 
       </div>
       <div class="resultado">
-        <p id="resultado"></p>
+       
+        <p id="resultado">
+          <b>Produto:</b> <br>
+          valor total do estoque: <br><br>
+
+          <b>Situação atual:</b><br>
+          Perda mensal: <br>
+          Estoque aproveitado: <br><br>
+
+          <b>Com nosso serviço</b><br>
+          Taxa única de implantação: <br>
+          Custo mensal do serviço: <br>
+          Perda reduzida: <br>
+          Estoque aproveitado: <br><br>
+
+          <b>Economia líquida mensal:</b>
+        </p>
       </div>
     </div>
   </div>
@@ -191,20 +207,20 @@
        var economiaMensal = (perdaAtual - perdaComServico) - valorServico;
 
        resultado.innerHTML = `
-       <b>Produto:</b> ${nome}<br>
-       valor total do estoque: R$${valorEstoque.toFixed(2)}<br><br>
+       <b>Produto:</b> <b>${nome}</b><br>
+       valor total do estoque: <b>R$${valorEstoque.toFixed(2)}</b><br><br>
 
        <b>Situação atual:</b><br>
-       Perda mensal: R$${perdaAtual.toFixed(2)} (${pctPerda.toFixed(2)}% do estoque)<br>
-       Estoque aproveitado: R$${estoquePreservado.toFixed(2)}<br><br>
+       Perda mensal: <b>R$${perdaAtual.toFixed(2)} (${pctPerda.toFixed(2)}% do estoque)</b><br>
+       Estoque aproveitado: <b>R$${estoquePreservado.toFixed(2)}</b><br><br>
 
        <b>Com nosso serviço</b><br>
-       Taxa única de implantação: R$${taxaUnica.toFixed(2)}<br>
-       Custo mensal do serviço: R$${valorServico.toFixed(2)}<br>
-       Perda reduzida: R$${perdaComServico.toFixed(2)}<br>
-       Estoque aproveitado: R$${estoquePreservadoServico.toFixed(2)}<br><br>
+       Taxa única de implantação: <b>R$${taxaUnica.toFixed(2)}</b><br>
+       Custo mensal do serviço: <b>R$${valorServico.toFixed(2)}</b><br>
+       Perda reduzida: <b>R$${perdaComServico.toFixed(2)}</b><br>
+       Estoque aproveitado: <b>R$${estoquePreservadoServico.toFixed(2)}</b><br><br>
 
-       <b>Economia líquida mensal:</b> R$${economiaMensal.toFixed(2)}<br>
+       <b>Economia líquida mensal:</b> <b>R$${economiaMensal.toFixed(2)}</b><br>
        `;
     }
 </script>

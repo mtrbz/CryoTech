@@ -405,15 +405,14 @@ padding: 15px 0 0 20px;
     width: 90%;
     padding: 30px;
     flex-direction: row;
-    justify-content: space-between;
-    background: linear-gradient(100deg, #c6d8e6, #101449);
+    justify-content: space-around;
+    align-items: center;
 }
 
 .calculadora .formulario {
     display: flex;
     flex-direction: column;
     margin: 20px;
-    margin-left: 100px;
 }
 
 .calculadora label {
@@ -424,10 +423,9 @@ padding: 15px 0 0 20px;
     width: 360px;
     height: 50px;
     border: none;
-    background-color: #ffffff;
+    background-color: #d9d9d9;
     font-size: 16px;
-    border-radius: 10px;
-    border: #101449 solid 3px;
+    border-radius: 5px;
 }
 
 .calculadora button {
@@ -449,6 +447,24 @@ padding: 15px 0 0 20px;
 .calculadora select {
     width: 160px;
     font-size: 16px;
+    border-radius: 5px;
+}
+
+.calculadora .resultado {
+    display: flex;
+    font-size: 18px;
+    background-color: #d9d9d9;
+    width: 40%;
+    height: 500px;
+    justify-content: center;
+    align-items: center;
+    border-radius: 10px;
+}
+
+.calculadora img {
+    display: flex;
+    width: 560px;
+    border-radius: 10px;
 }
 
 /* Fim calculadora */
