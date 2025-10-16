@@ -104,9 +104,107 @@
     </div>
   </div>
   </div>
+
+  <div class="titulo-calculadora"><p>Simule seus resultados</p></div>
+  <div class="calculadora">
+    <div class="container">
+      <div class="formulario">
+
+        <label for="select_servico">Serviço desejado:</label>
+        <br>
+        <select id="select_servico">
+          <option value="1" selected disabled>Selecione:</option>
+          <option>Transporte</option>
+          <option>Frigorífico</option>
+          <option>Câmara fria</option>
+        </select>
+        <br>
+        <label for="input_nome">Produto em estoque:</label>
+        <input type="text" id="input_nome" placeholder="Ex: Tilápia">
+        <br>
+        <label for="input_valorKg">Valor do Kg (R$): </label>
+        <input type="number" id="input_valorKg" placeholder="Ex: R$90,00">
+        <br>
+        <label for="input_estoque">Quantidade em estoque (Kg): </label>
+        <input type="number" id="input_estoque" placeholder="Ex: 24Kg">
+        <br>
+        <label for="input_perda">Perda mensal atual (%): </label>
+        <input type="number" id="input_perda" placeholder="EX: 12 Kgs">
+        <br>
+        <label for="input_qtdFreezer">Quantidade de freezers: </label>
+        <input type="number" id="input_qtdFreezer" placeholder="Ex: 10">
+        <br>
+        <button onclick="calcular()">Simular</button>  
+
+      </div>
+      <div class="resultado">
+        <p id="resultado"></p>
+      </div>
+    </div>
+  </div>
+</div>
+</body>
+</body>
 </body>
 <script>
   function cadastrar() {
     window.location.href = "cadastro.html";
   }
+
+  function calcular() {
+        var nome = input_nome.value;
+        var valorKg = Number(input_valorKg.value);
+        var estoqueKg = Number(input_estoque.value);
+        var pctPerda = Number(input_perda.value);
+        var qtdFreezer = Number(input_qtdFreezer.value);
+        var servico = select_servico.value;
+
+       if (!nome || valorKg == 0 || estoqueKg == 0 || pctPerda == 0 | qtdFreezer == 0 || servico == 1) {
+        alert('Por favor, preencha os dados corretamente.');
+        return;
+       }
+
+       var valorEstoque = valorKg * estoqueKg;
+       var perdaAtual = (pctPerda / 100) * valorEstoque;
+       var perdaComServico = perdaAtual * 0.2;
+
+       var valorServico = 0;
+       var taxaUnica = 0;
+
+       if (servico == 'Transporte') {
+        valorServico = 500 + (qtdFreezer * 60);
+        taxaUnica = 2000;
+       }
+
+       else if (servico == 'Frigorífico') {
+        valorServico = 1500 + (qtdFreezer * 40);
+        taxaUnica = 3500;
+       }
+
+       else if (servico == 'Câmara fria') {
+        valorServico = 2500 + (qtdFreezer * 20)
+        taxaUnica = 5000;
+       }
+
+       var estoquePreservado = valorEstoque - perdaAtual;
+       var estoquePreservadoServico = valorEstoque - perdaComServico - valorServico;
+       var economiaMensal = (perdaAtual - perdaComServico) - valorServico;
+
+       resultado.innerHTML = `
+       <b>Produto:</b> ${nome}<br>
+       valor total do estoque: R$${valorEstoque.toFixed(2)}<br><br>
+
+       <b>Situação atual:</b><br>
+       Perda mensal: R$${perdaAtual.toFixed(2)} (${pctPerda.toFixed(2)}% do estoque)<br>
+       Estoque aproveitado: R$${estoquePreservado.toFixed(2)}<br><br>
+
+       <b>Com nosso serviço</b><br>
+       Taxa única de implantação: R$${taxaUnica.toFixed(2)}<br>
+       Custo mensal do serviço: R$${valorServico.toFixed(2)}<br>
+       Perda reduzida: R$${perdaComServico.toFixed(2)}<br>
+       Estoque aproveitado: R$${estoquePreservadoServico.toFixed(2)}<br><br>
+
+       <b>Economia líquida mensal:</b> R$${economiaMensal.toFixed(2)}<br>
+       `;
+    }
 </script>

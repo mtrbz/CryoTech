@@ -239,9 +239,8 @@ body {
     width: 100%;
     background-color: #c6d8e6;
     padding: 30px 20px;
-  text-align: center;
-  font-family: system-ui, sans-serif;
-    
+    text-align: center;
+    font-family: system-ui, sans-serif; 
 }
 
 .container-coneca h2 {
@@ -384,9 +383,75 @@ padding: 15px 0 0 20px;
     border: none;
 }
 
-
-
 /* fim de solução home */
+
+/* Início calculadora */
+
+.titulo-calculadora {
+    display: flex;
+    margin-left: 5%;
+    font-size: 36px;
+    margin-top: 120px;
+}
+.calculadora {
+    display: flex;
+    justify-content: center;
+}
+
+.calculadora .container {
+    display: flex;
+    border: solid 5px #101449;
+    border-radius: 6px;
+    width: 90%;
+    padding: 30px;
+    flex-direction: row;
+    justify-content: space-between;
+    background: linear-gradient(100deg, #c6d8e6, #101449);
+}
+
+.calculadora .formulario {
+    display: flex;
+    flex-direction: column;
+    margin: 20px;
+    margin-left: 100px;
+}
+
+.calculadora label {
+    font-weight: bold;
+}
+
+.calculadora input {
+    width: 360px;
+    height: 50px;
+    border: none;
+    background-color: #ffffff;
+    font-size: 16px;
+    border-radius: 10px;
+    border: #101449 solid 3px;
+}
+
+.calculadora button {
+    width: 300px;
+    height: 65px;
+    border: none;
+    border-radius: 20px;
+    background-color: #101449;
+    color: #FFFF;
+    font-size: 16px;
+    margin-left: 25px;
+}
+
+.calculadora button:hover {
+    background-color: #182080;
+    transition: 0.3s;
+}
+
+.calculadora select {
+    width: 160px;
+    font-size: 16px;
+}
+
+/* Fim calculadora */
 
 /* login */
 
