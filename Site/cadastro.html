@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>CryoTech | Página Inicial</title>
+
+  <link rel="stylesheet" href="css/cryo.css">
+  <link rel="icon" href="../Site/css/Imagens/CryoTECH1.png">
+</head>
+
+<body class="pagina-cadastro">
+  <!-- <div class="header">
+    <div class="container">
+
+      <ul class="navbar">
+        <li class="agora">
+          <a href="#">Pagina Inicial</a>
+        </li>
+        <li>
+          <a href="quemsomos.html">Quem somos</a>
+        </li>
+
+        <li>
+          <a href="solucoes.html">Soluções</a>
+        </li>
+        <li>
+          <a href="contato.html">Contato</a>
+        </li>
+        <li><img onclick="imagem()" src="../Site/css/Imagens/CryoTECH1.png" alt=""></li>
+        <li><button onclick="cadastrar()">Cadastre-se</button></li>
+      </ul>
+    </div>
+  </div> -->
+  <!-- Fim da navbar -->
+  <!-- <div class="cadastro">
+
+    <div class="container-cadastro">
+      <div class="card-cadastro">
+        <div class="formulario">
+          <div class="campo">
+            <span>Nome: <br></span>
+            <input id="nome_input" type="text" placeholder="Seu nome" />
+          </div>
+          <div class="campo">
+            <span>E-mail: <br></span>
+            <input id="email_input" type="text" placeholder="meuemail@provedor.com" />
+          </div>
+          <div class="campo">
+            <span>Senha: <br></span>
+            <input id="senha_input" type="password" placeholder="******" />
+          </div>
+          <div class="campo">
+            <span>Empresa: <br></span>
+            <input id="empresa_input" type="text" placeholder="CryoTech" />
+          </div>
+          <button onclick="cadastrar()" class="botao">Cadastrar</button>
+        </div>
+      </div>
+    </div>
+
+  </div> -->
+  <div class="cadastro">
+    <div class="cadastro-box">
+        <ul class="imagem-cadastro">
+        <li><img onclick="imagem()" src="../Site/css/Imagens/CryoTECH.png" alt=""></li>
+       
+      </ul>
+      <div class="cadastro-left">
+        <div class="cadastro-texto">
+          <h2>Bem vindo a <span>Cryo</span>Tech</h2>
+        </div>
+
+        <p>
+          Caso ja tenha feito seu cadastro
+          <a href="login.html">aperte aqui</a>
+        </p>
+
+        <label>Email</label>
+        <input id="email_input" type="text" placeholder="meuemail@provedor.com">
+
+        <label>Senha</label>
+        <input id="senha_input" type="password" placeholder="******">
+        <label>Empresa</label>
+        <input id="empresa_input" type="text" placeholder="CryoTech">
+
+        <label>Nome do responsável</label>
+        <input id="nome_input" type="text" placeholder="Gabriel Senna">
+         <div id="div_msg"></div>
+
+
+        <div class="remember">
+          <input type="checkbox" id="remember">
+          <label
+            for="remember">Lembrar-me</label><!--  O atributo for="remember" liga o label ao input com o mesmo id -->
+        </div>
+       
+
+        <button onclick="cadastro()">Cadastre-se</button>
+
+      </div>
+      <div class="cadastro-right"></div>
+    </div>
+  </div>
+
+</body>
+<script>
+  function cadastro() {
+
+   div_msg.innerHTML = '';
+
+    var nome = nome_input.value;
+    var email = email_input.value;
+    var senha = senha_input.value;
+    var empresa = empresa_input.value;
+
+    if (nome == 'Gabriel Senna' || nome == 'Fernando Brandão' || nome == 'Beatriz Leandro' || nome == 'Luis Vittor' || nome == 'Matheus Barros' || nome == 'Rafael Barbosa' || nome == 'Nicolas Couto') 
+    { div_msg.innerHTML = `<p style="color: green;">Login bem sucedido </p>`
+    }else{
+      div_msg.innerHTML = `<p style="color: red;">Falha no login </p>`
+    }
+    if (email == 'cryotech@email.com' || email == 'gabrielsenna@email.com') 
+    { div_msg.innerHTML = `<p style="color: green;">Login bem sucedido </p>`
+    }else{
+      div_msg.innerHTML = `<p style="color: red;">Falha no login </p>`
+    }
+    if (senha == 'cryotech') 
+    { div_msg.innerHTML = `<p style="color: green;">Login bem sucedido </p>`
+    }else{
+      div_msg.innerHTML = `<p style="color: red;">Falha no login </p>`
+    }
+    if (empresa == 'cryotech' || empresa == 'sptech') 
+    { div_msg.innerHTML = `<p style="color: green;">Login bem sucedido </p>`
+    }else{
+      div_msg.innerHTML = `<p style="color: red;">Falha no login </p>`
+    }
+  
+
+
+  }
+  function imagem() {
+    window.location.href = "inicial.html";
+
+  }
+</script>
