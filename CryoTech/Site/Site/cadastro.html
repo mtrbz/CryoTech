@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>CryoTech | Página Inicial</title>
+
+  <link rel="stylesheet" href="css/cryo.css">
+  <link rel="icon" href="../Site/css/Imagens/logo1png">
+</head>
+
+<body class="pagina-cadastro">
+
+  <div class="cadastro">
+    <!-- <div class="cadastro-box"> -->
+      <div class="img-cadastro">
+         <ul>
+        <li><img onclick="imagem()" src="../Site/css/Imagens/logo1.png" alt=""></li>
+
+      </ul>
+      </div>
+     
+      <div class="cadastro-left">
+        <div class="cadastro-texto">
+          <h2>Bem vindo a <span>Cryo</span>Tech</h2> <br> <br>
+        </div>
+
+
+
+        <label>E-mail</label>
+        <input id="email_input" type="text" placeholder="meuemail@gmail.com">
+
+        <label>Senha</label>
+        <input id="senha_input" type="password" placeholder="******">
+        <label>Empresa</label>
+        <input id="empresa_input" type="text" placeholder="CryoTech">
+
+        <label>Nome do responsável</label>
+        <input id="nome_input" type="text" placeholder="Gabriel Senna">
+        <div id="div_msg"></div>
+
+
+        <div class="remember">
+          <input type="checkbox" id="remember">
+          <label
+            for="remember">Lembrar-me</label><!--  O atributo for="remember" liga o label ao input com o mesmo id -->
+        </div>
+
+
+        <button onclick="cadastro()">Cadastre-se</button>
+
+      </div>
+      <!-- <div class="cadastro-right"></div> -->
+    <!-- </div> -->
+  </div>
+
+</body>
+<script>
+  function cadastro() {
+
+    div_msg.innerHTML = '';
+
+    var nome = nome_input.value;
+    var email = email_input.value;
+    var senha = senha_input.value;
+    var empresa = empresa_input.value;
+    div_msg.innerHTML = '';
+
+    if (nome == '' || email == '' || senha == '' || empresa == '') {
+      div_msg.innerHTML = `<p style="color: red;">Todos os campoes devem estar preenchidos </p>`
+    }
+    if (nome == 'Gabriel Senna' || nome == 'Fernando Brandão' || nome == 'Beatriz Leandro' || nome == 'Luis Vittor' || nome == 'Matheus Barros' || nome == 'Rafael Barbosa' || nome == 'Nicolas Couto') {
+      div_msg.innerHTML = `<p style="color: green;">Login bem sucedido </p>`
+    } else {
+      div_msg.innerHTML = `<p style="color: red;">Falha no login </p>`
+    }
+    if (email == 'cryotech@email.com' || email == 'gabrielsenna@email.com') {
+      div_msg.innerHTML = `<p style="color: green;">Login bem sucedido </p>`
+    } else {
+      div_msg.innerHTML = `<p style="color: red;">Falha no login </p>`
+    }
+    if (senha == 'cryotech') {
+      div_msg.innerHTML = `<p style="color: green;">Login bem sucedido </p>`
+    } else {
+      div_msg.innerHTML = `<p style="color: red;">Falha no login </p>`
+    }
+    if (empresa == 'cryotech' || empresa == 'sptech') {
+      div_msg.innerHTML = `<p style="color: green;">Login bem sucedido </p>`
+    } else {
+      div_msg.innerHTML = `<p style="color: red;">Falha no login </p>`
+    }
+
+
+
+  }
+  function imagem() {
+    window.location.href = "index.html";
+
+  }
+</script>

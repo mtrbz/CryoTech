@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>CryoTech | Página Inicial</title>
+
+  <link rel="stylesheet" href="css/cryo.css">
+  <link rel="icon" href="../Site/css/Imagens/logo1.png">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inder&display=swap" rel="stylesheet">
+</head>
+
+<body>
+  <div class="header">
+    <div class="container">
+
+      <ul class="navbar">
+        <li class="agora">
+          <a href="#">Pagina Inicial</a>
+        </li>
+        <li>
+          <a href="#calculadora">Calculadora financeira</a>
+        </li>
+
+        <li>
+          <a href="#etapa">Soluções</a>
+        </li>
+        <li>
+          <a href="#contato">Contato</a>
+        </li>
+        <li><img src="../Site/css/Imagens/logo1.png" alt=""></li>
+        <li class="navbar-button"><button onclick="cadastrar()">Cadastre-se</button> 
+          <button onclick="login()" id="abrirModal">Login</button></li>
+        
+      </ul>
+    </div>
+  </div>
+  <!-- Fim da navbar -->
+ 
+
+  <div class="modal" id="modal">
+    <img src="../Site/css/Imagens/logo1.png" alt="">
+    <span class="fechar" id="fecharModal"> Fechar</span>
+    <h2>Faça seu login</h2>
+   <input type="email" placeholder="E-mail">
+   <input type="password" placeholder="******">
+   
+    
+    <button>Enviar</button>
+  </div>
+  <div class="container-pai">
+    <div class="banner">
+      <p>
+        <span>Do frigorífico ao cliente, <br>
+          a qualidade da sua carne está protegida.</span>
+      </p>
+      <a href="#etapa">Veja como funciona</a>
+    </div>
+    <div class="container-us">
+      <div class="titulo">
+        <h2 class="us-tutulo">Conectamos o <br> setor alimentício <br> com IoT</h2>
+        <button onclick="SaberUs()" class="bnt-us">Saiba mais</button>
+      </div>
+      <div class="texto-direita">
+        <p><b>Somos uma startup que nasceu com a missão de garantir a segurança da temperatura de todos os tipos de
+            carnes congeladas,
+            da produção até a entrega ao consumidor. </b></p>
+        <p><b>O futuro do setor alimentício descubra como ajudamos empresas a evitar perdas,
+            garantir qualidade e eficácia e entrar em conformidade com as normas sanitárias. </b></p>
+      </div>
+    </div>
+    <div id="etapa" class="container-coneca">
+      <h2>Conheça o jeito CryoTech de monitorar</h2>
+      <div class="etapas">
+
+        <div class="etapa">
+          <img src="../Site/css/Imagens/sensor.png">
+          <button onclick="revelarSensor()">Sensor</button>
+        </div>
+
+        <div class="etapa">
+          <img src="../Site/css/Imagens/setas.png">
+        </div>
+
+        <div class="etapa">
+          <img src="../Site/css/Imagens/graficos.png">
+          <button onclick="revelarGrafico()">Plataforma com gráficos</button>
+        </div>
+
+        <div class="etapa">
+          <img src="../Site/css/Imagens/setas.png">
+        </div>
+
+        <div class="etapa">
+          <img src="../Site/css/Imagens/alerta.png">
+          <button onclick="revelarAlerta()">Alerta de prevenção de perda</button>
+        </div>
+
+        <div class="etapa">
+          <img src="../Site/css/Imagens/setas.png">
+        </div>
+
+        <div class="etapa">
+          <img src="../Site/css/Imagens/relatorio.png">
+          <button onclick="revelarRelatorio()">Relatório</button>
+        </div>
+      </div>
+    </div>
+    <div class="container-solucoes">
+      <div class="img-solucoes">
+        <img src="../Site/css/Imagens/frigo_solucao.jpg">
+      </div>
+      <div class="conteudo-solucoes">
+        <p>A CryoTech traz dados e indicadores em tempo real para o controle de qualidade de carnes em indústrias,
+          supermercados,
+          centros de armazenamento e transportes, auxiliando a garantir que tudo está na temperatura ideal. Ganhe
+          visibilidade total.</p>
+        <button onclick="SaberSolucoes()">Saiba Mais</button>
+      </div>
+    </div>
+  </div>
+
+  <div id="titulo-calculadora" class="titulo-calculadora">
+    <p>Simule seus resultados</p>
+  </div>
+  <div id="calculadora" class="calculadora">
+    <div class="container">
+      <div class="formulario">
+
+        <label for="select_servico">Serviço desejado:</label>
+
+        <select id="select_servico">
+          <option value="1" selected disabled>Selecione:</option>
+          <option>Transporte</option>
+          <option>Frigorífico</option>
+          <option>Câmara fria</option>
+        </select>
+        <br>
+        <label for="input_nome">Produto em estoque:</label>
+        <input type="text" id="input_nome" placeholder="Ex: Tilápia">
+        <br>
+        <label for="input_valorKg">Valor do Kg (R$): </label>
+        <input type="number" id="input_valorKg" placeholder="Ex: R$90,00">
+        <br>
+        <label for="input_estoque">Quantidade em estoque (Kg): </label>
+        <input type="number" id="input_estoque" placeholder="Ex: 24Kg">
+        <br>
+        <label for="input_perda">Perda mensal atual (%): </label>
+        <input type="number" id="input_perda" placeholder="EX: 12 Kgs">
+        <br>
+        <label for="input_qtdFreezer">Quantidade de freezers: </label>
+        <input type="number" id="input_qtdFreezer" placeholder="Ex: 10">
+        <br>
+        <button onclick="calcular()">Simular</button>
+
+      </div>
+      <div class="resultado">
+
+        <p id="p_resultado">
+          <b>Produto:</b> <br>
+          valor total do estoque: <br><br>
+
+          <b>Situação atual:</b><br>
+          Perda mensal: <br>
+          Estoque aproveitado: <br><br>
+
+          <b>Com nosso serviço</b><br>
+          Taxa única de implantação: <br>
+          Custo mensal do serviço: <br>
+          Perda reduzida: <br>
+          Estoque aproveitado: <br><br>
+
+          <b>Economia líquida mensal:</b>
+        </p>
+      </div>
+    </div>
+  </div>
+  <div id="contato" class="contato-container">
+    <div class="img-contato">
+       <img src="../Site/css/Imagens/contato.jpg">
+    </div>
+
+    <div class="formulario">
+      <h2>Fale conosco</h2>
+      <form>
+        <span>Nome:</span>
+        <input type="text" placeholder="Insira seu nome" required>
+        <span>Email:</span>
+        <input type="email" placeholder="Insira um email para contato" required>
+        <span>Nome da empresa:</span>
+        <input type="text" placeholder="Insira um email para contato" required>
+        <span>Cargo na empresa:</span>
+        <input type="text" placeholder="Insira um email para contato" required>
+        <span>Qual sua necessidade:</span>
+        <input type="checkbox" required> <label>Câmara fria</label>
+        <input type="checkbox" required> <label>Transporte</label>
+        <input type="checkbox" required> <label>Pontos de venda</label>
+        <span>Qual sua necessidade:</span>
+        <textarea placeholder="Ex: 'Preciso monitorar a temperatura de 15 caminhões' ou 'Tenho 3 câmaras frias de 50m²'"></textarea>
+        <button type="button">ENVIAR</button>
+      </form>
+    </div>
+  </div>
+
+  </div>
+
+
+</body>
+<script>
+  function login() {
+    var modal = document.getElementById('modal');
+    document.getElementById('abrirModal').onclick = () => modal.classList.add('ativo');
+    document.getElementById('fecharModal').onclick = () => modal.classList.remove('ativo');
+    window.onclick = e => { if (e.target === modal) modal.classList.remove('ativo'); }
+  }
+  function imagem() {
+    window.location.href = "inicial.html";
+
+  }
+  function cadastrar() {
+    window.location.href = "cadastro.html";
+  }
+
+  function calcular() {
+
+    var nome = input_nome.value;
+    var valorKg = Number(input_valorKg.value);
+    var estoqueKg = Number(input_estoque.value);
+    var pctPerda = Number(input_perda.value);
+    var qtdFreezer = Number(input_qtdFreezer.value);
+    var servico = select_servico.value;
+
+    if (!nome || valorKg == 0 || estoqueKg == 0 || pctPerda == 0 | qtdFreezer == 0 || servico == 1) {
+      alert('Por favor, preencha os dados corretamente.');
+      return;
+    }
+
+    var valorEstoque = valorKg * estoqueKg;
+    var perdaAtual = (pctPerda / 100) * valorEstoque;
+    var perdaComServico = perdaAtual * 0.2;
+
+    var valorServico = 0;
+    var taxaUnica = 0;
+
+    if (servico == 'Transporte') {
+      valorServico = 500 + (qtdFreezer * 60);
+      taxaUnica = 2000;
+    }
+
+    else if (servico == 'Frigorífico') {
+      valorServico = 1500 + (qtdFreezer * 40);
+      taxaUnica = 3500;
+    }
+
+    else if (servico == 'Câmara fria') {
+      valorServico = 2500 + (qtdFreezer * 20)
+      taxaUnica = 5000;
+    }
+
+    var estoquePreservado = valorEstoque - perdaAtual;
+    var estoquePreservadoServico = valorEstoque - perdaComServico - valorServico;
+    var economiaMensal = (perdaAtual - perdaComServico) - valorServico;
+
+    p_resultado.innerHTML = `
+       <b>Produto:</b> <b>${nome}</b><br>
+       valor total do estoque: <b>R$${valorEstoque.toFixed(2)}</b><br><br>
+
+       <b>Situação atual:</b><br>
+       Perda mensal: <b>R$${perdaAtual.toFixed(2)} (${pctPerda.toFixed(2)}% do estoque)</b><br>
+       Estoque aproveitado: <b>R$${estoquePreservado.toFixed(2)}</b><br><br>
+
+       <b>Com nosso serviço</b><br>
+       Taxa única de implantação: <b>R$${taxaUnica.toFixed(2)}</b><br>
+       Custo mensal do serviço: <b>R$${valorServico.toFixed(2)}</b><br>
+       Perda reduzida: <b>R$${perdaComServico.toFixed(2)}</b><br>
+       Estoque aproveitado: <b>R$${estoquePreservadoServico.toFixed(2)}</b><br><br>
+
+       <b>Economia líquida mensal:</b> <b>R$${economiaMensal.toFixed(2)}</b><br>
+       `;
+  }
+
+</script>
