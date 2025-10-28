@@ -25,21 +25,21 @@
      
       <div class="cadastro-left">
         <div class="cadastro-texto">
-          <h2>Bem vindo a <span>Cryo</span>Tech</h2> <br> <br>
+          <h2 onclick="imagem()">Bem vindo a <span>Cryo</span>Tech, <br> aqui você poderá fazer o cadastro da sua empresa :  </h2> <br> <br>
         </div>
 
 
 
-        <label>E-mail</label>
-        <input id="email_input" type="text" placeholder="meuemail@gmail.com">
+        <label>Razão social</label>
+        <input id="razãoSocial_input" type="text" placeholder="CryoTech">
 
-        <label>Senha</label>
-        <input id="senha_input" type="password" placeholder="******">
-        <label>Empresa</label>
-        <input id="empresa_input" type="text" placeholder="CryoTech">
+        <label>CNPJ</label>
+        <input id="senha_input" type="password" placeholder="XX.XXX.XXX/0001-XX">
+        <label>CEP</label>
+        <input id="cep_input" type="text" placeholder="XXXXX-XXX">
 
-        <label>Nome do responsável</label>
-        <input id="nome_input" type="text" placeholder="Gabriel Senna">
+        <label>Número para contato</label>
+        <input id="num_input" type="text" placeholder="XX-XXXXXXXXXX">
         <div id="div_msg"></div>
 
 
@@ -48,7 +48,7 @@
           <label
             for="remember">Lembrar-me</label><!--  O atributo for="remember" liga o label ao input com o mesmo id -->
         </div>
-
+        <p>Caso sua empresa ja tenha um cadastro <a href="cadastrofunc.html">clique aqui</a></p>
 
         <button onclick="cadastro()">Cadastre-se</button>
 
@@ -63,10 +63,10 @@
 
     div_msg.innerHTML = '';
 
-    var nome = nome_input.value;
-    var email = email_input.value;
+    var nome = num_input.value;
+    var razaoSocial = razãoSocial_input.value;
     var senha = senha_input.value;
-    var empresa = empresa_input.value;
+    var cep = cep_input.value;
     div_msg.innerHTML = '';
 
     if (nome == '' || email == '' || senha == '' || empresa == '') {
