@@ -73,15 +73,14 @@ body {
     text-decoration: none;
 }
 .navbar-button {
-    display: flex;        /* coloca os dois botões lado a lado */
-    gap: 10px;            /* define o espaço entre eles */
-    margin-left: 20px;    /* opcional, para separar do restante da lista */
+    display: flex;        
+    gap: 10px;            
+    margin-left: 20px;  
 }
 
 .navbar-button button {
     padding: 8px 20px;
     border-radius: 8px;
-    /* border: none; */
     cursor: pointer;
     background-color: #101449;
     color: white;
@@ -99,9 +98,14 @@ body {
     color: white;
     font-size: 16px;
     background: rgba(255, 255, 255, 0.1);
-     border: solid 1px;
-     transition: 0.3s;
+    border: solid 1px;
+    transition: 0.3s;
  }
+
+.navbar-button #abrirModal:hover {
+    background: #182080;
+    color: #fff;
+}
 
 
 .agora {
@@ -335,6 +339,7 @@ body {
     margin-bottom: 60px;
 }
 
+
 .etapas {
     display: flex;
     max-width: 1200px;
@@ -452,7 +457,12 @@ body {
 }
 
 .conteudo-solucoes p {
-    padding: 15px 0 0 20px;
+    padding: 40px 0 0 10px;
+    padding-right: 80px;
+    margin-right: 60px;
+    font-size: 18.5px;
+    font-weight: bold;
+
 }
 
 .conteudo-solucoes button {
@@ -470,6 +480,67 @@ body {
 }
 
 /* fim de solução home */
+
+/* inicio de carrosel */
+
+.cards .card-item {
+    list-style: none;
+}
+
+.cards .card-item .card-link{
+    width: 400px;
+    display: block;
+    background-color:#c6d8e6;
+    padding: 18px;
+    border-radius: 12px;
+    text-decoration: none;
+    box-shadow: 0 10px 10px rgba(0, 0, 0, 0.5);
+    
+}
+
+.img-box {
+    display: flex;
+    justify-content: center;
+}
+
+.cards .card-item .card-img {
+    width: 100px;
+    height: 100px;
+
+}
+
+.cards .card-item .card-link p {
+    color: #FFFF;
+    padding: 8px 16px;
+    font-size: 0.95rem;
+    font-weight: 500;
+    margin: 16px 0 18px;
+    background-color: #101449;
+    width: fit-content;
+    border-radius: 50px;
+}
+
+/* .cards .card-item .card-link .titulo.cliente{
+    color: #FFFF;
+    background-color: #4c55db;
+} */
+
+/* .cards .card-item .titulo-cliente {
+    color: #FFFF;
+    padding: 8px 16px;
+    font-size: 0.95rem;
+    font-weight: 500;
+    margin: 16px 0 18px;
+    background-color: #2932aa;
+    width: fit-content;
+    border-radius: 50px;
+} */
+
+.cards .card-item h2 {
+    font-size: 1.19rem;
+    color: #000;
+    font-weight: 600;
+}
 
 /* Início calculadora */
 

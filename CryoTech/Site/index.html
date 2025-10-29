@@ -12,8 +12,8 @@
   <link rel="icon" href="../Site/css/Imagens/logo1.png">
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Inder&display=swap" rel="stylesheet">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inder&display=swap" rel="stylesheet">
 </head>
 
 <body>
@@ -35,23 +35,24 @@
           <a href="#contato">Contato</a>
         </li>
         <li><img src="../Site/css/Imagens/logo1.png" alt=""></li>
-        <li class="navbar-button"><button onclick="cadastrar()">Cadastre-se</button> 
-          <button onclick="login()" id="abrirModal">Login</button></li>
-        
+        <li class="navbar-button"><button onclick="cadastrar()">Cadastre-se</button>
+          <button onclick="login()" id="abrirModal">Login</button>
+        </li>
+
       </ul>
     </div>
   </div>
   <!-- Fim da navbar -->
- 
+
 
   <div class="modal" id="modal">
     <img src="../Site/css/Imagens/logo1.png" alt="">
     <span class="fechar" id="fecharModal"> Fechar</span>
     <h2>Faça seu login</h2>
-   <input type="email" placeholder="E-mail">
-   <input type="password" placeholder="******">
-   
-    
+    <input type="email" placeholder="E-mail">
+    <input type="password" placeholder="******">
+
+
     <button>Enviar</button>
   </div>
   <div class="container-pai">
@@ -68,14 +69,14 @@
         <button onclick="SaberUs()" class="bnt-us">Saiba mais</button>
       </div>
       <div class="texto-direita">
-        <p><b>Somos uma startup que nasceu com a missão de garantir a segurança da temperatura de todos os tipos de
-            carnes congeladas,
-            da produção até a entrega ao consumidor. </b></p>
+        <p>Somos uma startup que nasceu com a missão de garantir a segurança da temperatura de todos os tipos de
+          carnes congeladas,
+          da produção até a entrega ao consumidor. </b></p>
         <p><b>O futuro do setor alimentício descubra como ajudamos empresas a evitar perdas,
             garantir qualidade e eficácia e entrar em conformidade com as normas sanitárias. </b></p>
       </div>
     </div>
-    <div id="etapa" class="container-coneca">
+    <!-- <div id="etapa" class="container-coneca">
       <h2>Conheça o jeito CryoTech de monitorar</h2>
       <div class="etapas">
 
@@ -111,7 +112,8 @@
           <button onclick="revelarRelatorio()">Relatório</button>
         </div>
       </div>
-    </div>
+    </div> -->
+
     <div class="container-solucoes">
       <div class="img-solucoes">
         <img src="../Site/css/Imagens/frigo_solucao.jpg">
@@ -123,6 +125,88 @@
           visibilidade total.</p>
         <button onclick="SaberSolucoes()">Saiba Mais</button>
       </div>
+    </div>
+    <div id="carrosel">
+      <div class="card-wrapper">
+      <ul class='cards'>
+        <li class="card-item">
+          <a href="#" class="card-link">
+          <div class="img-box">
+            <img src="../Site/css/Imagens/servico.png" class="card-img">
+            </div>
+            <p class="titulo cliente">Cliente</p>
+            <h2>Escolha o serviço que melhor atende sua necessidade</h2>
+            </a>
+        </li>
+         <li class="card-item">
+          <a href="#" class="card-link">
+          <div class="img-box">
+            <img src="../Site/css/Imagens/servico.png" class="card-img">
+            </div>
+            <p class="titulo">CryoTech</p>
+            <h2>Escolha o serviço que melhor atende sua necessidade</h2>
+            </a>
+        </li>
+         <li class="card-item">
+          <a href="#" class="card-link">
+          <div class="img-box">
+            <img src="../Site/css/Imagens/servico.png" class="card-img">
+            </div>
+            <p class="titulo">CryoTech</p>
+            <h2>Os sensores serão prontamente instalados pela equipe CryoTech</h2>
+            </a>
+        </li>
+         <li class="card-item">
+          <a href="#" class="card-link">
+          <div class="img-box">
+            <img src="../Site/css/Imagens/servico.png" class="card-img">
+            </div>
+            <p class="titulo">CryoTech</p>
+            <h2>Os dados são capturados</h2>
+            </a>
+        </li>
+         <li class="card-item">
+          <a href="#" class="card-link">
+          <div class="img-box">
+            <img src="../Site/css/Imagens/servico.png" class="card-img">
+            </div>
+            <p class="titulo">CryoTech</p>
+            <h2>Os dados são tratados e armazenados no banco de dados</h2>
+            </a>
+        </li>
+         <li class="card-item">
+          <a href="#" class="card-link">
+          <div class="img-box">
+            <img src="../Site/css/Imagens/servico.png" class="card-img">
+            </div>
+            <p class="titulo">CryoTech</p>
+            <h2>Uma análise será feita pela nossa aplicação</h2>
+            </a>
+        </li>
+         <li class="card-item">
+          <a href="#" class="card-link">
+          <div class="img-box">
+            <img src="../Site/css/Imagens/servico.png" class="card-img">
+            </div>
+            <p class="titulo">CryoTech</p>
+            <h2>Os dados são exibidos em forma de dashboard</h2>
+            </a>
+        </li>
+        <li class="card-item">
+          <a href="#" class="card-link">
+          <div class="img-box">
+            <img src="../Site/css/Imagens/servico.png" class="card-img">
+            </div>
+            <p class="titulo cliente">Cliente</p>
+            <h2>Tenha uma visão controlada do seu negócio</h2>
+            </a>
+        </li>
+      </ul>
+    </div>
+    <div class="botoes">
+      <button onclick="voltar()">volta</button>
+      <button onclick="proximo()">avança</button>
+    </div>
     </div>
   </div>
 
@@ -183,7 +267,7 @@
   </div>
   <div id="contato" class="contato-container">
     <div class="img-contato">
-       <img src="../Site/css/Imagens/contato.jpg">
+      <img src="../Site/css/Imagens/contato.jpg">
     </div>
 
     <div class="formulario">
@@ -202,7 +286,8 @@
         <input type="checkbox" required> <label>Transporte</label>
         <input type="checkbox" required> <label>Pontos de venda</label>
         <span>Qual sua necessidade:</span>
-        <textarea placeholder="Ex: 'Preciso monitorar a temperatura de 15 caminhões' ou 'Tenho 3 câmaras frias de 50m²'"></textarea>
+        <textarea
+          placeholder="Ex: 'Preciso monitorar a temperatura de 15 caminhões' ou 'Tenho 3 câmaras frias de 50m²'"></textarea>
         <button type="button">ENVIAR</button>
       </form>
     </div>
@@ -284,5 +369,60 @@
        <b>Economia líquida mensal:</b> <b>R$${economiaMensal.toFixed(2)}</b><br>
        `;
   }
+
+  // var partes = [
+  //   `<div id="diagrama-servico" class="card">
+  //       <img src="../Site/css/Imagens/servico.png">
+  //       <p>Escolha o serviço que melhor atende sua necessidade</p>
+  //     </div>`,
+  //     `<div id="diagrama-instalacao" class="card">
+  //       <img src="../Site/css/Imagens/servico.png">
+  //       <p>Os sensores serão prontamente instalados pela equipe CryoTech</p>
+  //     </div>`,
+  //     `<div id="diagrama-captura" class="card">
+  //       <img src="../Site/css/Imagens/servico.png">
+  //       <p>Os dados são capturados</p>
+  //     </div>`,
+  //     `<div id="diagrama-banco" class="card">
+  //       <img src="../Site/css/Imagens/servico.png">
+  //       <p>Os dados são tratados e armazenados no banco de dados</p>
+  //     </div>`,
+  //    `<div id="diagrama-analise" class="card">
+  //       <img src="../Site/css/Imagens/servico.png">
+  //       <p>Uma análise será feita pela nossa aplicação</p>
+  //     </div>`,
+  //     `<div id="diagrama-dash" class="card">
+  //       <img src="../Site/css/Imagens/servico.png">
+  //       <p>Os dados são exibidos em forma de dashboard</p>
+  //     </div>`,
+  //     `<div id="diagrama-visao" class="card">
+  //       <img src="../Site/css/Imagens/servico.png">
+  //       <p>Tenha uma visão controlada do seu negócio</p>
+  //     </div>`
+  // ];
+
+  // var cont = 0;
+  // var carrosel = document.getElementById("carrossel");
+  // // var visiveis = 4;
+
+  // function mostrar(){
+  //   carrosel.innerHTML = cards[cont];
+  // }
+
+  // function proximo(){
+  //   cont++;
+  //   if (cont >= cards.length) cont = 0;
+  //   mostrar();
+
+  // }
+
+  // function voltar(){
+  //   cont--;
+  //   if (cont < 0) cont = cards.length -1;
+  //   mostrar();
+
+  // }
+
+  // mostrar()
 
 </script>
