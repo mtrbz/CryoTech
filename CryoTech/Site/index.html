@@ -215,7 +215,7 @@
   </div>
   <div id="calculadora" class="calculadora">
     <div class="container">
-      <div class="formulario">
+      <div class="formulario-calculadora">
 
         <label for="select_servico">Serviço desejado:</label>
 
@@ -242,27 +242,28 @@
         <input type="number" id="input_qtdFreezer" placeholder="Ex: 10">
         <br>
         <button onclick="calcular()">Simular</button>
-
       </div>
-      <div class="resultado">
 
-        <p id="p_resultado">
-          <b>Produto:</b> <br>
-          valor total do estoque: <br><br>
+        <div id="resultado" class="resultado">
 
-          <b>Situação atual:</b><br>
-          Perda mensal: <br>
-          Estoque aproveitado: <br><br>
+          <p id="p_resultado">
+            <b>Produto:</b> <br>
+            valor total do estoque:<br><br>
 
-          <b>Com nosso serviço</b><br>
-          Taxa única de implantação: <br>
-          Custo mensal do serviço: <br>
-          Perda reduzida: <br>
-          Estoque aproveitado: <br><br>
+            <b>Situação atual:</b><br>
+            Perda mensal: <br>
+            Estoque aproveitado: <br><br>
 
-          <b>Economia líquida mensal:</b>
-        </p>
-      </div>
+            <b>Com nosso serviço</b><br>
+            Taxa única de implantação: <br>
+            Custo mensal do serviço: <br>
+            Perda reduzida: <br>
+            Estoque aproveitado: <br><br>
+
+            <b>Economia líquida mensal:</b>
+          </p>
+        </div>
+      
     </div>
   </div>
   <div id="contato" class="contato-container">
@@ -313,7 +314,6 @@
   }
 
   function calcular() {
-
     var nome = input_nome.value;
     var valorKg = Number(input_valorKg.value);
     var estoqueKg = Number(input_estoque.value);
@@ -354,19 +354,19 @@
 
     p_resultado.innerHTML = `
        <b>Produto:</b> <b>${nome}</b><br>
-       valor total do estoque: <b>R$${valorEstoque.toFixed(2)}</b><br><br>
+       valor total do estoque: <b>${valorEstoque.toLocaleString('pt-br', {style: 'currency', currency: 'BRL'})}</b><br><br>
 
        <b>Situação atual:</b><br>
-       Perda mensal: <b>R$${perdaAtual.toFixed(2)} (${pctPerda.toFixed(2)}% do estoque)</b><br>
-       Estoque aproveitado: <b>R$${estoquePreservado.toFixed(2)}</b><br><br>
+       Perda mensal: <b>${perdaAtual} (${pctPerda.toFixed(2)}% do estoque)</b><br>
+       Estoque aproveitado: <b>${estoquePreservado.toLocaleString('pt-br', {style: 'currency', currency: 'BRL'})}</b><br><br>
 
        <b>Com nosso serviço</b><br>
-       Taxa única de implantação: <b>R$${taxaUnica.toFixed(2)}</b><br>
-       Custo mensal do serviço: <b>R$${valorServico.toFixed(2)}</b><br>
-       Perda reduzida: <b>R$${perdaComServico.toFixed(2)}</b><br>
-       Estoque aproveitado: <b>R$${estoquePreservadoServico.toFixed(2)}</b><br><br>
+       Taxa única de implantação: <b>${taxaUnica.toLocaleString('pt-br', {style: 'currency', currency: 'BRL'})}</b><br>
+       Custo mensal do serviço: <b>${valorServico.toLocaleString('pt-br', {style: 'currency', currency: 'BRL'})}</b><br>
+       Perda reduzida: <b>${perdaComServico.toLocaleString('pt-br', {style: 'currency', currency: 'BRL'})}</b><br>
+       Estoque aproveitado: <b>${estoquePreservadoServico.toLocaleString('pt-br', {style: 'currency', currency: 'BRL'})}</b><br><br>
 
-       <b>Economia líquida mensal:</b> <b>R$${economiaMensal.toFixed(2)}</b><br>
+       <b>Economia líquida mensal:</b> <b>${economiaMensal.toLocaleString('pt-br', {style: 'currency', currency: 'BRL'})}</b><br>
        `;
   }
 
