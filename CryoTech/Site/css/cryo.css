@@ -544,50 +544,92 @@ body {
 
 /* Início calculadora */
 
-.titulo-calculadora {
-    display: flex;
-    margin-left: 5%;
-    font-size: 36px;
-    margin-top: 120px;
-}
-
 .calculadora {
     display: flex;
     justify-content: center;
+    flex-direction: column;
 }
+.card1 p {
+    font-weight: bold;
+    display: flex;
+    font-size: 30px;
+}
+
 
 .calculadora .container {
     display: flex;
     border-radius: 6px;
     width: 100%;
-    height: 650px;
+    height: auto;
     padding: 30px;
     flex-direction: row;
     justify-content: space-around;
-    align-items: center;
+    align-items: flex-start; 
+    
 }
 
 .calculadora .formulario-calculadora {
     display: flex;
     background-color: #FFFF;
     width: 50%;
-    height: 650px;
+    height: auto; 
     flex-direction: column;
     align-items: center;
-    justify-content: center;
+    justify-content: flex-start; /* ✅ mantém o topo fixo */
+    padding: 20px;
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
 }
 
 .calculadora label {
     font-weight: bold;
+      display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 10px;
+  cursor: pointer;
 }
 
 .calculadora input {
     width: 360px;
     height: 50px;
     border: none;
-    background-color: #d9d9d9;
+    background-color: #e1e8ed;
     font-size: 16px;
     border-radius: 5px;
+    
+}
+
+.card1 {
+  width: 100%;
+  display: flex;
+  background: #fff;
+  color: #081938;
+  padding: 16px;
+  margin-bottom: 16px;
+  border-radius: 8px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+  flex-direction: column;
+  padding-left: 225px;
+  text-align: start;
+}
+.checkbox-label {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 10px;
+  cursor: pointer;
+}
+.checkbox-label input[type="checkbox"] {
+  width: 18px;
+  height: 18px;
+}
+.card2 {
+  background: #fff;
+  color: #081938;
+  padding: 16px;
+  margin-bottom: 16px;
+  border-radius: 8px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
 }
 
 .calculadora button {
@@ -605,11 +647,6 @@ body {
     transition: 0.3s;
 }
 
-.calculadora select {
-    width: 160px;
-    font-size: 16px;
-    border-radius: 5px;
-}
 
 .calculadora .resultado {
     display: flex;
