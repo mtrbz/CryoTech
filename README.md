@@ -21,7 +21,6 @@ O mercado global de carnes resfriadas e congeladas está em crescimento, e falha
   <h2>Justificativa</h2> <br>
   A adoção de um sistema automatizado de monitoramento da temperatura é essencial para garantir a qualidade de todas as carnes, alimentos altamente perecíveis e sensíveis a variações térmicas. Pequenas falhas no resfriamento podem comprometer rapidamente a segurança e reduzir a vida útil dos produtos. Estudos indicam que manter carnes na temperatura correta prolonga significativamente seu tempo de conservação, evitando perdas diretas (FAO, 2019).<br> <br>
 Esse controle não é apenas uma questão de boas práticas, mas também de economia. Descartes por falhas de resfriamento geram prejuízos elevados, enquanto o monitoramento contínuo permite ações preventivas, reduz desperdícios, aumenta o tempo de comercialização e minimiza riscos de multas sanitárias. Carnes frescas representam uma das categorias com maior taxa de desperdício, tornando esse controle crucial para a margem de lucro.
-
 </div>
 
 
