@@ -122,7 +122,7 @@ body {
 /* Fim do footer */
 
 .banner {
-    height: 700px;
+    height: 900px;
     width: 100%;
     background-image: url('../css/Imagens/backgroud-inicial.jpg');
     background-size: cover;
@@ -130,7 +130,7 @@ body {
     /* background-position: center;
      background-size: cover;
      border-bottom: 8px solid rgba(0, 0, 0, 0.2); */
-     /*mask-image: linear-gradient(to bottom, #000 80%, rgba(0, 0, 0, 0.001) 99%);*/
+     mask-image: linear-gradient(to bottom, #000 80%, rgba(0, 0, 0, 0.001) 99%);
 }
 
 .banner p {
@@ -247,6 +247,8 @@ body {
 .container-us {
     /* background: linear-gradient(135deg, #0B0D39 0%, #103D91 50%, #9CCCF3 100%); */
     display: grid;
+    height: 900px;
+    width: 100%;
     grid-template-columns: 1.1fr 1fr;
     gap: 56px;
     align-items: start;
@@ -268,20 +270,23 @@ body {
     left: 0;
     top: 10px;
     width: 8px;
-    height: 130px;
+    height: 200px;
     background: #101449;
     border-radius: 3px;
-
+    margin-top: 300px;
+    margin-left: 300px;
 }
 
 .us-tutulo {
     margin: 0 0 24px;
     font-weight: 700;
     letter-spacing: 0.2px;
-    font-size: 40px;
+    font-size: 56px;
+    margin-top: 300px;
+    margin-left: 300px;
 }
 
-.bnt-us {
+/* .bnt-us {
     display: inline-block;
     background: #101449;
     color: #ffff;
@@ -290,15 +295,21 @@ body {
     border-radius: 16px;
     font-weight: 600;
     border: none;
-}
+} */
 
 .texto-direita {
     padding-right: 80px;
     margin-right: 60px;
     font-size: 18.5px;
 }
-
+.container-us p{
+    font-size: 22px;
+   line-height: 30px;
+   margin-top: 200px;
+}
 /* Fim de sobre nós index */
+
+
 
 /* Inicio de conheca */
 .container-coneca {
@@ -398,6 +409,7 @@ body {
     bottom: calc(var(--panel-bottom) - var(--panel-shift));
 }
 
+
 .img-solucoes {
     position: relative;
     z-index: 1;
@@ -440,20 +452,78 @@ body {
     font-weight: bold;
 
 }
-
-.conteudo-solucoes button {
-    background-color: #101449;
-    color: #ffff;
-    width: 210px;
-    height: 50px;
-    display: flex;
+.container-solucoes2 {
+    --panel-top: 60px;
+    --panel-bottom: 80px;
+    --panel-shift: 60px;
+    position: relative;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 80px 20px;
+    display: grid;
+    grid-template-columns: 1.2fr 1fr; 
     align-items: center;
-    justify-content: center;
-    text-align: center;
-    border-radius: 20px;
-    margin-top: 20px;
-    border: none;
 }
+
+.container-solucoes2::before {
+    content: "";
+    position: absolute;
+    background-color: #c6d8e6;
+    border-radius: 0;
+    z-index: -1;
+
+   
+    right: 10%;
+    left: 0;
+
+    width: 100vw;
+    top: calc(var(--panel-top) + var(--panel-shift));
+    bottom: calc(var(--panel-bottom) - var(--panel-shift));
+}
+
+
+.img-solucoes2 {
+    position: relative;
+    z-index: 1;
+    width: 400px;
+}
+
+.img-solucoes2::before {
+    content: "";
+    position: absolute;
+    right: -30px; 
+    top: 30px;
+    width: 300px;
+    height: 250px;
+    background-color: #101449;
+    z-index: -1;
+}
+
+.img-solucoes2 img {
+    width: 300px;
+    height: 250px;
+}
+
+
+.conteudo-solucoes2 {
+    position: relative;
+    z-index: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start; 
+}
+
+.conteudo-solucoes2 p {
+    padding: 40px 0 0 80px; 
+    margin-left: 60px; 
+    font-size: 18.5px;
+    font-weight: bold;
+}
+
+
+
+
+
 
 /* fim de solução home */
 
@@ -1070,4 +1140,55 @@ textarea {
     color: white;
     font-weight: 600;
 
+} 
+/* Inicio footer */
+.footer {
+  background-color: #101449; /* azul escuro */
+  color: #ffffff;
+  padding: 40px 20px;
+  font-family: 'Poppins', sans-serif;
 }
+
+.footer-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.footer-logo h2 {
+  margin: 0;
+  font-size: 24px;
+  font-weight: 600;
+}
+
+.footer-logo p {
+  font-size: 14px;
+  color: #c6d8e6;
+  margin-top: 8px;
+}
+
+.footer-links {
+  margin: 25px 0;
+}
+
+.footer-links a {
+  color: #ffffff;
+  text-decoration: none;
+  margin: 0 15px;
+  font-weight: 500;
+  transition: color 0.3s ease;
+}
+
+.footer-links a:hover {
+  color: #c6d8e6;
+}
+
+.footer-copy {
+  border-top: 1px solid rgba(255, 255, 255, 0.2);
+  margin-top: 25px;
+  padding-top: 15px;
+  font-size: 13px;
+  color: #c6d8e6;
+}
+
+
