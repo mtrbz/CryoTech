@@ -24,7 +24,7 @@ body {
 
 
 .header {
-    background: #101449;
+    background: #0b0e22;
      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.5);
 }
 
@@ -74,36 +74,40 @@ body {
 .navbar-button {
     display: flex;        
     gap: 10px;            
-    margin-left: 20px;  
+    margin-left: 20px; 
 }
 
-.navbar-button button {
-    padding: 8px 20px;
-    border-radius: 8px;
-    cursor: pointer;
-    background-color: #101449;
-    color: white;
-    font-size: 16px;
-    background: rgba(255, 255, 255, 0.1);
-    border: solid 1px;
-
-}
-
- .navbar-button #abrirModal{
-    padding: 10px 40px;
-    border-radius: 8px;
-    cursor: pointer;
-    background-color: #101449;
-    color: white;
-    font-size: 16px;
-    background: rgba(255, 255, 255, 0.1);
-    border: solid 1px;
-    transition: 0.3s;
- }
-
-.navbar-button #abrirModal:hover {
-    background: #182080;
+.navbar-button button   {  
+    background: linear-gradient(90deg, #0094cc, #00b7ff);
     color: #fff;
+    font-weight: 500;
+    border: none;
+    border-radius: 10px;
+    padding: 12px 35px;
+    font-size: 15px;
+    margin-top: 10px;
+    transition: 0.3s;
+    margin-bottom: 7px;
+}
+
+.navbar-button #abrirModal {
+    background: linear-gradient(90deg, #0094cc, #00b7ff);
+    color: #fff;
+    font-weight: 500;
+    border: none;
+    border-radius: 10px;
+    padding: 12px 35px;
+    font-size: 15px;
+    margin-top: 10px;
+    transition: 0.3s;
+    margin-bottom: 7px;
+}
+.navbar-button #abrirModal:hover {
+  transform: scale(1.05);
+}
+
+.navbar-button :hover {
+      transform: scale(1.05);
 }
 
 
@@ -126,7 +130,7 @@ body {
     /* background-position: center;
      background-size: cover;
      border-bottom: 8px solid rgba(0, 0, 0, 0.2); */
-    mask-image: linear-gradient(to bottom, #000 80%, rgba(0, 0, 0, 0.001) 99%);
+     /*mask-image: linear-gradient(to bottom, #000 80%, rgba(0, 0, 0, 0.001) 99%);*/
 }
 
 .banner p {
@@ -171,33 +175,6 @@ body {
     background-color: #1b1f6b;
     transform: scale(1.05);
 }
-
-.banner a {
-    position: absolute;
-    bottom: 80px;
-    right: 250px;
-    width: 200px;
-    height: 60px;
-    padding: 10px 20px;
-
-    display: flex;
-    align-items: center;
-    justify-content: center;
-
-    background-color: #101449;
-    color: white;
-    border: none;
-    border-radius: 11px;
-    cursor: pointer;
-    font-size: 15px;
-    text-decoration: none;
-    font-weight: 500;
-    scroll-margin-top: 50px;
-    margin-bottom: 70px;
-
-    transition: background-color 0.3s ease, transform 0.2s ease;
-}
-
 
 /* Início da aba Solução */
 
@@ -543,129 +520,132 @@ body {
 
 /* Início calculadora */
 
+
+
 .calculadora {
+    background: #171a2d;
+    color: #fff;
+    padding: 40px 20px;
+    box-shadow: 0 0 20px rgba(0, 183, 255, 0.2);
+    max-width: 800px;
+    margin:70px auto 50px auto;
+    text-align: center;
     display: flex;
-    justify-content: center;
-    flex-direction: column;
-}
-.card1 p {
-    font-weight: bold;
-    display: flex;
-    font-size: 30px;
+
 }
 
-
-.calculadora .container {
-    display: flex;
-    border-radius: 6px;
-    width: 100%;
-    height: auto;
-    padding: 30px;
-    flex-direction: row;
-    justify-content: space-around;
-    align-items: flex-start; 
-    
+.calculadora p {
+    font-size: 14px;
+    color: #b0b3c2;
+    margin-bottom: 30px;
 }
 
-.calculadora .formulario-calculadora {
-    display: flex;
-    background-color: #FFFF;
-    width: 50%;
-    height: auto; 
-    flex-direction: column;
-    align-items: center;
-    justify-content: flex-start; /* ✅ mantém o topo fixo */
-    padding: 20px;
-      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+.calculadora span {
+    color: #8fd1db;
+    font-size: larger;
 }
 
-.calculadora label {
-    font-weight: bold;
-      display: flex;
-  align-items: center;
-  gap: 10px;
-  margin-bottom: 10px;
-  cursor: pointer;
-}
-
-.calculadora input {
-    width: 360px;
-    height: 50px;
+.calculadora input[type="text"],
+.calculadora input[type="number"] {
+    width: 155%;
+    background: transparent;
     border: none;
-    background-color: #e1e8ed;
-    font-size: 16px;
-    border-radius: 5px;
-    
+    border-bottom: 1px solid #5a8dee;
+    padding: 10px 0;
+    margin-bottom: 25px;
+    color: #fff;
+    font-size: 14px;
 }
 
-.card1 {
-  width: 100%;
-  display: flex;
-  background: #fff;
-  color: #081938;
-  padding: 16px;
-  margin-bottom: 16px;
-  border-radius: 8px;
-  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
-  flex-direction: column;
-  padding-left: 225px;
-  text-align: start;
+.calculadora input:focus {
+    outline: none;
+    border-bottom: 1px solid black;
+
 }
-.checkbox-label {
+
+
+.calculadora .label-input {
+    width: 70%;
+    display: flex;
+    text-align: start;
+    justify-content: center;
+}
+
+.calculadora h2 {
+    font-size: 2rem;
+    margin-bottom: 25px;
+    color: #ffffff;
+    letter-spacing: 1px;
+}
+.calculadora .checkbox-container {
+
   display: flex;
   align-items: center;
-  gap: 10px;
-  margin-bottom: 10px;
-  cursor: pointer;
+  justify-content: center;
+  margin-top: 15px;
 }
-.checkbox-label input[type="checkbox"] {
+
+.calculadora #p_resultado {
+    font-size: 1.2rem;
+    color: #ffffffd3; 
+}
+
+.calculadora input[type="checkbox"] {
   width: 18px;
   height: 18px;
+  border: 2px solid #00b7ff;
+  border-radius: 4px;
+  background-color: transparent;
+  position: relative;
 }
-.card2 {
-  background: #fff;
-  color: #081938;
-  padding: 16px;
-  margin-bottom: 16px;
-  border-radius: 8px;
-  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+
+.calculadora input[type="checkbox"]:checked {
+  background-color: #00b7ff;
+  box-shadow: 0 0 4px rgba(0, 183, 255, 0.4);
 }
+
+.calculadora input[type="checkbox"]:checked::after {
+  position: absolute;
+  color: #fff;
+  font-size: 20px;
+  text-align: center;
+  left: 8px;
+  top: -1px;
+}
+
+/*botao*/
 
 .calculadora button {
-    width: 300px;
-    height: 65px;
+    background: linear-gradient(90deg, #0094cc, #00b7ff);
+    color: #fff;
+    font-weight: 600;
     border: none;
-    border-radius: 20px;
-    background-color: #101449;
-    color: #FFFF;
-    font-size: 16px;
-}
-
-.calculadora button:hover {
-    background-color: #182080;
+    border-radius: 10px;
+    padding: 12px 35px;
+    font-size: 18px;
+    margin-top: 10px;
     transition: 0.3s;
 }
 
-
-.calculadora .resultado {
-    display: flex;
-    font-size: 24px;
-    background-color: #182080;
-    width: 50%;
-    height: 650px;
-    justify-content: center;
-    align-items: center;
-    color: #FFFF;
+.calculadora button:hover {
+  background: linear-gradient(90deg, #00b7ff, #0094cc);
+  transform: scale(1.05);
+  box-shadow: 0 0 12px rgba(0, 183, 255, 0.5);
 }
 
-.calculadora img {
-    display: flex;
-    width: 560px;
-    border-radius: 10px;
+.resultado {
+  margin-top: 25px;
+  font-size: 20px;
+  color: #ffffff;
+  background: rgba(255, 255, 255, 0.05);
+  padding: 15px;
+  border-radius: 12px;
+  display: inline-block;
+  width: 500px;
 }
+
 
 /* Fim calculadora */
-
 
 
 /* login */
@@ -687,7 +667,7 @@ body {
     right: -100%;
     width: 400px;
     height: 100%;
-    background: #101449;
+    background: #171a2d;
     color: #fff;
     box-shadow: -4px 0 20px rgba(0, 0, 0, 0.5);
     transition: right 0.4s;
@@ -708,28 +688,44 @@ body {
     margin-bottom: 20px;
 }
 
+.modal p {
+    font-size: 14px;
+    color: #b0b3c2;
+    margin-bottom: 30px;
+}
+
 .modal input {
-    margin-bottom: 15px;
-    padding: 10px;
-    border: none;
-    border-radius: 5px;
     width: 100%;
-    
+    background: transparent;
+    border: none;
+    border-bottom: 1px solid #5a8dee;
+    padding: 10px 0;
+    margin-bottom: 25px;
+    color: #fff;
+    font-size: 14px;
+}
+
+.modal input:focus {
+    outline: none;
+    border-bottom: 1px solid black;
+
 }
 
 .modal button {
-   width: 100%;
-    padding: 12px;
-    border: none;
-    border-radius: 25px;
+    background: linear-gradient(90deg, #0094cc, #00b7ff);
+    margin-bottom: 8px;
+    color: #fff;
     font-weight: 600;
-    cursor: pointer;
+    border: none;
+    border-radius: 10px;
+    padding: 10px 35px;
+    font-size: 18px;
+    margin-top: 10px;
     transition: 0.3s;
-    color: white;
-    font-size: 16px;
-    background: rgba(255, 255, 255, 0.1);
-    border: solid 1px;
-    margin-top: 15px;
+}
+
+.modal button:hover {
+  transform: scale(1.05);
 }
 .modal img {
     position: absolute;
@@ -748,11 +744,10 @@ body {
 
 
 
+
 /* Inicio cadastro */
 
-
     .cadastro {
-        
     margin: 0;
     height: 100vh;
     /*100% da altura da janela de visualização (viewport) */
@@ -760,10 +755,14 @@ body {
     justify-content: center;
     align-items: center;
     /* background-color: #c6d8e6; */
-    background: #101449;
     
     }
 
+    .background-cadastro {
+    background-image: url('/CryoTech/Site/css/Imagens/background-cadastro.png');
+    background-size: cover;
+
+    }
 /* .cadastro-box {
     width: 850px;
     height: 800px;
@@ -789,7 +788,7 @@ body {
     display: flex;
     flex-direction: column;
     justify-content: center;
-    background: #0b0e22;
+    background: #171a2d;
     
 }
 
@@ -827,6 +826,15 @@ body {
     border-bottom: 1px solid black;
 
 }
+.cadastro .img-cadastro {
+       position: absolute;
+    top: -5px;
+    height: 87px;
+    width: 100%;
+    background: #0b0e22;
+    justify-content: start;
+        padding: 10px 20px;
+}
 
 
 .remember {
@@ -847,40 +855,127 @@ body {
 }
 
 .cadastro-left button {
-    width: 100%;
-    padding: 12px;
-    border: none;
-    border-radius: 25px;
-    background-color: #101449;
-    color: white;
+    background: linear-gradient(90deg, #0094cc, #00b7ff);
+    color: #fff;
     font-weight: 600;
-    cursor: pointer;
+    border: none;
+    border-radius: 10px;
+    padding: 12px 35px;
+    font-size: 18px;
+    margin-top: 10px;
     transition: 0.3s;
 }
 
-button:hover {
-
-    background-color: #1b1f6b;
-    transform: scale(1.05);
+.cadastro-left button:hover {
+  background: linear-gradient(90deg, #00b7ff, #0094cc);
+  transform: scale(1.05);
+  box-shadow: 0 0 12px rgba(0, 183, 255, 0.2);
 }
+
 
 
 .cadastro-right {
-    width: 50%;
+    width: 80%;
+    padding: 50px;
+    color: #fff;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    background: #171a2d;
+    box-shadow: 0 0 20px rgba(0, 183, 255, 0.2);
+    margin-top: 120px;
+    max-width: 800px;
+    text-align: center;
+    display: flex;
+    
+}
 
-    background-size: 200% 200%;
+.cadastro-right h2 {
+    margin-bottom: 10px;
+    font-size: 24px;
+}
 
+.cadastro-right p {
+    font-size: 14px;
+    color: #b0b3c2;
+    margin-bottom: 30px;
+}
+
+.cadastro-right a {
+    color: #5a8dee;
+    text-decoration: none;
 }
 
 
-.cadastro-right {
-    background-image: url(../css/Imagens/imagem_cadastro.png);
+.cadastro-right input[type="text"],
+.cadastro-right input[type="password"] {
+    width: 100%;
+    background: transparent;
+    border: none;
+    border-bottom: 1px solid #5a8dee;
+    padding: 10px 0;
+    margin-bottom: 25px;
+    color: #fff;
+    font-size: 14px;
+}
+
+.cadastro-right input:focus {
+    outline: none;
+    border-bottom: 1px solid black;
 
 }
+
+.cadastro-right button {
+    background: linear-gradient(90deg, #0094cc, #00b7ff);
+    color: #fff;
+    font-weight: 600;
+    border: none;
+    border-radius: 10px;
+    padding: 12px 35px;
+    font-size: 18px;
+    margin-top: 10px;
+    transition: 0.3s;
+}
+
+.cadastro-right button:hover {
+  background: linear-gradient(90deg, #00b7ff, #0094cc);
+  transform: scale(1.05);
+  box-shadow: 0 0 12px rgba(0, 183, 255, 0.2);
+}
+.cadastro .img-cadastro {
+       position: absolute;
+    top: -5px;
+    height: 87px;
+    width: 100%;
+    background: #0b0e22;
+    justify-content: start;
+        padding: 10px 20px;
+}
+
+
+
+.remember {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 14px;
+    color: #ffffff;
+    margin-bottom: 25px;
+
+}
+
+.remember input[type="checkbox"] {
+    width: 18px;
+    height: 18px;
+    accent-color: #101449;
+    cursor: pointer;
+}
+
+
 
 .cadastro .img-cadastro img {
    position: absolute;
-    top: 7px;
+    top: 12px;
     left: 10px;
     width: 160px;
     padding: 0px 0px;

@@ -245,86 +245,90 @@
         <div class="container">
           <div class="formulario-calculadora">
             <div class="card1">
-              <p>Simule seus resultados</p>
+              <h2>Faça uma projeção com a <span>Cryo</span>Tech</h2>
               <label class="checkbox-label">
                 <input type="checkbox" id="box_1" onclick="alternarDiv()" />
-                Câmaras Frias
+                Câmaras Frias 
               </label>
               <label class="checkbox-label">
                 <input type="checkbox" id="box_2" onclick="alternarDiv()" />
-                Freezers
+                Freezers 
               </label>
               <label class="checkbox-label">
                 <input type="checkbox" id="box_3" onclick="alternarDiv()" />
-                Veículos refrigerados
+                Veículos refrigerados- 
               </label>
-            </div>
+            </div> <br><br>
+            <div class="label-input" >
 
-            <div class="card2">
-              <div id="div_camf" style="display: none">
-                <label for="input_numCamaras"
+              <div class="card2">
+                <div id="div_camf" style="display: none">
+                  <label for="input_numCamaras"
                   >Quantidade de câmaras frias</label
-                >
-                <input
+                  >
+                  <input
                   type="number"
                   id="input_numCamaras"
                   placeholder="Ex: 10"
                   oninput="atualizarMensalidade()"
-                /><br />
-              </div>
-
-              <div id="div_freezer" style="display: none">
-                <label for="input_numFreezers">Quantidade de freezers</label>
-                <input
+                  /><br />
+                </div>
+                
+                <div id="div_freezer" style="display: none">
+                  <label for="input_numFreezers">Quantidade de freezers</label>
+                  <input
                   type="number"
                   id="input_numFreezers"
                   placeholder="Ex: 30"
                   oninput="atualizarMensalidade()"
-                /><br />
-              </div>
-
-              <div id="div_refrigerado" style="display: none">
-                <label for="input_numVeiculos"
+                  /><br />
+                </div>
+                
+                <div id="div_refrigerado" style="display: none">
+                  <label for="input_numVeiculos"
                   >Quantidade de veículos refrigerados</label
-                >
-                <input
+                  >
+                  <input
                   type="number"
                   id="input_numVeiculos"
                   placeholder="Ex: 15"
                   oninput="atualizarMensalidade()"
-                /><br />
-              </div>
+                  /><br />
+                </div>
 
-              <label for="input_mensalidade">Valor da mensalidade:</label>
-              <input
+                <label for="input_mensalidade">Valor da mensalidade:</label>
+                <input style="font-weight: bold;"
                 disabled
                 type="number"
                 id="input_mensalidade"
-                value="900"
-              />
-
-              <label for="input_nome">Produto em estoque:</label>
-              <input type="text" id="input_nome" placeholder="Ex: Tilápia" />
-              <br />
-              <label for="input_valorKg">Valor do Kg (R$): </label>
-              <input
+                value="900" 
+                
+                /><br>
+                
+                <label for="input_nome">Produto em estoque:</label>
+                <input type="text" id="input_nome" placeholder="Ex: Picanha" />
+                <br />
+                <label for="input_valorKg">Valor do Kg (R$): </label>
+                <input
                 type="number"
                 id="input_valorKg"
                 placeholder="Ex: R$90,00"
-              />
+                />
+                <br />
+                <label for="input_estoque">Quantidade em estoque (Ton): </label>
+                <input type="number" id="input_estoque" placeholder="Ex: 3 Toneladas" />
+                <br />
+                <label for="input_perda">Perda mensal atual (%): </label>
+                <input type="number" id="input_perda" placeholder="Ex: 40" />
+              </div>
               <br />
-              <label for="input_estoque">Quantidade em estoque (Kg): </label>
-              <input type="number" id="input_estoque" placeholder="Ex: 24Kg" />
-              <br />
-              <label for="input_perda">Perda mensal atual (%): </label>
-              <input type="number" id="input_perda" placeholder="Ex: 40" />
             </div>
-            <br />
+            
           </div>
-
-          <div id="resultado" class="resultado">
+            <div id="resultado" class="resultado">
             <h4></h4>
-            <p id="p_resultado"></p>
+            <p style="font-weight: bolder;" id="p_resultado">Após preencher os campos corretamente <br>
+               clique no botão abaixo</p>
             <button onclick="calcular()">Simular</button>
           </div>
         </div>
