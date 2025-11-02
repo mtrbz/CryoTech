@@ -1,0 +1,399 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  </head>
+
+<style>
+body {
+font-family: 'Inter', 'Poppins', Arial, sans-serif;
+margin: 0;
+background-color: #f5f7fb;
+color: #1a1a1a;
+}
+.header img {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 70px;
+}
+
+.header {
+display: flex;
+width: 100%;
+height: 100%;
+  background: linear-gradient(90deg, #0b1e45, #1e4d92);
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 40px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+}
+
+.dashboard {
+  display: flex;
+  width: 100%;
+  height: 100%;
+}
+
+.dashboard .lateral {
+  display: flex;
+  flex-direction: column;
+  background: linear-gradient(180deg, #091637, #152a66);
+  color: #ffffff;
+  width: 18%;
+  padding: 30px 25px;
+  gap: 25px;
+  box-shadow: 2px 0 8px rgba(0, 0, 0, 0.2);
+}
+
+.dashboard .lateral h2 {
+  font-weight: 500;
+  font-size: 18px;
+  text-align: center;
+  color: #e2e8f0;
+}
+
+.dashboard .lateral select {
+  padding: 10px;
+  border-radius: 8px;
+  border: none;
+  font-size: 15px;
+  width: 100%;
+  background-color: #e2e8f0;
+  color: #1a1a1a;
+}
+
+.dashboard .lateral .card,
+.dashboard .lateral .card-alerta {
+  width: 85%;
+  text-align: center;
+  border-radius: 12px;
+  padding: 15px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+}
+
+.dashboard .lateral .card {
+  background: #f8fafc;
+  color: #1a2b4c;
+}
+
+.dashboard .card-alerta {
+  background: linear-gradient(135deg, #b00020, #e63946);
+  color: #fff7c1;
+}
+
+.dashboard .lateral .card h3,
+.dashboard .lateral .card-alerta h3 {
+  font-size: 2.4em;
+  margin-bottom: 6px;
+}
+
+.dashboard .lateral .card p,
+.dashboard .lateral .card-alerta p {
+  font-size: 14px;
+  opacity: 0.9;
+}
+
+.dashboard .container {
+  display: flex;
+  flex-direction: column;
+  padding: 25px;
+  width: 100%;
+  background-color: #f5f7fb;
+}
+
+.dashboard .info {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  padding: 10px 0;
+  flex-wrap: wrap;
+}
+
+.info .box {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background-color: #ffffff;
+  border-radius: 14px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+  padding: 20px;
+  width: 230px;
+  margin: 10px;
+}
+
+.info .box:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
+}
+
+.info p {
+  font-size: 16px;
+  color: #334155;
+}
+
+.info .metrica {
+  font-size: 26px;
+  color: #1e4d92;
+  font-weight: bold;
+  margin-top: 5px;
+}
+
+.dashboard .graficos {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  margin-top: 25px;
+}
+
+.dashboard .grafico,
+.dashboard .grafico-inferior .grafico-grande {
+  background-color: #ffffff;
+  border-radius: 12px;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.05);
+  padding: 15px;
+}
+
+.dashboard .grafico {
+  width: 42%;
+  height: 320px;
+}
+
+.grafico-grande {
+  width: 80%;
+  height: 380px;
+}
+
+.grafico-inferior {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 30px;
+}
+
+  </style>
+
+  <body>
+    <div class="header">
+      <nav>
+        <img onclick="imagem()" src="../Site/css/Imagens/logo1.png" alt="">
+      </nav>
+    </div>
+
+    <div class="dashboard">
+      
+       <div class="lateral">
+        <h2>Escolha o sensor abaixo: </h2>
+        <select onchange="analisar()" id="select_sensor">
+          <option value="#" selected disabled>Selecione o sensor:</option>
+          <option value="1">Sensor 1</option>
+          <option value="2">Sensor 2</option>
+          <option value="3">Sensor 3</option>
+          <option value="4">Sensor 4</option>
+          <option value="5">Sensor 5</option>
+        </select>
+
+        <div class="card">
+          <h3>5</h3>
+          <p>Sensores Ativos</p>
+        </div>
+        <div class="card">
+          <h3><span style="color: green;" >91%</span></h3>
+          <p>Taxa de Estabilidade</p>
+        </div>
+        <div class="card-alerta">
+          <h3>3</h3>
+          <p>Alertas Críticos</p>
+        </div>
+      </div>
+
+      <div class="container">
+        <div class="info">
+
+          <div class="box">
+            <div class="card">
+              <p >Média de temperatura</p>
+                <p id="mediaTemp" class="metrica"><span style="color: green;" >-19  °C</span></p>
+            </div>
+          </div>
+
+          <div class="box">
+            <div class="card">
+             <p >Temperatura mais alta</p>
+              <p id="tempAlta" class="metrica"><span style="color: red;" >9°C</span></p>
+            </div>
+          </div>
+
+          <div class="box">
+            <div class="card">
+             <p>Temperatura mais baixa</p>
+              <p id="tempBaixa" class="metrica" ><span style="color: green;" >-28°C</span></p>
+            </div>
+          </div>
+
+          <div class="box">
+            <div class="card">
+             <p>Temperatura ideal</p>
+              <p id="tempIdeal" class="metrica">-18°C</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="graficos">
+          <div class="grafico">
+            <canvas id="g1"></canvas>
+          </div>
+
+          <div class="grafico">
+            <canvas id="g2"></canvas>
+          </div>
+      
+        </div>
+
+        <div class="grafico-inferior">
+
+            <div class="grafico-grande">
+
+              <canvas class="grafico" id="temperatura"></canvas>
+
+            </div>
+
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
+
+<script>
+  const graficoTemperatura = document.getElementById("temperatura");
+  const g1 = document.getElementById("g1");
+  const g2 = document.getElementById("g2");
+
+
+  const formatacao = {
+    responsive: true,
+    maintainAspectRatio: false,
+    scales: { y: { beginAtZero: true } }
+  };
+
+
+  new Chart(graficoTemperatura, {
+    type: "line",
+    data: {
+      labels: ["12:00", "13:00", "14:00", "15:00", "16:00", "17:00"],
+      datasets: [
+        {
+          label: "Sensor 1",
+          data: [-20, -20, -17, -21, -19, -23],
+          borderWidth: 2,
+          borderColor: "#0d47a1",
+          backgroundColor: "rgba(13, 71, 161, 0.25)",
+          fill: true,
+        },
+        {
+          label: "Sensor 2",
+          data: [-19, -18, -17, -19, -18, -20],
+          borderWidth: 2,
+          borderColor: "#1976d2",
+          backgroundColor: "rgba(25, 118, 210, 0.25)",
+          fill: true,
+        },
+        {
+          label: "Sensor 3",
+          data: [-14, -15, -15, -16, -17, -19],
+          borderWidth: 2,
+          borderColor: "#42a5f5",
+          backgroundColor: "rgba(66, 165, 245, 0.25)",
+          fill: true,
+        },
+        {
+          label: "Sensor 4",
+          data: [-21, -21, -22, -24, -24, -23],
+          borderWidth: 2,
+          borderColor: "#90caf9",
+          backgroundColor: "rgba(144, 202, 249, 0.25)",
+          fill: true,
+        },
+        {
+          label: "Sensor 5",
+          data: [-18, -19, -12, -13, -18, -19],
+          borderWidth: 2,
+          borderColor: "#64b5f6",
+          backgroundColor: "rgba(100, 181, 246, 0.25)",
+          fill: true,
+        },
+      ],
+    },
+    options: {
+      maintainAspectRatio: false,
+      scales: {
+        y: { 
+          beginAtZero: true, 
+          reverse: true 
+        }
+      }
+    }
+  });
+
+
+  new Chart(g1, {
+    type: "line",
+    data: {
+      labels: ["12:00", "13:00", "14:00", "15:00", "16:00", "17:00"],
+      datasets: [
+        {
+          label: "Temperatura por hora",
+          data: [-20, -20, -17, -21, -19, -23],
+          borderWidth: 2,
+          borderColor: "#1565c0",
+          backgroundColor: "rgba(21, 101, 192, 0.3)",
+          fill: true,
+        },
+      ],
+    },
+    options: {
+      scales: {
+        y: { 
+          reverse: true,
+          beginAtZero: true 
+        },
+      },
+    },
+  });
+
+
+  new Chart(g2, {
+    type: "bar",
+    data: {
+      labels: ["12:00", "13:00", "14:00", "15:00", "16:00", "17:00"],
+      datasets: [
+        {
+          label: "Temperatura por hora",
+          data: [-20, -20, -17, -21, -19, -23],
+          borderWidth: 2,
+          backgroundColor: [
+            "rgba(55, 98, 133, 0.7)"
+          ],
+          borderColor: "#0d47a1",
+        },
+      ],
+    },
+    options: {
+      scales: {
+        y: {
+           beginAtZero: true,
+           reverse: true 
+          },
+      },
+    },
+  });
+
+    function imagem() {
+    window.location.href = "index.html";
+
+  }
+</script>
