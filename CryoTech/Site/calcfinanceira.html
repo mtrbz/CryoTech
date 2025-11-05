@@ -40,7 +40,9 @@
       </ul>
     </div>
   </div>
+
 <!-- Inicio calculadora  -->
+ 
   <div class="modal" id="modal">
     <img src="../Site/css/Imagens/logo1.png" alt="" />
     <span class="fechar" id="fecharModal"> Fechar</span>
@@ -135,13 +137,100 @@
     var modal = document.getElementById("modal");
     modal.classList.add("ativo");
     document.getElementById("fecharModal").onclick = () =>
-      modal.classList.remove("ativo");
+    modal.classList.remove("ativo");
     window.onclick = (e) => {
       if (e.target === modal) modal.classList.remove("ativo");
     };
   }
 
-  function cadastrar() {
-    window.location.href = "cadastro.html";
+  var mensalidadeTotal = 0;
+
+  function atualizarMensalidade() {
+    var numCamaras = Number(input_numCamaras.value);
+    var numFreezers = Number(input_numFreezers.value);
+    var numVeiculos = Number(input_numVeiculos.value);
+
+    var mensalidadeBase = 900;
+    var extraCamaras = Math.floor(numCamaras / 5) * 150;
+    var extraFreezers = Math.floor(numFreezers / 5) * 75;
+    var extraVeiculos = Math.floor(numVeiculos / 3) * 100;
+
+    mensalidadeTotal =
+      mensalidadeBase + extraFreezers + extraCamaras + extraVeiculos;
+    input_mensalidade.value = mensalidadeTotal;
+  }
+
+  function alternarDiv() {
+    var checkbox1 = document.getElementById("box_1");
+    var checkbox2 = document.getElementById("box_2");
+    var checkbox3 = document.getElementById("box_3");
+
+    div_camf.style.display = checkbox1.checked ? "block" : "none";
+    div_freezer.style.display = checkbox2.checked ? "block" : "none";
+    div_refrigerado.style.display = checkbox3.checked ? "block" : "none";
+  }
+
+  function calcular() {
+    var nome = input_nome.value;
+    var valorKg = Number(input_valorKg.value);
+    var estoqueKg = Number(input_estoque.value);
+    var pctPerda = Number(input_perda.value);
+    var valorServico = Number(input_mensalidade.value);
+
+    if (!nome || valorKg <= 0 || estoqueKg <= 0 || pctPerda < 0) {
+      alert("Por favor, preencha todos os dados corretamente.");
+      return;
+    }
+
+    var valorEstoque = valorKg * estoqueKg;
+    var perdaAtual = (pctPerda / 100) * valorEstoque;
+    var perdaComServico = perdaAtual * 0.2;
+    var taxaUnica = 3000;
+
+    var estoquePreservado = valorEstoque - perdaAtual;
+    var estoquePreservadoServico =
+      valorEstoque - perdaComServico - valorServico;
+    var economiaMensal = perdaAtual - perdaComServico - valorServico;
+
+    p_resultado.innerHTML = `
+       <b>Produto:</b> <b>${nome}</b><br>
+       Valor total do estoque: <b>${valorEstoque.toLocaleString("pt-br", {
+      style: "currency",
+      currency: "BRL",
+    })}</b><br><br>
+
+       <b>Situação atual:</b><br>
+       Perda mensal: <b>${perdaAtual.toLocaleString("pt-br", {
+      style: "currency",
+      currency: "BRL",
+    })}</b><br>
+       Estoque aproveitado: <b>${estoquePreservado.toLocaleString("pt-br", {
+      style: "currency",
+      currency: "BRL",
+    })}</b><br><br>
+
+       <b>Com nossa solução</b><br>
+       Taxa única de implantação: <b>${taxaUnica.toLocaleString("pt-br", {
+      style: "currency",
+      currency: "BRL",
+    })}</b><br>
+       Custo mensal do serviço: <b>${valorServico.toLocaleString("pt-br", {
+      style: "currency",
+      currency: "BRL",
+    })}</b><br>
+       Perda reduzida: <b>${perdaComServico.toLocaleString("pt-br", {
+      style: "currency",
+      currency: "BRL",
+    })}</b><br>
+       Estoque aproveitado: <b>${estoquePreservadoServico.toLocaleString(
+      "pt-br",
+      { style: "currency", currency: "BRL" }
+    )}</b><br><br>
+
+       <b>Economia líquida mensal:</b> <b>${economiaMensal.toLocaleString(
+      "pt-br",
+      { style: "currency", currency: "BRL" }
+    )}</b>
+       `;
   }
   </script>

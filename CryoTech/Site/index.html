@@ -315,6 +315,71 @@
     window.location.href = "cadastro.html";
   }
 
+var index = 0
+var items = document.querySelectorAll('.card-item')
+var visible = 3
+
+function atualizar() {
+  var larguraCard = 250
+  var espacamento = 20
+  var desloc = (larguraCard + espacamento) * index
+
+  for (var i = 0; i < items.length; i++) {
+    items[i].style.display = 'none'
+  }
+
+  for (var i = index; i < index + visible; i++) {
+    if (items[i]) {
+      items[i].style.display = 'block'
+    }
+  }
+}
+
+function proximo() {
+  var max = items.length - visible
+  if (index < max) {
+    index = index + 1
+    atualizar()
+  }
+}
+
+function voltar() {
+  if (index > 0) {
+    index = index - 1
+    atualizar()
+  }
+}
+
+window.addEventListener('resize', atualizar)
+atualizar()
+
+var mensalidadeTotal = 0;
+
+  function atualizarMensalidade() {
+    var numCamaras = Number(input_numCamaras.value);
+    var numFreezers = Number(input_numFreezers.value);
+    var numVeiculos = Number(input_numVeiculos.value);
+
+    var mensalidadeBase = 900;
+    var extraCamaras = Math.floor(numCamaras / 5) * 150;
+    var extraFreezers = Math.floor(numFreezers / 5) * 75;
+    var extraVeiculos = Math.floor(numVeiculos / 3) * 100;
+
+    mensalidadeTotal =
+      mensalidadeBase + extraFreezers + extraCamaras + extraVeiculos;
+    input_mensalidade.value = mensalidadeTotal;
+  }
+
+  function alternarDiv() {
+    var checkbox1 = document.getElementById("box_1");
+    var checkbox2 = document.getElementById("box_2");
+    var checkbox3 = document.getElementById("box_3");
+
+    div_camf.style.display = checkbox1.checked ? "block" : "none";
+    div_freezer.style.display = checkbox2.checked ? "block" : "none";
+    div_refrigerado.style.display = checkbox3.checked ? "block" : "none";
+  }
+
   function calcular() {
     var nome = input_nome.value;
     var valorKg = Number(input_valorKg.value);
@@ -378,70 +443,4 @@
     )}</b>
        `;
   }
-
-  var mensalidadeTotal = 0;
-
-  function atualizarMensalidade() {
-    var numCamaras = Number(input_numCamaras.value);
-    var numFreezers = Number(input_numFreezers.value);
-    var numVeiculos = Number(input_numVeiculos.value);
-
-    var mensalidadeBase = 900;
-    var extraCamaras = Math.floor(numCamaras / 5) * 150;
-    var extraFreezers = Math.floor(numFreezers / 5) * 75;
-    var extraVeiculos = Math.floor(numVeiculos / 3) * 100;
-
-    mensalidadeTotal =
-      mensalidadeBase + extraFreezers + extraCamaras + extraVeiculos;
-    input_mensalidade.value = mensalidadeTotal;
-  }
-
-  function alternarDiv() {
-    var checkbox1 = document.getElementById("box_1");
-    var checkbox2 = document.getElementById("box_2");
-    var checkbox3 = document.getElementById("box_3");
-
-    div_camf.style.display = checkbox1.checked ? "block" : "none";
-    div_freezer.style.display = checkbox2.checked ? "block" : "none";
-    div_refrigerado.style.display = checkbox3.checked ? "block" : "none";
-  }
-
-  var index = 0
-var items = document.querySelectorAll('.card-item')
-var visible = 3
-
-function atualizar() {
-  var larguraCard = 250
-  var espacamento = 20
-  var desloc = (larguraCard + espacamento) * index
-
-  for (var i = 0; i < items.length; i++) {
-    items[i].style.display = 'none'
-  }
-
-  for (var i = index; i < index + visible; i++) {
-    if (items[i]) {
-      items[i].style.display = 'block'
-    }
-  }
-}
-
-function proximo() {
-  var max = items.length - visible
-  if (index < max) {
-    index = index + 1
-    atualizar()
-  }
-}
-
-function voltar() {
-  if (index > 0) {
-    index = index - 1
-    atualizar()
-  }
-}
-
-window.addEventListener('resize', atualizar)
-atualizar()
-
 </script>

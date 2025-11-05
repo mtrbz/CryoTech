@@ -56,7 +56,7 @@ height: 100%;
   color: #e2e8f0;
 }
 
-.dashboard .lateral select {
+.dashboard select {
   padding: 10px;
   border-radius: 8px;
   border: none;
@@ -64,6 +64,8 @@ height: 100%;
   width: 100%;
   background-color: #e2e8f0;
   color: #1a1a1a;
+  width: 200px;
+  margin-bottom: 30px;
 }
 
 .dashboard .lateral .card,
@@ -187,44 +189,63 @@ height: 100%;
     <div class="dashboard">
       
        <div class="lateral">
-        <h2>Escolha o sensor abaixo: </h2>
-        <select onchange="analisar()" id="select_sensor">
-          <option value="#" selected disabled>Selecione o sensor:</option>
-          <option value="1">Sensor 1</option>
-          <option value="2">Sensor 2</option>
-          <option value="3">Sensor 3</option>
-          <option value="4">Sensor 4</option>
-          <option value="5">Sensor 5</option>
-        </select>
+        <h2>Métricas de todos os sensores: </h2>
+        <p><span style="color:rgb(0, 119, 255)">Temperatura Ideal: (-18°C a -21°C)</p></span>
+        <p><span style="color: green;">Temperatura Boa: (-22°C a -39°C)</p></span>
+        <p><span style="color: red;">Temperatura Crítica: (Acima de -18°C)</p></span>
 
+        <div class="card-alerta">
+          <h3>1</h3>
+          <p>Alerta(s) Crítico(s)</p>
+        </div>
         <div class="card">
           <h3>5</h3>
           <p>Sensores Ativos</p>
         </div>
         <div class="card">
-          <h3><span style="color: green;" >91%</span></h3>
-          <p>Taxa de Estabilidade</p>
+          <h3><span style="color: rgb(0, 119, 255);" >-19°C</span></h3>
+          <p>Média de Temperatura</p>
         </div>
-        <div class="card-alerta">
-          <h3>3</h3>
-          <p>Alertas Críticos</p>
+        <div class="card">
+          <h3><span style="color: red;" >-9°C</span></h3>
+          <p>Temperatura mais alta</p>
+        </div>
+        <div class="card">
+          <h3><span style="color: green;" >-25°C</span></h3>
+          <p>Temperatura mais baixa</p>
         </div>
       </div>
 
       <div class="container">
+
+        <center>
+
+          <h2>Métricas do sensor selecionado:</h2>
+
+          <select onchange="analisar()" id="select_sensor">
+            <option value="#" selected disabled>Selecione o sensor:</option>
+            <option value="1">Sensor 1</option>
+            <option value="2">Sensor 2</option>
+            <option value="3">Sensor 3</option>
+            <option value="4">Sensor 4</option>
+            <option value="5">Sensor 5</option>
+          </select>
+
+        </center>
+        
         <div class="info">
 
           <div class="box">
             <div class="card">
               <p >Média de temperatura</p>
-                <p id="mediaTemp" class="metrica"><span style="color: green;" >-19  °C</span></p>
+                <p id="mediaTemp" class="metrica"><span style="color: rgb(0, 119, 255);" >-20  °C</span></p>
             </div>
           </div>
 
           <div class="box">
             <div class="card">
              <p >Temperatura mais alta</p>
-              <p id="tempAlta" class="metrica"><span style="color: red;" >9°C</span></p>
+              <p id="tempAlta" class="metrica"><span style="color: red;" >-17°C</span></p>
             </div>
           </div>
 
@@ -235,12 +256,6 @@ height: 100%;
             </div>
           </div>
 
-          <div class="box">
-            <div class="card">
-             <p>Temperatura ideal</p>
-              <p id="tempIdeal" class="metrica">-18°C</p>
-            </div>
-          </div>
         </div>
 
         <div class="graficos">
@@ -369,10 +384,10 @@ height: 100%;
   new Chart(g2, {
     type: "bar",
     data: {
-      labels: ["12:00", "13:00", "14:00", "15:00", "16:00", "17:00"],
+      labels: ["Segunda", "Terça", "Quarta", "Quinta", "Sexta", "Sábado"],
       datasets: [
         {
-          label: "Temperatura por hora",
+          label: "Temperatura por dia",
           data: [-20, -20, -17, -21, -19, -23],
           borderWidth: 2,
           backgroundColor: [
