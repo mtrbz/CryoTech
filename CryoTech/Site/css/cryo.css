@@ -143,16 +143,13 @@ body {
     background-image: url('../css/Imagens/backgroud-inicial.jpg');
     background-size: cover;
     position: relative;
-    /* background-position: center;
-     background-size: cover;
-     border-bottom: 8px solid rgba(0, 0, 0, 0.2); */
      mask-image: linear-gradient(to bottom, #000 80%, rgba(0, 0, 0, 0.001) 99%);
      
 }
 
 .banner p {
     display: flex;
-    font-size: 50px;
+    font-size: 70px;
     margin: 0;
     padding-top: 200px;
     background: rgba(0, 0, 0, 0.4);
@@ -163,43 +160,17 @@ body {
 }
 
 .banner span {
-    margin-left: 40px;
+    margin-top: 5vw;
+    margin-left: 400px;
 }
 
-/* .banner a {
-    position: absolute;
-    bottom: 80px;
-    right: 250px;
-    width: 200px;
-    height: 60px;
-    padding: 10px 20px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background-color: #101449;
-    color: white;
-    border: none;
-    border-radius: 11px;
-    cursor: pointer;
-    font-size: 15px;
-    text-decoration: none;
-    font-weight: 500;
-    scroll-margin-top: 50px;
-    margin-bottom: 70px;
-    transition: background-color 0.3s ease, transform 0.2s ease;
-} */
 
-/* .banner a:hover {
-    background-color: #1b1f6b;
-    transform: scale(1.05);
-} */
 
 /* Início da aba Solução */
 
 .solução {
     height: 500px;
     width: 100%;
-
     margin-top: 5%;
 }
 
@@ -265,15 +236,19 @@ body {
 .container-us {
     /* background: linear-gradient(135deg, #0B0D39 0%, #103D91 50%, #9CCCF3 100%); */
     display: grid;
-    height: 900px;
+    height: 40vw;
     width: 100%;
     grid-template-columns: 1.1fr 1fr;
     gap: 56px;
-    align-items: start;
-    width: 100%;
-    margin: 0 auto;
-    padding: 56px 20px;
-    padding-left: 80px;
+    align-items: center;
+    margin-top: -90px;
+    /* margin: 0 auto; */
+    padding: 0px 80px;
+     /* display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 90px; 
+  padding: 40px 80px;  */
 
 }
 
@@ -324,6 +299,10 @@ body {
     font-size: 22px;
    line-height: 30px;
    margin-top: 200px;
+}
+
+.container-us span {
+    margin: 0px, 30px;
 }
 /* Fim de sobre nós index */
 
@@ -458,18 +437,16 @@ body {
 
 .conteudo-solucoes {
     position: relative;
-    /* z-index: 1; */
+    z-index: 1;
     display: flex;
     flex-direction: column;
     align-items: flex-end;
 }
 
 .conteudo-solucoes p {
-    padding: 40px 0 0 10px;
-    padding-right: 80px;
-    margin-right: 60px;
-    font-size: 18.5px;
-    font-weight: bold;
+    padding: 40px 0 0 80px; 
+    margin-left: 60px; 
+    font-size: 22px;
 
 }
 .container-solucoes2 {
@@ -531,19 +508,19 @@ body {
 }
 
 
-.conteudo-solucoes2 {
+ .conteudo-solucoes2 {
     position: relative;
     z-index: 1;
-    display: flex;
-    flex-direction: column;
-    align-items: flex-end; 
+     display: flex; 
+    flex-direction: column; 
+    align-items: center; 
 }
 
 .conteudo-solucoes2 p {
     padding: 40px 0 0 80px; 
     margin-left: 60px; 
-    font-size: 18.5px;
-    font-weight: bold;
+    font-size: 22px;
+    /* font-weight: 90px; */
 }
 
 
@@ -656,7 +633,6 @@ body {
     list-style: none;
     flex: 0 1 360px;
     margin-right: 10px;
-
 }
 
 .cards .card-item .card-link{
@@ -745,6 +721,22 @@ body {
     background-color: #555;
     border-color: #555;
 }
+
+/* .cards .card-item .card-link .titulo.cliente{
+    color: #FFFF;
+    background-color: #4c55db;
+} */
+
+/* .cards .card-item .titulo-cliente {
+    color: #FFFF;
+    padding: 8px 16px;
+    font-size: 0.95rem;
+    font-weight: 500;
+    margin: 16px 0 18px;
+    background-color: #2932aa;
+    width: fit-content;
+    border-radius: 50px;
+} */
 
 .cards .card-item h2 {
     font-size: 1.19rem;
@@ -1227,28 +1219,26 @@ body {
 
 
 .contato-container {
-    display: flex;
+ display: flex;
     justify-content: center;
-    align-items: center;
-    width: 100%;
-    max-width: 1300px;
-    padding: 80px 0;
-    margin: 0 auto;
+    align-items: stretch;  
     overflow: hidden;
+    width: 100%;
+    margin: 0;
+    padding: 0 0 100px; 
 }
 
 .img-contato {
-    padding: 40px 50px;
-    width: 350px;
+        padding: 0; 
+    width: 50%; 
     display: flex;
-    flex-direction: column;
-    gap: 30px;
-    border-radius: 4px 0 0 4px;
-    flex: 1;
+    justify-content: center;
+    align-items: center;
+     
 }
 
  .img-contato img{
-    width: 700px;
+    width: 1050px;
     height: 900px;
     object-fit: cover;
  }
@@ -1263,11 +1253,10 @@ body {
 } */
 
 .formulario {
-    background-color: white;
+   background-color: white;
     padding: 50px;
-    width: 420px;
-    /* border: #101449 solid px; */
-    flex: 1;
+    width: 50%;
+    border-radius: 0; /* evita cantos separados */
 }
 
 .formulario h2 {
