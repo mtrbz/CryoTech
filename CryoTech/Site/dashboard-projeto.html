@@ -1,414 +1,337 @@
 <!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-  </head>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>CryoTech - Dashboard</title>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <style>
 
-<style>
 body {
-font-family: 'Inter', 'Poppins', Arial, sans-serif;
-margin: 0;
-background-color: #f5f7fb;
-color: #1a1a1a;
-}
-.header img {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  height: 70px;
-}
+  font-family: "Inter", "Poppins", Arial, sans-serif;
+  margin: 0;
+  overflow-x: hidden;
+  background-color: #b1c7d6;
 
+
+}
 .header {
-display: flex;
-width: 100%;
-height: 100%;
-  background: linear-gradient(90deg, #0b1e45, #1e4d92);
-  align-items: center;
-  justify-content: space-between;
-  padding: 0 40px;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+    background: #0b0e22;
+     box-shadow: 0 2px 6px rgba(0, 0, 0, 0.5);
+     height: 80px;
 }
 
-.dashboard {
-  display: flex;
-  width: 100%;
-  height: 100%;
+.header img {
+    position: absolute;
+    top: 7px;
+    left: 10px;
+    width: 160px;
+    padding: 0px 0px;
+    height: 60px;
+
 }
 
-.dashboard .lateral {
-  display: flex;
-  flex-direction: column;
-  background: linear-gradient(180deg, #091637, #152a66);
-  color: #ffffff;
-  width: 18%;
-  padding: 30px 25px;
-  gap: 25px;
-  box-shadow: 2px 0 8px rgba(0, 0, 0, 0.2);
-}
+    .header h1 {
+      color: #fff;
+      font-size: 1.4rem;
+      letter-spacing: 0.5px;
+      font-weight: 500;
+    }
 
-.dashboard .lateral h2 {
-  font-weight: 500;
-  font-size: 18px;
-  text-align: center;
-  color: #e2e8f0;
-}
+    .dashboard {
+      display: flex;
+      flex: 1;
+      height: calc(100vh - 70px);
+      overflow: hidden;
+    }
 
-.dashboard select {
-  padding: 10px;
-  border-radius: 8px;
-  border: none;
-  font-size: 15px;
-  width: 100%;
-  background-color: #e2e8f0;
-  color: #1a1a1a;
-  width: 200px;
-  margin-bottom: 30px;
-}
+    .lateral {
+      display: flex;
+      flex-direction: column;
+      background: #171a2d;
+      color: #ffffff;
+      width: 20%;
+      padding: 30px 25px;
+      box-shadow: 2px 0 8px rgba(0, 0, 0, 0.2);
+    }
 
-.dashboard .lateral .card,
-.dashboard .lateral .card-alerta {
-  width: 85%;
-  text-align: center;
-  border-radius: 12px;
-  padding: 15px;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
-}
+    .lateral h2 {
+      font-size: 1.5rem;
+      font-weight: bold;
+      text-align: center;
+      margin-bottom: 15px;
+      color: #e0e7ff;
+    }
 
-.dashboard .lateral .card {
-  background: #f8fafc;
-  color: #1a2b4c;
-}
+    .lateral .legenda {
+      font-size: 14px;
+      line-height: 1.6;
+      background: rgba(255, 255, 255, 0.1);
+      border-radius: 8px;
+      padding: 10px;
+      margin-bottom: 20px;
+    }
 
-.dashboard .card-alerta {
-  background: linear-gradient(135deg, #b00020, #e63946);
-  color: #fff7c1;
-}
+    .card, .card-alerta {
+      background: #f8fafc;
+      color: #1a2b4c;
+      border-radius: 10px;
+      text-align: center;
+      padding: 10px;
+      margin-bottom: 18px;
+      box-shadow: 0 3px 8px rgba(0, 0, 0, 0.15);
+    }
 
-.dashboard .lateral .card h3,
-.dashboard .lateral .card-alerta h3 {
-  font-size: 2.4em;
-  margin-bottom: 6px;
-}
+    .card-alerta {
+      background: linear-gradient(135deg, #b00020, #e63946);
+      color: #fff7c1;
+    }
 
-.dashboard .lateral .card p,
-.dashboard .lateral .card-alerta p {
-  font-size: 14px;
-  opacity: 0.9;
-}
+    .card h3, .card-alerta h3 {
+      font-size: 2.1em;
+      margin: 0;
+    }
 
-.dashboard .container {
-  display: flex;
-  flex-direction: column;
-  padding: 25px;
-  width: 100%;
-  background-color: #f5f7fb;
-}
+    .card p, .card-alerta p {
+      font-size: 14px;
+      margin-top: 4px;
+      opacity: 0.9;
+    }
 
-.dashboard .info {
-  display: flex;
-  justify-content: space-around;
-  align-items: center;
-  padding: 10px 0;
-  flex-wrap: wrap;
-}
+    .container {
+      flex: 1;
+      padding: 30px;
+      display: flex;
+      flex-direction: column;
+      overflow-y: auto;
+    }
 
-.info .box {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  background-color: #ffffff;
-  border-radius: 14px;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
-  padding: 20px;
-  width: 230px;
-  margin: 10px;
-}
+    .titulo-centro {
+      text-align: center;
+      font-size: 1.3rem;
+      color: #0b1e45;
+      margin-bottom: 10px;
+    }
 
-.info .box:hover {
-  transform: translateY(-3px);
-  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
-}
+    select {
+      padding: 10px;
+      border-radius: 8px;
+      border: 1px solid #ccc;
+      font-size: 15px;
+      width: 220px;
+      background-color: #fff;
+      color: #1a1a1a;
+      margin-bottom: 25px;
+    }
 
-.info p {
-  font-size: 16px;
-  color: #334155;
-}
+    .info {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 20px;
+    }
 
-.info .metrica {
-  font-size: 26px;
-  color: #1e4d92;
-  font-weight: bold;
-  margin-top: 5px;
-}
+    .box {
+      background-color: #ffffff;
+      border-radius: 12px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+      padding: 20px;
+      width: 230px;
+      text-align: center;
+      transition: transform 0.2s ease;
+    }
 
-.dashboard .graficos {
-  display: flex;
-  justify-content: space-around;
-  align-items: center;
-  margin-top: 25px;
-}
+    .box:hover {
+      transform: translateY(-4px);
+    }
 
-.dashboard .grafico,
-.dashboard .grafico-inferior .grafico-grande {
-  background-color: #ffffff;
-  border-radius: 12px;
-  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.05);
-  padding: 15px;
-}
+    .box p {
+      font-size: 15px;
+      margin-bottom: 6px;
+    }
 
-.dashboard .grafico {
-  width: 42%;
-  height: 320px;
-}
+    .metrica {
+      font-size: 26px;
+      font-weight: bold;
+      color: #1e4d92;
+    }
 
-.grafico-grande {
-  width: 80%;
-  height: 380px;
-}
+    .graficos {
+      display: flex;
+      justify-content: space-around;
+      flex-wrap: wrap;
+      margin-top: 30px;
+      gap: 25px;
+    }
 
-.grafico-inferior {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  margin-top: 30px;
-}
+    .grafico {
+      background-color: #ffffff;
+      border-radius: 12px;
+      box-shadow: 0 4px 14px rgba(0, 0, 0, 0.05);
+      padding: 15px;
+      width: 42%;
+      height: 320px;
+    }
+
+    .grafico-grande {
+      width: 90%;
+      height: 400px;
+      background-color: #ffffff;
+      border-radius: 12px;
+      box-shadow: 0 4px 14px rgba(0, 0, 0, 0.05);
+      padding: 15px;
+    }
+
+    .grafico-inferior {
+      display: flex;
+      justify-content: center;
+      margin-top: 35px;
+    }
 
   </style>
+</head>
 
-  <body>
-    <div class="header">
-      <nav>
-        <img onclick="imagem()" src="../Site/css/Imagens/logo1.png" alt="">
-      </nav>
+<body>
+  <div class="header">
+    <img onclick="voltarHome()" src="../Site/css/Imagens/logo1.png" alt="Logo">
+  </div>
+
+  <div class="dashboard">
+    <div class="lateral">
+      <h2>Resumo Geral</h2>
+      <div class="legenda">
+        <p><span style="color:rgb(0, 119, 255)">Ideal:</span> -18°C a -21°C</p>
+        <p><span style="color:green;">Boa:</span> -22°C a -39°C</p>
+        <p><span style="color:red;">Crítica:</span> acima de -18°C</p>
+      </div>
+
+      <div class="card-alerta">
+        <h3>4</h3>
+        <p>Alerta(s) Crítico(s)</p>
+      </div>
+      <div class="card">
+        <p>Estado</p>
+        <h3>Atenção</h3>
+      </div>
+      <div class="card" >
+        <h3>5</h3>
+        <p>Sensores Totais</p>
+      </div>
+      <div class="card">
+        <h3>5</h3>
+        <p>Sensores Ativos</p>
+      </div>
+      <div class="card">
+        <h3><span style="color:green;">0</span> </h3>
+        <p>Sensores com Defeito
+        </p>
+      </div>
+      <div class="card">
+        <h3><span style="color:#0077ff;">-19°C</span></h3>
+        <p>Média de Temperatura</p>
+      </div>
     </div>
 
-    <div class="dashboard">
-      
-       <div class="lateral">
-        <h2>Métricas de todos os sensores: </h2>
-        <p><span style="color:rgb(0, 119, 255)">Temperatura Ideal: (-18°C a -21°C)</p></span>
-        <p><span style="color: green;">Temperatura Boa: (-22°C a -39°C)</p></span>
-        <p><span style="color: red;">Temperatura Crítica: (Acima de -18°C)</p></span>
+    <div class="container">
+      <h2 class="titulo-centro">Métricas do Sensor Selecionado</h2>
+      <center>
+        <select id="select_sensor">
+          <option value="#" disabled>Selecione o sensor:</option>
+          <option value="1">Sensor 1</option>
+          <option value="2">Sensor 2</option>
+          <option value="3">Sensor 3</option>
+          <option value="4">Sensor 4</option>
+          <option value="5" selected >Sensor 5</option>
+        </select>
+      </center>
 
-        <div class="card-alerta">
-          <h3>1</h3>
-          <p>Alerta(s) Crítico(s)</p>
-        </div>
-        <div class="card">
-          <h3>5</h3>
-          <p>Sensores Ativos</p>
-        </div>
-        <div class="card">
-          <h3><span style="color: rgb(0, 119, 255);" >-19°C</span></h3>
+      <div class="info">
+        <div class="box">
           <p>Média de Temperatura</p>
+          <p class="metrica"><span style="color:#0077ff;">-16°C</span></p>
         </div>
-        <div class="card">
-          <h3><span style="color: red;" >-9°C</span></h3>
-          <p>Temperatura mais alta</p>
+        <div class="box">
+          <p>Temperatura Mais Alta</p>
+          <p class="metrica"><span style="color:red;">-14°C</span></p>
         </div>
-        <div class="card">
-          <h3><span style="color: green;" >-25°C</span></h3>
-          <p>Temperatura mais baixa</p>
+        <div class="box">
+          <p>Temperatura Mais Baixa</p>
+          <p class="metrica"><span style="color:green;">-19°C</span></p>
         </div>
       </div>
 
-      <div class="container">
+      <div class="graficos">
+        <div class="grafico"><canvas id="g1"></canvas></div>
+        <div class="grafico"><canvas id="g2"></canvas></div>
+      </div>
 
-        <center>
-
-          <h2>Métricas do sensor selecionado:</h2>
-
-          <select onchange="analisar()" id="select_sensor">
-            <option value="#" selected disabled>Selecione o sensor:</option>
-            <option value="1">Sensor 1</option>
-            <option value="2">Sensor 2</option>
-            <option value="3">Sensor 3</option>
-            <option value="4">Sensor 4</option>
-            <option value="5">Sensor 5</option>
-          </select>
-
-        </center>
-        
-        <div class="info">
-
-          <div class="box">
-            <div class="card">
-              <p >Média de temperatura</p>
-                <p id="mediaTemp" class="metrica"><span style="color: rgb(0, 119, 255);" >-20  °C</span></p>
-            </div>
-          </div>
-
-          <div class="box">
-            <div class="card">
-             <p >Temperatura mais alta</p>
-              <p id="tempAlta" class="metrica"><span style="color: red;" >-17°C</span></p>
-            </div>
-          </div>
-
-          <div class="box">
-            <div class="card">
-             <p>Temperatura mais baixa</p>
-              <p id="tempBaixa" class="metrica" ><span style="color: green;" >-28°C</span></p>
-            </div>
-          </div>
-
-        </div>
-
-        <div class="graficos">
-          <div class="grafico">
-            <canvas id="g1"></canvas>
-          </div>
-
-          <div class="grafico">
-            <canvas id="g2"></canvas>
-          </div>
-      
-        </div>
-
-        <div class="grafico-inferior">
-
-            <div class="grafico-grande">
-
-              <canvas class="grafico" id="temperatura"></canvas>
-
-            </div>
-
-        </div>
+      <div class="grafico-inferior">
+        <div class="grafico-grande"><canvas id="temperatura"></canvas></div>
       </div>
     </div>
-  </body>
-</html>
+  </div>
 
-<script>
-  const graficoTemperatura = document.getElementById("temperatura");
-  const g1 = document.getElementById("g1");
-  const g2 = document.getElementById("g2");
+  <script>
+    function voltarHome() {
+      window.location.href = "index.html";
+    }
 
-
-  const formatacao = {
-    responsive: true,
-    maintainAspectRatio: false,
-    scales: { y: { beginAtZero: true } }
-  };
-
-
-  new Chart(graficoTemperatura, {
-    type: "line",
-    data: {
-      labels: ["12:00", "13:00", "14:00", "15:00", "16:00", "17:00"],
-      datasets: [
-        {
-          label: "Sensor 1",
-          data: [-20, -20, -17, -21, -19, -23],
-          borderWidth: 2,
-          borderColor: "#0d47a1",
-          backgroundColor: "rgba(13, 71, 161, 0.25)",
-          fill: true,
-        },
-        {
-          label: "Sensor 2",
-          data: [-19, -18, -17, -19, -18, -20],
-          borderWidth: 2,
-          borderColor: "#1976d2",
-          backgroundColor: "rgba(25, 118, 210, 0.25)",
-          fill: true,
-        },
-        {
-          label: "Sensor 3",
-          data: [-14, -15, -15, -16, -17, -19],
-          borderWidth: 2,
-          borderColor: "#42a5f5",
-          backgroundColor: "rgba(66, 165, 245, 0.25)",
-          fill: true,
-        },
-        {
-          label: "Sensor 4",
-          data: [-21, -21, -22, -24, -24, -23],
-          borderWidth: 2,
-          borderColor: "#90caf9",
-          backgroundColor: "rgba(144, 202, 249, 0.25)",
-          fill: true,
-        },
-        {
-          label: "Sensor 5",
-          data: [-18, -19, -12, -13, -18, -19],
-          borderWidth: 2,
-          borderColor: "#64b5f6",
-          backgroundColor: "rgba(100, 181, 246, 0.25)",
-          fill: true,
-        },
-      ],
-    },
-    options: {
+    const padrao = {
+      responsive: true,
       maintainAspectRatio: false,
       scales: {
-        y: { 
-          beginAtZero: true, 
-          reverse: true 
-        }
+        y: { beginAtZero: true, reverse: true },
+        x: { grid: { display: false } }
+      },
+      plugins: {
+        legend: { labels: { font: { size: 13 } } }
       }
-    }
-  });
+    };
 
-
-  new Chart(g1, {
-    type: "line",
-    data: {
-      labels: ["12:00", "13:00", "14:00", "15:00", "16:00", "17:00"],
-      datasets: [
-        {
+    new Chart(document.getElementById("g1"), {
+      type: "line",
+      data: {
+        labels: ["12:00", "13:00", "14:00", "15:00", "16:00"],
+        datasets: [{
           label: "Temperatura por hora",
-          data: [-20, -20, -17, -21, -19, -23],
-          borderWidth: 2,
+          data: [-15, -14, -15, -17, -18],
           borderColor: "#1565c0",
-          backgroundColor: "rgba(21, 101, 192, 0.3)",
+          backgroundColor: "rgba(21,101,192,0.25)",
           fill: true,
-        },
-      ],
-    },
-    options: {
-      scales: {
-        y: { 
-          reverse: true,
-          beginAtZero: true 
-        },
+          tension: 0.3
+        }]
       },
-    },
-  });
+      options: padrao
+    });
 
-
-  new Chart(g2, {
-    type: "bar",
-    data: {
-      labels: ["Segunda", "Terça", "Quarta", "Quinta", "Sexta", "Sábado"],
-      datasets: [
-        {
-          label: "Temperatura por dia",
-          data: [-20, -20, -17, -21, -19, -23],
-          borderWidth: 2,
-          backgroundColor: [
-            "rgba(55, 98, 133, 0.7)"
-          ],
-          borderColor: "#0d47a1",
-        },
-      ],
-    },
-    options: {
-      scales: {
-        y: {
-           beginAtZero: true,
-           reverse: true 
-          },
+    new Chart(document.getElementById("g2"), {
+      type: "bar",
+      data: {
+        labels: ["Seg", "Ter", "Qua", "Qui", "Sex", "Sab", "Dom"],
+        datasets: [{
+          label: "Temperatura média diária",
+          data: [-18, -19, -20, -21, -22, -21, -18],
+          backgroundColor: "rgba(55,98,133,0.7)",
+          borderColor: "#0d47a1"
+        }]
       },
-    },
-  });
+      options: padrao
+    });
 
-    function imagem() {
-    window.location.href = "index.html";
-
-  }
-</script>
+    new Chart(document.getElementById("temperatura"), {
+      type: "line",
+      data: {
+        labels: ["12:00", "13:00", "14:00", "15:00", "16:00"],
+        datasets: [
+          { label: "Sensor 1", data: [-20, -19, -18, -21, -22], borderColor: "#0d47a1", backgroundColor: "rgba(13,71,161,0.25)", fill: false },
+          { label: "Sensor 2", data: [-19, -18, -20, -19, -20], borderColor: "#1976d2", backgroundColor: "rgba(25,118,210,0.25)", fill: false },
+          { label: "Sensor 3", data: [-21, -18, -18, -19, -21], borderColor: "#1976d2", backgroundColor: "rgba(25,118,210,0.25)", fill: false },
+          { label: "Sensor 4", data: [-20, -20, -20, -21, -22], borderColor: "#1976d2", backgroundColor: "rgba(25,118,210,0.25)", fill: false },
+          { label: "Sensor 5", data: [-15, -14, -15, -17, -19], borderColor: "#1976d2", backgroundColor: "rgba(25,118,210,0.25)", fill: false }
+        ] 
+      },
+      options: padrao
+    });
+  </script>
+</body>
+</html>
