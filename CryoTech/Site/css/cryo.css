@@ -988,7 +988,10 @@ body {
     /* background-color: #c6d8e6; */
     
     }
-
+    .cadastro label{
+        display: flex;
+        justify-content: flex-start;
+    }
     .background-cadastro {
     background-image: url('/CryoTech/Site/css/Imagens/background-cadastro.png');
     background-size: cover;
