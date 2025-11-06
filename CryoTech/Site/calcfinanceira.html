@@ -108,10 +108,33 @@
             clique no botão abaixo</p>
           <button onclick="calcular()">Simular</button>
         </div>
-      </div>
-    </div>
-    
 
+      </div>
+
+    </div>
+
+    <div style="display: none;" class="popup" id="popup">
+
+        <div class="msg-popup" id="msg-popup">
+
+          <div>
+            <div class="sem-servico">
+            <h1>Sem nosso serviço:</h1>
+            <p class="msg-sem-servico" id="msg_sem_servico"></p>
+          </div>
+
+          <div class="com-servico">
+            <h1>Com nosso serviço:</h1>
+            <p class="msg-com-servico" id="msg_com_servico"></p>
+          </div>
+          </div>
+
+          <button onclick="fechar_popup()">OK</button>
+          
+        </div>
+
+      </div>
+    
   </body>
   <script>
   function calcular() {
@@ -124,64 +147,108 @@
     if (!nome || valorKg <= 0 || estoqueKg <= 0 || pctPerda < 0 ) {
       alert("Por favor, preencha todos os dados corretamente.");
       return;
-    }
-    
-    var valorEstoque = valorKg * estoqueKg;
-    var perdaAtual = (pctPerda / 100) * valorEstoque;
-    var perdaComServico = perdaAtual * 0.2;
-    var taxaUnica = 3000;
+    } else {
+      calculadora.style.display = 'none';
+      popup.style.display = 'flex';
 
-    var estoquePreservado = valorEstoque - perdaAtual;
-    var estoquePreservadoServico =
+      var valorEstoque = valorKg * estoqueKg;
+      var perdaAtual = (pctPerda / 100) * valorEstoque;
+      var perdaComServico = perdaAtual * 0.2;
+      var taxaUnica = 3000;
+
+      var estoquePreservado = valorEstoque - perdaAtual;
+      var estoquePreservadoServico =
       valorEstoque - perdaComServico - valorServico;
       var economiaMensal = perdaAtual - perdaComServico - valorServico;
-      
-      p_resultado.innerHTML = `
-      <b>Produto:</b> <b>${nome}</b><br>
-      Valor total do estoque: <b>${valorEstoque.toLocaleString("pt-br", {
+
+      msg_sem_servico.innerHTML = `
+        <p>Produto: <b>${nome}</b></p><br>
+        Valor total do estoque: <b>${valorEstoque.toLocaleString("pt-br", {
+          style: "currency",
+          currency: "BRL",
+        })}</b><br><br>
+        Perda mensal: <b style='color: red'>${perdaAtual.toLocaleString("pt-br", {
+          style: "currency",
+          currency: "BRL",
+      })}</b><br><br>
+      Estoque aproveitado: <b style='color: red'>${estoquePreservado.toLocaleString("pt-br", {
         style: "currency",
         currency: "BRL",
       })}</b><br><br>
-      <b>Situação atual:</b><br>
-      Perda mensal: <b>${perdaAtual.toLocaleString("pt-br", {
+      `;
+
+      msg_com_servico.innerHTML = `
+      Custo mensal do serviço: <b>${valorServico.toLocaleString("pt-br", {
         style: "currency",
         currency: "BRL",
-    })}</b><br>
-    Estoque aproveitado: <b>${estoquePreservado.toLocaleString("pt-br", {
-      style: "currency",
-      currency: "BRL",
-    })}</b><br><br>
+      })}</b><br><br>
+      Perda reduzida: <b style='color: green'>${perdaComServico.toLocaleString("pt-br", {
+        style: "currency",
+        currency: "BRL",
+      })}</b><br><br>
+      Estoque aproveitado: <b style='color: green'>${estoquePreservadoServico.toLocaleString(
+        "pt-br",
+        { style: "currency", currency: "BRL" }
+      )}</b><br><br>
+      
+      <b>Economia líquida mensal:</b> <b style='color: green'>${economiaMensal.toLocaleString(
+        "pt-br",
+        { style: "currency", currency: "BRL" }
+      )}</b>
+      `;
+        
+        p_resultado.innerHTML = `
+        <b>Produto:</b> <b>${nome}</b><br>
+        Valor total do estoque: <b>${valorEstoque.toLocaleString("pt-br", {
+          style: "currency",
+          currency: "BRL",
+        })}</b><br><br>
+        <b>Situação atual:</b><br>
+        Perda mensal: <b>${perdaAtual.toLocaleString("pt-br", {
+          style: "currency",
+          currency: "BRL",
+      })}</b><br>
+      Estoque aproveitado: <b>${estoquePreservado.toLocaleString("pt-br", {
+        style: "currency",
+        currency: "BRL",
+      })}</b><br><br>
+      
+      <b>Com nossa solução</b><br>
+      Taxa única de implantação: <b>${taxaUnica.toLocaleString("pt-br", {
+        style: "currency",
+        currency: "BRL",
+      })}</b><br>
+      Valor fixo da Instalação: R$ 4.000,00 <br>
+      Valor da instalação + mão de obra: ${instalacao.toLocaleString("pt-br", {
+        style: "currency",
+        currency: "BRL",
+      })} <br> 
+      Custo mensal do serviço: <b>${valorServico.toLocaleString("pt-br", {
+        style: "currency",
+        currency: "BRL",
+      })}</b><br>
+      Perda reduzida: <b>${perdaComServico.toLocaleString("pt-br", {
+        style: "currency",
+        currency: "BRL",
+      })}</b><br>
+      Estoque aproveitado: <b>${estoquePreservadoServico.toLocaleString(
+        "pt-br",
+        { style: "currency", currency: "BRL" }
+      )}</b><br><br>
+      
+      <b>Economia líquida mensal:</b> <b>${economiaMensal.toLocaleString(
+        "pt-br",
+        { style: "currency", currency: "BRL" }
+      )}</b>
+      `;
+      }
+    }
+
+    function fechar_popup() {
+      popup.style.display = 'none';
+      calculadora.style.display = 'flex';
+    }
     
-    <b>Com nossa solução</b><br>
-    Taxa única de implantação: <b>${taxaUnica.toLocaleString("pt-br", {
-      style: "currency",
-      currency: "BRL",
-    })}</b><br>
-    Valor fixo da Instalação: R$ 4.000,00 <br>
-    Valor da instalação + mão de obra: ${instalacao.toLocaleString("pt-br", {
-      style: "currency",
-      currency: "BRL",
-    })} <br> 
-    Custo mensal do serviço: <b>${valorServico.toLocaleString("pt-br", {
-      style: "currency",
-      currency: "BRL",
-    })}</b><br>
-    Perda reduzida: <b>${perdaComServico.toLocaleString("pt-br", {
-      style: "currency",
-      currency: "BRL",
-    })}</b><br>
-    Estoque aproveitado: <b>${estoquePreservadoServico.toLocaleString(
-      "pt-br",
-      { style: "currency", currency: "BRL" }
-    )}</b><br><br>
-    
-    <b>Economia líquida mensal:</b> <b>${economiaMensal.toLocaleString(
-      "pt-br",
-      { style: "currency", currency: "BRL" }
-    )}</b>
-    `;
-  }
-  
   var mensalidadeTotal = 0;
   var instalacao = 0;
 
