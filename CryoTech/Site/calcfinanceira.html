@@ -66,8 +66,8 @@
 
             <div class="card2">
               <div id="div_camf" style="display: none">
-                <label for="input_numCamaras">Quantidade de câmaras frias</label>
-                <input type="number" id="input_numCamaras" placeholder="Ex: 10"
+                <label for="input_numCamaras">Aréa total das câmaras frias em M²</label>
+                <input type="number" id="input_numCamaras" placeholder="Ex: 30"
                   oninput="atualizarMensalidade()" /><br />
               </div>
 
@@ -87,16 +87,16 @@
               <input style="font-weight: bold;" disabled type="number" id="input_mensalidade" value="1500" /><br>
 
               <label for="input_nome">Produto em estoque:</label>
-              <input type="text" id="input_nome" placeholder="Ex: Picanha" />
+              <input type="text" id="input_nome" placeholder="Ex: Carne - Peixe - Frango" value="carne"/>
               <br />
               <label for="input_valorKg">Valor do Kg (R$): </label>
-              <input type="number" id="input_valorKg" placeholder="Ex: R$90,00" />
+              <input type="number" id="input_valorKg" placeholder="Ex: R$90,00" value="70" />
               <br />
               <label for="input_estoque">Quantidade em estoque (Ton): </label>
-              <input type="number" id="input_estoque" placeholder="Ex: 3 Toneladas" />
+              <input type="number" id="input_estoque" placeholder="Ex: 3 Toneladas" value="4" />
               <br />
               <label for="input_perda">Perda mensal atual (%): </label>
-              <input type="number" id="input_perda" placeholder="Ex: 40" />
+              <input type="number" id="input_perda" placeholder="Ex: 40" value="40" />
             </div>
             <br />
           </div>
@@ -148,13 +148,12 @@
       alert("Por favor, preencha todos os dados corretamente.");
       return;
     } else {
-      calculadora.style.display = 'none';
       popup.style.display = 'flex';
 
       var valorEstoque = valorKg * estoqueKg;
       var perdaAtual = (pctPerda / 100) * valorEstoque;
       var perdaComServico = perdaAtual * 0.2;
-      var taxaUnica = 3000;
+      var taxaUnica = 4000;
 
       var estoquePreservado = valorEstoque - perdaAtual;
       var estoquePreservadoServico =
@@ -175,27 +174,33 @@
         style: "currency",
         currency: "BRL",
       })}</b><br><br>
-      `;
+      <hr>`;
 
       msg_com_servico.innerHTML = `
-      Custo mensal do serviço: <b>${valorServico.toLocaleString("pt-br", {
+      <p>Custo mensal do serviço: <b>${valorServico.toLocaleString("pt-br", {
         style: "currency",
         currency: "BRL",
-      })}</b><br><br>
-      Perda reduzida: <b style='color: green'>${perdaComServico.toLocaleString("pt-br", {
+      })}</b></p>
+      <p>Perda reduzida: <b style='color: green'>${perdaComServico.toLocaleString("pt-br", {
         style: "currency",
         currency: "BRL",
-      })}</b><br><br>
-      Estoque aproveitado: <b style='color: green'>${estoquePreservadoServico.toLocaleString(
+      })}</b></p>
+      <p>Estoque aproveitado: <b style='color: green'>${estoquePreservadoServico.toLocaleString(
         "pt-br",
         { style: "currency", currency: "BRL" }
-      )}</b><br><br>
-      
-      <b>Economia líquida mensal:</b> <b style='color: green'>${economiaMensal.toLocaleString(
-        "pt-br",
-        { style: "currency", currency: "BRL" }
-      )}</b>
-      `;
+      )}</b></p><br>
+    
+      <hr>
+    
+      <p><b>Aumento na eficiência de estoque:</b> 
+      <span style="color: green;">${((estoquePreservadoServico / estoquePreservado - 1) * 100).toFixed(1)}%</span></p>
+
+      <p><b>Economia líquida mensal:</b> 
+      <b style='color: green; font-size: 1.2em;'>${economiaMensal.toLocaleString("pt-br", {
+        style: "currency",
+        currency: "BRL",
+      })}</b></p>
+`;
         
         p_resultado.innerHTML = `
         <b>Produto:</b> <b>${nome}</b><br>
@@ -218,13 +223,12 @@
         style: "currency",
         currency: "BRL",
       })}</b><br>
-      Valor fixo da Instalação: R$ 4.000,00 <br>
       Valor da instalação + mão de obra: ${instalacao.toLocaleString("pt-br", {
         style: "currency",
         currency: "BRL",
       })} <br> 
       Custo mensal do serviço: <b>${valorServico.toLocaleString("pt-br", {
-        style: "currency",
+        style: "currency",  
         currency: "BRL",
       })}</b><br>
       Perda reduzida: <b>${perdaComServico.toLocaleString("pt-br", {
@@ -246,7 +250,7 @@
 
     function fechar_popup() {
       popup.style.display = 'none';
-      calculadora.style.display = 'flex';
+
     }
     
   var mensalidadeTotal = 0;
@@ -256,10 +260,10 @@
     var numCamaras = Number(input_numCamaras.value);
     var numFreezers = Number(input_numFreezers.value);
     var numVeiculos = Number(input_numVeiculos.value);
-    var sensoresTotais = numCamaras + numFreezers + numVeiculos;
-    var instalacaoBase = 4000;
+    var sensoresTotais = (numCamaras/5) + numFreezers + numVeiculos;
+    var taxaUnica = 4000;
     var mensalidadeBase = 1500;
-    var extraCamaras = Math.floor(numCamaras / 2) * 150;
+    var extraCamaras = Math.floor(numCamaras / 10) * 150;
     var extraFreezers = Math.floor(numFreezers / 2) * 100;
     var extraVeiculos = Math.floor(numVeiculos / 2) * 200;
 
@@ -267,18 +271,32 @@
       mensalidadeBase + extraFreezers + extraCamaras + extraVeiculos;
     input_mensalidade.value = mensalidadeTotal;
 
-    instalacao = instalacaoBase + (sensoresTotais * 200);
+    instalacao = taxaUnica + (sensoresTotais * 200);
   }
 
-  function alternarDiv() {
-    var checkbox1 = document.getElementById("box_1");
-    var checkbox2 = document.getElementById("box_2");
-    var checkbox3 = document.getElementById("box_3");
+function alternarDiv() {
+  var checkbox1 = document.getElementById("box_1");
+  var checkbox2 = document.getElementById("box_2");
+  var checkbox3 = document.getElementById("box_3");
 
-    div_camf.style.display = checkbox1.checked ? "block" : "none";
-    div_freezer.style.display = checkbox2.checked ? "block" : "none";
-    div_refrigerado.style.display = checkbox3.checked ? "block" : "none";
+  if (checkbox1.checked) {
+    div_camf.style.display = "block";
+  } else {
+    div_camf.style.display = "none";
   }
+
+  if (checkbox2.checked) {
+    div_freezer.style.display = "block";
+  } else {
+    div_freezer.style.display = "none";
+  }
+
+  if (checkbox3.checked) {
+    div_refrigerado.style.display = "block";
+  } else {
+    div_refrigerado.style.display = "none";
+  }
+}
 
   function logar() {
     var email = email_input.value;
@@ -305,44 +323,6 @@
   function cadastrar() {
     window.location.href = "cadastro.html";
   }
-
-var index = 0
-var items = document.querySelectorAll('.card-item')
-var visible = 3
-
-function atualizar() {
-  var larguraCard = 250
-  var espacamento = 20
-  var desloc = (larguraCard + espacamento) * index
-
-  for (var i = 0; i < items.length; i++) {
-    items[i].style.display = 'none'
-  }
-
-  for (var i = index; i < index + visible; i++) {
-    if (items[i]) {
-      items[i].style.display = 'block'
-    }
-  }
-}
-
-function proximo() {
-  var max = items.length - visible
-  if (index < max) {
-    index = index + 1
-    atualizar()
-  }
-}
-
-function voltar() {
-  if (index > 0) {
-    index = index - 1
-    atualizar()
-  }
-}
-
-window.addEventListener('resize', atualizar)
-atualizar()
 
 function imagem() {
     window.location.href = "index.html";

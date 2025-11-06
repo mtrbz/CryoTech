@@ -848,16 +848,18 @@ body {
 }
 
 .popup {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    background: rgba(0, 0, 0, 0.3);
-    backdrop-filter: blur(5px);
-}
+  position: fixed; 
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: none; 
+  justify-content: center;
+  align-items: center;
+  background-color: rgba(0, 0, 0, 0.6); 
+  backdrop-filter: blur(8px);
 
+}
 .popup .msg-popup {
     display: flex;
     justify-content: center;
@@ -1416,79 +1418,6 @@ textarea {
   padding-top: 15px;
   font-size: 13px;
   color: #c6d8e6;
-}
-
-@media (max-width: 992px) {
-  /* NAVBAR */
-  .navbar {
-    flex-direction: column;
-    align-items: flex-start;
-    height: auto;
-  }
-  .navbar li {
-    margin: 10px 0;
-  }
-
-
-  /* SEÇÕES DE DUAS COLUNAS (como .container-solucoes e .container-us) */
-  .container-solucoes,
-  .container-solucoes2,
-  .container-us {
-    grid-template-columns: 1fr;
-    text-align: center;
-    padding: 40px 20px;
-  }
-
-  .img-solucoes,
-  .img-solucoes2 {
-    margin: 0 auto;
-  }
-  .conteudo-solucoes,
-  .conteudo-solucoes2 {
-    align-items: center;
-  }
-  .conteudo-solucoes p,
-  .conteudo-solucoes2 p {
-    padding: 20px;
-    margin: 0;
-    text-align: center;
-  }
-
-  /* CARROSSEL */
-  .carrossel2 {
-    grid-template-columns: 1fr;
-  }
-  .card-conteudo2 {
-    left: 50%;
-    transform: translateX(-50%);
-  }
-  .cards .card-item {
-    flex: 0 0 calc(100% / 2 - 20px); /* 2 cards por vez em tablet */
-  }
-
-  /* CALCULADORA */
-  .calculadora {
-    flex-direction: column;
-    align-items: center;
-    padding: 30px;
-  }
-  .calculadora input {
-    width: 100%;
-  }
-
-  /* CONTATO */
-  .contato-container {
-    flex-direction: column;
-    align-items: center;
-  }
-  .img-contato img {
-    width: 100%;
-    height: auto;
-  }
-  .formulario {
-    width: 90%;
-    margin-top: 30px;
-  }
 }
 
 
