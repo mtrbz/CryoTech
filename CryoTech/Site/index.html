@@ -265,94 +265,93 @@ Detecte variações, evite perdas e mantenha suas carnes na temperatura ideal.
     </div>
   </div>
   <div class="footer">
-  <div class="footer-container">
-    <div class="footer-logo">
-      <h2>CryoTech</h2>
-      <p>Garantindo a temperatura ideal do início ao fim da cadeia de frio.</p>
-    </div>
+    <div class="footer-container">
+      <div class="footer-logo">
+        <h2>CryoTech</h2>
+        <p>Garantindo a temperatura ideal do início ao fim da cadeia de frio.</p>
+      </div>
 
-    <div class="footer-links">
-      <a href="index.html">Início</a>
-      <a href="#solucoes">Soluções</a>
-      <a href="calcfinanceira.html">Calculadora</a>
-      <a href="#contato">Contato</a>
-    </div>
+      <div class="footer-links">
+        <a href="index.html">Início</a>
+        <a href="#solucoes">Soluções</a>
+        <a href="calcfinanceira.html">Calculadora</a>
+        <a href="#contato">Contato</a>
+      </div>
 
-    <div class="footer-copy">
-      <p>&copy; 2025 CryoTech. Todos os direitos reservados.</p>
+      <div class="footer-copy">
+        <p>&copy; 2025 CryoTech. Todos os direitos reservados.</p>
+      </div>
     </div>
   </div>
-  </div>
-</footer>
 
+ 
+
+
+  
+  <script>
+    function logar() {
+      var email = email_input.value;
+      var senha = senha_input.value;
+      if ((email == 'gabrielsenna@email.com' || email == 'cryotech@email.com')
+        && senha == 'cryotech') {
+        window.location.href = "inicio-dashboard.html";
+      } else {
+        div_msglogin.innerHTML = `<p style="color: red;">Falha no login</p>`;
+      }
+    }
+
+    function login() {
+      var modal = document.getElementById("modal");
+      modal.classList.add("ativo");
+      document.getElementById("fecharModal").onclick = () =>
+        modal.classList.remove("ativo");
+      window.onclick = (e) => {
+        if (e.target === modal) modal.classList.remove("ativo");
+      };
+    }
+
+    function cadastrar() {
+      window.location.href = "cadastro.html";
+    }
+
+    var index = 0;
+    var items = document.querySelectorAll('.card-item');
+    var visible = 3;
+
+    function atualizar() {
+      var larguraCard = 250;
+      var espacamento = 20;
+      var desloc = (larguraCard + espacamento) * index;
+
+      for (var i = 0; i < items.length; i++) {
+        items[i].style.display = 'none';
+      }
+
+      for (var i = index; i < index + visible; i++) {
+        if (items[i]) {
+          items[i].style.display = 'block';
+        }
+      }
+    }
+
+    function proximo() {
+      var max = items.length - visible;
+      if (index < max) {
+        index++;
+        atualizar();
+      }
+    }
+
+    function voltar() {
+      if (index > 0) {
+        index--;
+        atualizar();
+      }
+    }
+
+    window.addEventListener('resize', atualizar);
+    atualizar();
+  </script>
 
 </body>
-
 </html>
-
-<script>
-  function logar() {
-    var email = email_input.value;
-    var senha = senha_input.value;
-    if ((email == 'gabrielsenna@email.com' || email == 'cryotech@email.com') && (senha == 'cryotech')) {
-      window.location.href = "inicio-dashboard.html"
-
-    } else {
-      div_msglogin.innerHTML = ` <p style="color: red;">Falha no login</p>`
-    }
-
-  }
-
-  function login() {
-    var modal = document.getElementById("modal");
-    modal.classList.add("ativo");
-    document.getElementById("fecharModal").onclick = () =>
-      modal.classList.remove("ativo");
-    window.onclick = (e) => {
-      if (e.target === modal) modal.classList.remove("ativo");
-    };
-  }
-
-  function cadastrar() {
-    window.location.href = "cadastro.html";
-  }
-
-var index = 0
-var items = document.querySelectorAll('.card-item')
-var visible = 3
-
-function atualizar() {
-  var larguraCard = 250
-  var espacamento = 20
-  var desloc = (larguraCard + espacamento) * index
-
-  for (var i = 0; i < items.length; i++) {
-    items[i].style.display = 'none'
-  }
-
-  for (var i = index; i < index + visible; i++) {
-    if (items[i]) {
-      items[i].style.display = 'block'
-    }
-  }
-}
-
-function proximo() {
-  var max = items.length - visible
-  if (index < max) {
-    index = index + 1
-    atualizar()
-  }
-}
-
-function voltar() {
-  if (index > 0) {
-    index = index - 1
-    atualizar()
-  }
-}
-
-window.addEventListener('resize', atualizar)
-atualizar()
-
-</script>
