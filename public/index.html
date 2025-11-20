@@ -1,0 +1,348 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <title>CryoTech | Página Inicial</title>
+
+  <link rel="stylesheet" href="css/estilo.css" />
+  <link rel="icon" href="css/Imagens/logo1.png" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inder&display=swap" rel="stylesheet" />
+</head>
+
+<body>
+  <div class="header">
+    <div class="container">
+      <ul class="navbar">
+        <li class="agora">
+          <a href="#">Pagina Inicial</a>
+        </li>
+        <li>
+          <a href="calcfinanceira.html">Calculadora financeira</a>
+        </li>
+        <li>
+          <a href="#solucoes">Soluções</a>
+        </li>
+        <li>
+          <a href="#contato">Contato</a>
+        </li>
+        <li><img src="css/Imagens/logo1.png" alt="" /></li>
+        <li class="navbar-button">
+          <button onclick="cadastrar()">Cadastre-se</button>
+          <button onclick="login()" id="abrirModal">Login</button>
+        </li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="modal" id="modal">
+    <img src="css/Imagens/logo1.png" alt="" />
+    <span class="fechar" id="fecharModal"> Fechar</span>
+    <h2>Faça seu login</h2>
+    <input id="email_input" type="email" placeholder="E-mail" />
+    <input id="senha_input" type="password" placeholder="******" />
+    <div id="div_msglogin"></div>
+    <button onclick="logar()">Enviar</button>
+  </div>
+
+  <div class="container-pai">
+    <center>  
+    <div class="banner">
+      
+        <p> 
+          <span>Do frigorífico ao cliente, <br />
+            a qualidade da sua carne está protegida.</span>
+          </p>
+        </center>
+      <!-- <a href="#etapa">Veja como funciona</a> -->
+    </div>
+
+    <div class="container-us">
+      <div class="titulo">
+        <h2 class="us-tutulo">
+          Conectamos o <br />
+          setor alimentício <br />
+          com IoT
+        </h2>
+        <!-- <button onclick="SaberUs()" class="bnt-us">Saiba mais</button> -->
+      </div>
+      <div class="texto-direita">
+        <p>
+         <span> Somos uma startup inovadora que nasceu com a missão de revolucionar o controle de temperatura no setor
+          alimentício, garantindo a segurança e a qualidade de todos os tipos de carnes congeladas , desde o momento da
+          produção até a entrega final ao consumidor. </span>
+          <br>
+          <span>Nosso propósito é assegurar que cada etapa da cadeia de frio seja monitorada de forma inteligente, precisa e
+          contínua, evitando desperdícios, reduzindo custos operacionais e, acima de tudo, preservando a integridade dos
+          alimentos.</span>
+          <br>
+          <span>Acreditamos que o futuro do setor alimentício está na tecnologia e na rastreabilidade. Por isso, desenvolvemos
+          soluções que unem sensores de alta precisão, conectividade em tempo real e análise de dados para que empresas
+          possam agir de forma preventiva, cumprir rigorosamente as normas sanitárias e oferecer produtos de máxima
+          qualidade aos seus clientes.</span>
+          <br>
+          <span>Com nossa plataforma, as empresas ganham transparência, confiança e eficiência, eliminando riscos de
+          contaminação e perdas por falhas no armazenamento ou transporte. Dessa forma, contribuímos para uma cadeia
+          alimentar mais segura, sustentável e confiável , do produtor ao consumidor final.</span>
+        </p>
+      </div>
+    </div>
+
+
+
+    <div id="solucoes" class="container-solucoes">
+      <div class="img-solucoes">
+        <img src="css/Imagens/home-img1.jpg" />
+      </div>
+      <div class="conteudo-solucoes">
+        <p>
+         Monitore a temperatura em tempo real com a CryoTech.
+Nossa solução IoT garante controle preciso e visibilidade total em toda a cadeia do frio.
+        </p>
+
+      </div>
+    </div>
+
+
+
+    <div class="container-solucoes2">
+      <div class="img-solucoes2">
+        <img src="css/Imagens/home-img2.jpg" />
+      </div>
+      <div class="conteudo-solucoes2">
+        <p>
+          Acompanhe cada etapa da refrigeração com precisão.
+Detecte variações, evite perdas e mantenha suas carnes na temperatura ideal.
+        </p>
+      </div>
+    </div>
+
+    <div class="container-solucoes">
+      <div class="img-solucoes">
+        <img src="css/Imagens/home-img3.jpeg" />
+      </div>
+      <div class="conteudo-solucoes">
+        <p>
+          Evite perdas e assegure a conformidade com as normas sanitárias. A CryoTech oferece dados confiáveis e alertas
+          automáticos para que você tome decisões rápidas e mantenha seus produtos sempre na temperatura ideal.
+        </p>
+
+
+      </div>
+    </div>
+
+    <!-- Fim soluções -->
+
+         <div class="carrossel2">
+
+      <!-- <div class="card-conteudo">
+          <h2>Conheça o jeito <span>Cryotech</span> de monitorar</h2>
+        </div> -->
+      <div class="carrossel">
+         <div class="img-carrossel">
+              <img src="css/Imagens/contato.jpg" alt="imagem">
+            </div>
+          <div class="card-conteudo2">
+           
+            <div class="titulo-card">
+          <h2>Conheça o jeito <span>Cryotech</span> de monitorar</h2>
+        </div>
+          <ul class='cards'>
+        <li class="card-item">
+          <a href="#" class="card-link">
+          <div class="img-box">
+            <img src="css/Imagens/servico.png" class="card-img">
+          </div>
+          <p class="titulo cliente">Cliente</p>
+          <h2>Escolha o serviço que melhor atende sua necessidade</h2>
+        </a>
+        </li>
+          <li class="card-item">
+            <a href="#" class="card-link">
+              <div class="img-box">
+                <img src="css/Imagens/img2.png" class="card-img">
+            </div>
+            <p class="titulo">CryoTech</p>
+            <h2>Os sensores serão prontamente instalados pela equipe CryoTech</h2>
+            </a>
+        </li>
+         <li class="card-item">
+           <a href="#" class="card-link">
+          <div class="img-box">
+            <img src="css/Imagens/img3.png" class="card-img">
+          </div>
+          <p class="titulo">CryoTech</p>
+          <h2>As medições são coletadas em tempo real pelos sensores instalados</h2>
+        </a>
+      </li>
+      <li class="card-item">
+        <a href="#" class="card-link">
+          <div class="img-box">
+            <img src="css/Imagens/img4.png" class="card-img">
+          </div>
+          <p class="titulo">CryoTech</p>
+          <h2>As informações são processadas e armazenadas com segurança</h2>
+        </a>
+        </li>
+        <li class="card-item">
+          <a href="#" class="card-link">
+          <div class="img-box">
+            <img src="css/Imagens/img5.png" class="card-img">
+          </div>
+          <p class="titulo">CryoTech</p>
+            <h2>Uma análise será feita pela nossa aplicação</h2>
+          </a>
+        </li>
+        <li class="card-item">
+          <a href="#" class="card-link">
+            <div class="img-box">
+              <img src="css/Imagens/img6.png" class="card-img">
+            </div>
+            <p class="titulo">CryoTech</p>
+            <h2>Os dados são exibidos em forma de dashboard</h2>
+          </a>
+        </li>
+        <li class="card-item">
+          <a href="#" class="card-link">
+          <div class="img-box">
+            <img src="css/Imagens/img7.png" class="card-img">
+            </div>
+            <p class="titulo cliente">Cliente</p>
+            <h2>Com a nossa aplicação você analisa os dados e tem oportuidade de melhoria</h2>
+            </a>
+          </li>
+        </ul>
+        </div>
+        <div class="botoes">
+        <button onclick="voltar()">&#10094;</button>
+        <div class="indicadores">
+          <span class="bolinha ativa"></span>
+          <span class="bolinha"></span>
+          <span class="bolinha"></span>
+          <span class="bolinha"></span>
+          <span class="bolinha"></span>
+        </div>
+        <button onclick="proximo()">&#10095;</button>
+      </div>
+  </div>
+      </div>
+
+
+    
+
+    <div id="contato" class="contato-container">
+      <div class="img-contato">
+        <img src="css\Imagens\home-img5.png" />
+      </div>
+
+      <div class="formulario">
+        <h2>Fale conosco</h2>
+        <form>
+          <span>Nome:</span>
+          <input type="text" placeholder="Insira seu nome" required />
+          <span>Email:</span>
+          <input type="email" placeholder="Insira um email para contato" required />
+          <span>Nome da empresa:</span>
+          <input type="text" placeholder="Insira um email para contato" required />
+          <span>Cargo na empresa:</span>
+          <input type="text" placeholder="Insira um email para contato" required />
+          <span>Qual sua necessidade:</span>
+          <input type="checkbox" required /> <label>Câmara fria</label>
+          <input type="checkbox" required /> <label>Transporte</label>
+          <input type="checkbox" required /> <label>Pontos de venda</label>
+          <span>Qual sua necessidade:</span>
+          <textarea
+            placeholder="Ex: 'Preciso monitorar a temperatura de 15 caminhões' ou 'Tenho 3 câmaras frias de 50m²'"></textarea>
+          <button type="button">ENVIAR</button>
+        </form>
+      </div>
+    </div>
+  </div>
+  <div class="footer">
+    <div class="footer-container">
+      <div class="footer-logo">
+        <h2>CryoTech</h2>
+        <p>Garantindo a temperatura ideal do início ao fim da cadeia de frio.</p>
+      </div>
+
+      <div class="footer-links">
+        <a href="index.html">Início</a>
+        <a href="#solucoes">Soluções</a>
+        <a href="calcfinanceira.html">Calculadora</a>
+        <a href="#contato">Contato</a>
+      </div>
+
+      <div class="footer-copy">
+        <p>&copy; 2025 CryoTech. Todos os direitos reservados.</p>
+      </div>
+    </div>
+  </div>
+
+ 
+
+
+  
+  <script>
+   
+
+    function login() {
+      var modal = document.getElementById("modal");
+      modal.classList.add("ativo");
+      document.getElementById("fecharModal").onclick = () =>
+        modal.classList.remove("ativo");
+      window.onclick = (e) => {
+        if (e.target === modal) modal.classList.remove("ativo");
+      };
+    }
+
+    function cadastrar() {
+      window.location.href = "cadastro.html";
+    }
+
+    var index = 0;
+    var items = document.querySelectorAll('.card-item');
+    var visible = 3;
+
+    function atualizar() {
+      var larguraCard = 250;
+      var espacamento = 20;
+      var desloc = (larguraCard + espacamento) * index;
+
+      for (var i = 0; i < items.length; i++) {
+        items[i].style.display = 'none';
+      }
+
+      for (var i = index; i < index + visible; i++) {
+        if (items[i]) {
+          items[i].style.display = 'block';
+        }
+      }
+    }
+
+    function proximo() {
+      var max = items.length - visible;
+      if (index < max) {
+        index++;
+        atualizar();
+      }
+    }
+
+    function voltar() {
+      if (index > 0) {
+        index--;
+        atualizar();
+      }
+    }
+
+    window.addEventListener('resize', atualizar);
+    atualizar();
+  </script>
+
+</body>
+</html>
