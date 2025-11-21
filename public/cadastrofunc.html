@@ -2,115 +2,99 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>CryoTech | Página Inicial</title>
-    <link rel="stylesheet" href="css/cryo.css">
-    <link rel="icon" href="../Site/css/Imagens/logo1png">
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CryoTech | Página Inicial</title>
+  <link rel="stylesheet" href="css/estilo.css" />
+  <link rel="icon" href="../Site/css/Imagens/logo1png">
 </head>
 
 <body class="pagina-cadastro">
-    <div class="background-cadastro">
-        <div class="cadastro">
-            <div class="img-cadastro">
-                <ul>
-                    <li><img onclick="imagem()" src="../Site/css/Imagens/logo1.png" alt=""></li>
-                </ul>
-            </div>
+  <div class="background-cadastro">
+    <div class="cadastro">
+      <div class="img-cadastro">
+        <ul>
+          <li><img onclick="imagem()" src="../Site/css/Imagens/logo1.png" alt=""></li>
+        </ul>
+      </div>
 
-            <div class="cadastro-right">
-                <div class="cadastro-texto">
-                    <h2 onclick="imagem()">Bem vindo a <span>Cryo</span>Tech</h2> <br><br>
-                </div>
-
-                <label>Nome do responsável</label>
-                <input id="nome_input" type="text" placeholder="Gabriel Senna">
-
-                <label>E-mail</label>
-                <input id="email_input" type="text" placeholder="meuemail@gmail.com">
-
-                <label>CPF</label>
-                <input id="cpf_input" type="text" placeholder="XXX.XXX.XXX-0X">
-
-                <label>Telefone para contato</label>
-                <input id="telefone_input" type="text" placeholder="XX-XXXXXXXXXX">
-
-                <label>Senha</label>
-                <input id="senha_input" type="password" placeholder="******" oninput="verificarSenha()">
-                <div id="forca_senha"></div>
-
-                <label>Data de nascimento</label>
-                <input id="dtNasc_input" type="text" placeholder="22/10/2006">
-
-                <label>Token da empresa</label>
-                <input id="token_input" type="text" placeholder="4FER87">
-
-                <div id="div_msg"></div>
-
-                <div class="remember">
-                    <input type="checkbox" id="remember">
-                    <label for="remember">Lembrar-me</label>
-                </div>
-
-                <p>Caso sua empresa ainda não tenha um cadastro <a href="cadastro.html">clique aqui</a></p>
-
-                <button onclick="cadastro()">Cadastre-se</button>
-            </div>
+      <div class="cadastro-right">
+        <div class="cadastro-texto">
+          <h2 onclick="imagem()">Bem vindo a <span>Cryo</span>Tech</h2> <br><br>
         </div>
+
+        <label>Nome do responsável</label>
+        <input id="nome_input" type="text" value="Gabriel Senna">
+
+        <label>CPF</label>
+        <input id="cpf_input" type="text" value="52532532523">
+
+        <label>Data de nascimento</label>
+        <input id="dtNasc_input" type="date" value="2006-10-22">
+
+        <label>E-mail</label>
+        <input id="email_input" type="text" value="meuemail@gmail.com">
+
+        <label>Telefone para contato</label>
+        <input id="telefone_input" type="text" value="142414241">
+
+        <label>Senha</label>
+        <input id="senha_input" type="password" value="sccp1910">
+        <div id="forca_senha"></div>
+
+        <label>Confirmar Senha</label>
+        <input id="confirmacao_senha_input" type="password" value="sccp1910">
+        <div id="forca_senha"></div>
+
+        <label>Token da empresa</label>
+        <input id="token_input" type="text" value="SCCP">
+
+        <div id="div_msg"></div>  
+
+        <div class="remember">
+          <input type="checkbox" id="remember">
+          <label for="remember">Lembrar-me</label>
+        </div>
+
+        <p>Caso sua empresa ainda não tenha um cadastro <a href="cadastro.html">clique aqui</a></p>
+
+        <button onclick="cadastrar()">Cadastre-se</button>
+      </div>
     </div>
+  </div>
 </body>
 
 <script>
-  
+
   // Array para armazenar empresas cadastradas para validação de código de ativação 
-  let listaEmpresasCadastradas = [];
-  
   function cadastrar() {
-    // aguardar();
 
     //Recupere o valor da nova input pelo nome do id
     // Agora vá para o método fetch logo abaixo
     var nomeVar = nome_input.value;
+    var cpfVar = cpf_input.value;
+    var dtNascVar = dtNasc_input.value;
     var emailVar = email_input.value;
+    var telefoneVar = telefone_input.value;
     var senhaVar = senha_input.value;
     var confirmacaoSenhaVar = confirmacao_senha_input.value;
-    var codigoVar = codigo_input.value;
-    var idEmpresaVincular
-    
+    var tokenVar = token_input.value;
+
     // Verificando se há algum campo em branco
     if (
       nomeVar == "" ||
       emailVar == "" ||
       senhaVar == "" ||
       confirmacaoSenhaVar == "" ||
-      codigoVar == ""
+      tokenVar == ""
     ) {
-      cardErro.style.display = "block";
-      mensagem_erro.innerHTML =
-      "(Mensagem de erro para todos os campos em branco)";
-      
-      finalizarAguardar();
-      return false;
-    } else {
-      setInterval(sumirMensagem, 5000);
+      alert('Mensagem de erro para todos os campos em branco');
+
     }
-    
-    // Verificando se o código de ativação é de alguma empresa cadastrada
-    for (let i = 0; i < listaEmpresasCadastradas.length; i++) {
-      if (listaEmpresasCadastradas[i].codigo_ativacao == codigoVar) {
-        idEmpresaVincular = listaEmpresasCadastradas[i].id
-        console.log("Código de ativação válido.");
-        break;
-      } else {
-        cardErro.style.display = "block";
-        mensagem_erro.innerHTML = "(Mensagem de erro para código inválido)";
-        finalizarAguardar();
-      }
-    }
-    
+
     // Enviando o valor da nova input
-    fetch("/usuarios/cadastrar", {
+    fetch("/empresas/cadastrarFuncionario", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -119,104 +103,63 @@
         // crie um atributo que recebe o valor recuperado aqui
         // Agora vá para o arquivo routes/usuario.js
         nomeServer: nomeVar,
+        cpfServer: cpfVar,
+        dtNascServer: dtNascVar,
         emailServer: emailVar,
+        telefoneServer: telefoneVar,
         senhaServer: senhaVar,
-        idEmpresaVincularServer: idEmpresaVincular
+        tokenServer: tokenVar,
       }),
     })
-    .then(function (resposta) {
-      console.log("resposta: ", resposta);
-      
-      if (resposta.ok) {
-        cardErro.style.display = "block";
-        
-        mensagem_erro.innerHTML =
-        "Cadastro realizado com sucesso! Redirecionando para tela de Login...";
-        
-        setTimeout(() => {
-          window.location = "login.html";
-        }, "2000");
-
-        limparFormulario();
-        finalizarAguardar();
-      } else {
-        throw "Houve um erro ao tentar realizar o cadastro!";
-      }
-    })
-      .catch(function (resposta) {
-        console.log(`#ERRO: ${resposta}`);  
-        finalizarAguardar();
-      });
-
-      return false;
-    }
-    function cadastro() {
-        div_msg.innerHTML = '';
-        var telefone = telefone_input.value;
-        var dtNasc = dtNasc_input.value;
-        var token = token_input.value;
-        var nome = nome_input.value;
-        var email = email_input.value;
-        var senha = senha_input.value;
-  
-        if (nome == '' || email == '' || senha == '' || dtNasc == '' || token == '' || telefone == '') {
-            div_msg.innerHTML = '<p style="color: red;">Todos os campos devem estar preenchidos</p>';
-        }
-        else if (
-            (nome == 'Gabriel Senna' || nome == 'Fernando Brandão' || nome == 'Beatriz Leandro' ||
-                nome == 'Luis Vittor' || nome == 'Matheus Barros' || nome == 'Rafael Barbosa') &&
-            (email == 'cryotech@email.com' || email == 'gabrielsenna@email.com') &&
-            (senha == 'cryotech@') 
-        ) {
-            div_msg.innerHTML = '<p style="color: green;">Login bem sucedido</p>';
-            window.location.href = 'inicio-dashboard.html';
-        }
-        else {
-            div_msg.innerHTML = '<p style="color: red;">Falha no cadastro</p>';
-        }
-    }
-  
-    
-    function verificarSenha() {
-        var senha = senha_input.value;
-        var forca = document.getElementById('forca_senha');
-  
-        if (senha.length == 0) {
-            forca.innerHTML = '';
-        }
-        else if (senha.length >= 7 && senha.includes('@')) {
-            forca.innerHTML = '<p style="color: green;">Senha forte</p>';
-        }
-        else {
-            forca.innerHTML = '<p style="color: red;">Senha fraca (deve ter no minímo 7 caracteres e conter um "@")</p>';
-        }
-    }
-  
-    function imagem() {
-        window.location.href = "index.html";
-    }
-    
-    // Listando empresas cadastradas 
-    function listar() {
-    fetch("/empresas/listar", {
-      method: "GET",
-    })
       .then(function (resposta) {
-        resposta.json().then((empresas) => {
-          empresas.forEach((empresa) => {
-            listaEmpresasCadastradas.push(empresa);
+        console.log("resposta: ", resposta);
 
-            console.log("listaEmpresasCadastradas")
-            console.log(listaEmpresasCadastradas[0].codigo_ativacao)
-          });
-        });
+        if (resposta.ok) {
+          cardErro.style.display = "block";
+
+          alert('Dados salvos')
+
+          mensagem_erro.innerHTML =
+            "Cadastro realizado com sucesso! Redirecionando para tela de Login...";
+
+          setTimeout(() => {
+            window.location = "../dashboard.html";
+          }, "2000"); 
+
+        } else {
+          throw "Houve um erro ao tentar realizar o cadastro!";
+        }
       })
+
       .catch(function (resposta) {
         console.log(`#ERRO: ${resposta}`);
       });
+
+    return false;
   }
+
+  // Listando empresas cadastradas 
+  // function listar() {
+  //   fetch("/empresas/listar", {
+  //     method: "GET",
+  //   })
+  //     .then(function (resposta) {
+  //       resposta.json().then((empresas) => {
+  //         empresas.forEach((empresa) => {
+  //           listaEmpresasCadastradas.push(empresa);
+
+  //           console.log("listaEmpresasCadastradas")
+  //           console.log(listaEmpresasCadastradas[0].token_ativacao)
+  //         });
+  //       });
+  //     })
+  //     .catch(function (resposta) {
+  //       console.log(`#ERRO: ${resposta}`);
+  //     });
+  // }
 
   function sumirMensagem() {
     cardErro.style.display = "none";
   }
+
 </script>

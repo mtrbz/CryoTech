@@ -1095,7 +1095,10 @@ body {
 }
 
 
+
+
 .cadastro-left input[type="text"],
+.cadastro-left input[type="date"],
 .cadastro-left input[type="password"] {
     width: 100%;
     background: transparent;
@@ -1194,6 +1197,7 @@ body {
 
 
 .cadastro-right input[type="text"],
+.cadastro-right input[type="date"],
 .cadastro-right input[type="password"] {
     width: 100%;
     background: transparent;
