@@ -46,7 +46,6 @@ function cadastrarEmpresa(req, res) {
     }
 }
 
-
 function cadastrarFuncionario(req, res) {
     // Crie uma variável que vá recuperar os valores do arquivo cadastro.html
     var nome = req.body.nomeServer;
@@ -76,6 +75,7 @@ function cadastrarFuncionario(req, res) {
         empresaModel.buscarPorToken(token)
             .then(empresas => {
                 if (empresas.length == 0) {
+                    console.log(empresas)
                     return res.status(404).send('Token inválido')
                 }
 
@@ -101,13 +101,12 @@ function cadastrarFuncionario(req, res) {
 }
 
 function buscarPorToken(req, res) {
-  var token = req.params.token;
+  var token = req.body.token;
 
   empresaModel.buscarPorToken(token).then((resultado) => {
     res.status(200).json(resultado);
   });
 }
-
 
 module.exports = {
     cadastrarEmpresa,
