@@ -12,4 +12,8 @@ router.post("/cadastrarFuncionario", function (req, res) {
     empresaController.cadastrarFuncionario(req, res);
 });
 
+router.post("/enviarFaleConosco", function (req, res) {
+    empresaController.enviarFaleConosco(req, res);
+});
+
 module.exports = router;

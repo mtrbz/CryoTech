@@ -108,8 +108,47 @@ function buscarPorToken(req, res) {
   });
 }
 
+function enviarFaleConosco(req, res) {
+    var nome = req.body.nomeServer;
+    var email = req.body.emailServer;
+    var empresa = req.body.empresaServer;
+    var necessidade = req.body.necessidadeServer;
+
+    if (nome == undefined) {
+        res.status(400).send("Nome está undefined!");
+    } else if (email == undefined) {
+        res.status(400).send("Email está undefined!");
+    } else if (empresa == undefined) {
+        res.status(400).send("Empresa está undefined!");
+    } else if (necessidade == undefined) {
+        res.status(400).send("Necessidade está undefined!");
+    } else {
+
+        empresaModel.enviarFaleConosco(nome, email, empresa, necessidade)
+        .then((resposta) => {
+
+            if (resposta.length == 0) {
+
+                console.log(resposta)
+                return res.status(404).send('Fale conosco inválido')
+            }
+            res.status(200).json(resposta)
+        })
+        .catch((erro) => {
+                console.log(erro);
+                console.log(
+                    "\nHouve um erro ao realizar o cadastro! Erro: ",
+                    erro.sqlMessage
+                );
+                    res.status(500).json(erro.sqlMessage);
+                }
+        );
+    }
+}
+
 module.exports = {
     cadastrarEmpresa,
     cadastrarFuncionario,
-    buscarPorToken
+    buscarPorToken,
+    enviarFaleConosco
 }
