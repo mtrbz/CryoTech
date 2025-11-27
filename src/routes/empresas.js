@@ -16,4 +16,12 @@ router.post("/enviarFaleConosco", function (req, res) {
     empresaController.enviarFaleConosco(req, res);
 });
 
+router.get("/obterTemperaturaMedia", function (req, res) {
+    empresaController.obterTemperaturaMedia(req, res);
+});
+
+router.get("/atualizarTemperaturaMedia", function (req, res) {
+    empresaController.atualizarTemperaturaMedia(req, res);
+});
+
 module.exports = router;

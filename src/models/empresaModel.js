@@ -41,9 +41,33 @@ function enviarFaleConosco(nome, email, empresa, necessidade) {
     return database.executar(instrucaoSql);
 }
 
+function obterTemperaturaMedia() {
+    console.log('Acessei o model da temperatura!');
+    
+    var instrucaoSql = `
+        SELECT ROUND(AVG(medicao)) AS medTemp FROM registro
+        GROUP BY idRegistro;
+    `;
+
+  return database.executar(instrucaoSql);
+}
+
+function atualizarTemperaturaMedia(limite) {
+    console.log('Acessei o model de atualizar temperatura!');
+    
+    var instrucaoSql = `
+        SELECT ROUND(AVG(medicao)) AS medTemp FROM registro
+        GROUP BY idRegistro LIMIT ${limite};
+    `;
+
+  return database.executar(instrucaoSql);
+}
+
 module.exports = {
     cadastrarEmpresa,
     cadastrarFuncionario,
     buscarPorToken,
-    enviarFaleConosco
+    enviarFaleConosco,
+    obterTemperaturaMedia,
+    atualizarTemperaturaMedia
 }

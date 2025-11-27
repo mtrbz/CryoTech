@@ -146,9 +146,60 @@ function enviarFaleConosco(req, res) {
     }
 }
 
+function obterTemperaturaMedia(req, res) {
+   
+        empresaModel.obterTemperaturaMedia()
+            .then(
+                function (resposta) {
+                    console.log(`\nResultados encontrados da temperatura média: ${resposta}`);
+                    console.log(`Resultados: ${JSON.stringify(resposta)}`); // transforma JSON em String
+                    
+                    res.json(resposta);
+                    
+                }
+            ).catch(
+                function (erro) {
+                    console.log(erro);
+                    console.log("\nHouve um ERRO: ", erro.sqlMessage);
+                    res.status(500).json(erro.sqlMessage);
+                }
+            );
+}
+
+function atualizarTemperaturaMedia(req, res) {
+
+    const limite = 8;
+
+    console.log(`Recuperando as ultimas ${limite} medidas`);
+   
+        empresaModel.atualizarTemperaturaMedia(limite)
+            .then(
+                function (resposta) {
+
+                    if (resposta.length > 0) {
+                        console.log(`\nResultados encontrados da temperatura média: ${resposta}`);
+                        console.log(`Resultados: ${JSON.stringify(resposta)}`); // transforma JSON em String
+                        
+                        res.json(resposta);
+                    } else {
+                        res.status(204).send('Nenhum resultado encontrado!')
+                    }
+                    
+                }
+            ).catch(
+                function (erro) {
+                    console.log(erro);
+                    console.log("\nHouve um ERRO ao buscar as ultimas temperaturas: ", erro.sqlMessage);
+                    res.status(500).json(erro.sqlMessage);
+                }
+            );
+}
+
 module.exports = {
     cadastrarEmpresa,
     cadastrarFuncionario,
     buscarPorToken,
-    enviarFaleConosco
+    enviarFaleConosco,
+    obterTemperaturaMedia,
+    atualizarTemperaturaMedia
 }
