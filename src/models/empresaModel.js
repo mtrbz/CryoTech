@@ -45,8 +45,10 @@ function obterTemperaturaMedia() {
     console.log('Acessei o model da temperatura!');
     
     var instrucaoSql = `
-        SELECT ROUND(AVG(medicao)) AS medTemp FROM registro
-        GROUP BY idRegistro;
+        SELECT medicao AS medTemp
+        FROM registro
+        ORDER BY idRegistro DESC
+        LIMIT 10;
     `;
 
   return database.executar(instrucaoSql);
@@ -56,8 +58,10 @@ function atualizarTemperaturaMedia(limite) {
     console.log('Acessei o model de atualizar temperatura!');
     
     var instrucaoSql = `
-        SELECT ROUND(AVG(medicao)) AS medTemp FROM registro
-        GROUP BY idRegistro LIMIT ${limite};
+        SELECT medicao AS medTemp
+        FROM registro
+        ORDER BY idRegistro DESC
+        LIMIT ${limite};
     `;
 
   return database.executar(instrucaoSql);

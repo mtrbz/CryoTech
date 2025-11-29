@@ -297,96 +297,93 @@
 </html>
 <script>
 
-  function obterTemperaturaMedia() {
+  let dadosTemperatura = null;
+  let chartTemperatura = null;
+  let proximaAtualizacao = null;
 
-    fetch(`/empresas/obterTemperaturaMedia`)
-      .then(resposta => resposta.json())
-      .then(function (resposta) {
-        console.log('to dentro do grafico', resposta)
-
-        console.log(`Dados recebidos: ${JSON.stringify(resposta)}`);
-
-        plotarTemperaturaMedia(resposta);
-
-      })
-      .catch(function (erro) {
-        console.error(`Erro na obtenção dos dados p/ gráfico: ${erro.message}`);
-      });
-  }
   obterTemperaturaMedia();
 
-  function plotarTemperaturaMedia(resposta) {
-    console.log(resposta)
+  function obterTemperaturaMedia() {
 
-    var labels = [];
-    var temperatura = [];
-
-    for (var i = 0; i < resposta.length; i++) {
-      labels.push(i+1);
-      temperatura.push(resposta[i].medTemp);
+    if (proximaAtualizacao != null) {
+      clearTimeout(proximaAtualizacao);
     }
 
-    var dados = {
+    fetch(`/empresas/obterTemperaturaMedia`)
+      .then(res => res.json())
+      .then(resposta => {
+        console.log("Histórico inicial:", resposta);
+        plotarTemperaturaMedia(resposta);
+
+        proximaAtualizacao = setTimeout(atualizarTemperaturaMedia, 2000);
+      })
+      .catch(erro => console.error("ERRO histórico:", erro));
+  }
+
+  function plotarTemperaturaMedia(resposta) {
+
+    let labels = [];
+    let temperaturas = [];
+
+    for (let i = 0; i < resposta.length; i++) {
+      labels.push(i + 1);
+      temperaturas.push(resposta[i].medTemp);
+    }
+
+    dadosTemperatura = {
       labels: labels,
       datasets: [{
-        label: 'Média de temperatura da Câmara',
-        data: temperatura,
-        backgroundColor: '#ffff'
+        label: "Média de Temperatura da Câmara",
+        data: temperaturas,
+        borderColor: "#0077ff",
+        backgroundColor: "transparent",
+        tension: 0.2
       }]
     };
 
-    const ctx = document.getElementById('g1');
+    const ctx = document.getElementById("g1");
 
-    const config = {
-
+    chartTemperatura = new Chart(ctx, {
       type: "line",
-      data: dados,
+      data: dadosTemperatura,
       options: {
         responsive: true,
         maintainAspectRatio: false,
         scales: {
-          y: { beginAtZero: true, reverse: true },
-          x: { grid: { display: false } },
-        },
-        plugins: {
-          legend: { labels: { font: { size: 13 } } },
+          y: {
+            reverse: true,
+            beginAtZero: false
+          }
         }
       }
-    };
-
-    let myChart = new Chart(ctx, config);
-    
+    });
   }
 
-  function voltarHome() {
-    window.location.href = "index.html";
-  }
+  function atualizarTemperaturaMedia() {
 
-  new Chart(document.getElementById("g2"), {
-    type: "bar",
-    data: {
-      labels: ["Seg", "Ter", "Qua", "Qui", "Sex", "Sab", "Dom"],
-      datasets: [
-        {
-          label: "Temperatura média diária",
-          data: [-18, -19, -20, -21, -22, -21, -18],
-          backgroundColor: [
-            "rgba(0, 191, 255, 0.8)",
-            "rgba(0, 128, 255, 0.8)",
-            "rgba(30, 144, 255, 0.8)",
-            "rgba(0, 150, 255, 0.8)",
-            "rgba(0, 200, 255, 0.8)",
-            "rgba(0, 176, 255, 0.8)",
-            "rgba(64, 224, 208, 0.8)",
-          ],
-          borderColor: "#0044cc",
-          borderWidth: 2,
-        },
-      ],
-    },
- 
-  });
-  
+    fetch(`/empresas/atualizarTemperaturaMedia`)
+      .then(res => res.json())
+      .then(novo => {
+
+        const valor = novo[0].medTemp;
+        const ultimo = dadosTemperatura.datasets[0].data[dadosTemperatura.datasets[0].data.length - 1];
+
+        if (valor !== ultimo) {
+
+          dadosTemperatura.labels.shift();
+          dadosTemperatura.labels.push(dadosTemperatura.labels.length + 1);
+
+          dadosTemperatura.datasets[0].data.shift();
+          dadosTemperatura.datasets[0].data.push(valor);
+
+          chartTemperatura.update();
+        }
+
+        proximaAtualizacao = setTimeout(atualizarTemperaturaMedia, 2000);
+
+      })
+      .catch(erro => console.error("ERRO tempo real:", erro));
+  }
 
   function alerta() {
     alert(
@@ -401,6 +398,7 @@
       "Verifique imediatamente esses sensores para evitar perda de temperatura!"
     );
   }
+
   function atencao() {
     alert(
       "Este Sensor Possuí 4 Alerta(s)!\n" +
@@ -410,6 +408,7 @@
       "Procure algum de nossos colaboradores para mais detalhes!"
     );
   }
+
   function voltarDashboard() {
     window.location.href = "inicio-dashboard.html";
   }
