@@ -45,6 +45,12 @@
         <input id="input_bairro" type="text" placeholder="Morumbi"> 
         <label>Numero Endereço</label>
         <input id="input_numero" type="text" placeholder="XXX"> 
+        <label>Locais de Serviço</label>
+        <div class="empresa-servicos">
+          <input id="input_camaras" type="number" placeholder="Nº de Câmaras"> 
+          <input id="input_transportes" type="number" placeholder="Nº de Transportes"> 
+          <input id="input_freezers" type="number" placeholder="Nº de Freezers"> 
+        </div>
         <label>Token de cadastro</label>
         <input id="input_token" type="text" placeholder="HF65G8DR2J">
         <label>Telefone para contato</label>
@@ -85,6 +91,9 @@
     var cidade = input_cidade.value;
     var bairro = input_bairro.value;
     var numero = input_numero.value;
+    var camaras = Number(input_camaras.value);
+    var transportes = Number(input_transportes.value);
+    var freezers = Number(input_freezers.value);
     var token = input_token.value;
 
     // Verificando se há algum campo em branco
@@ -95,6 +104,7 @@
       cidade == "" ||
       bairro == "" ||
       numero == "" ||
+      (camaras == 0 && transportes == 0 && freezers == 0) ||
       token == ""
     ) {
       alert('Mensagem de erro para todos os campos em branco');
@@ -116,6 +126,9 @@
         cidadeServer: cidade,
         bairroServer: bairro,
         numeroServer: numero,
+        camarasServer: camaras,
+        transportesServer: transportes,
+        freezersServer: freezers,
         tokenServer: token
       }),
     })

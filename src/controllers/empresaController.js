@@ -8,6 +8,9 @@ function cadastrarEmpresa(req, res) {
     var cidade = req.body.cidadeServer;
     var bairro = req.body.bairroServer;
     var numero = req.body.numeroServer;
+    var camaras = req.body.camarasServer;
+    var transportes = req.body.transportesServer;
+    var freezers = req.body.freezersServer;
     var token = req.body.tokenServer;
 
     // Faça as validações dos valores
@@ -32,6 +35,21 @@ function cadastrarEmpresa(req, res) {
             .then(
                 function (resultado) {
                     res.json(resultado);
+
+                    var fkEmpresa = resultado.insertId;
+
+                    empresaModel.cadastrarServicos(fkEmpresa, camaras, transportes, freezers)
+                    .then(
+                        function () {
+                            res.status(201).json({
+                                message: 'Cadastro de serviços ok!',
+                                empresaId: fkEmpresa
+                            })
+                        }
+                    )
+                    .catch(function (erroServicos) {
+                        res.status(500).json(erroServicos.sqlMessage);
+                    })
                 }
             ).catch(
                 function (erro) {
