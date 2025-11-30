@@ -110,6 +110,9 @@
   </div>
   <button class="btn-voltar" onclick="voltarHome()">Voltar</button>
   <img src="../css/Imagens/suporte.png" class="btn-suporte" onclick="suporte()">
+</body>
+</html>
+
   <script>
     function abrirDashboard() {
       window.location.href = "dashboard.html";
@@ -125,19 +128,19 @@
       window.location.href = "escolha-dashboard.html";
     }
 
-    function selecionarCamaras(){
+    function selecionarTransporte(){
         var fkEmpresa = sessionStorage.ID_EMPRESA;
 
-        fetch(`/empresas/selecionarCamaras/${fkEmpresa}`)
+        fetch(`/empresas/selecionarTransporte/${fkEmpresa}`)
             .then(resposta => resposta.json())
             .then(function (data) {
                 console.log('to dentro do favorito', data)
 
                 console.log(`Dados recebidos do favorito: ${JSON.stringify(data)}`);
 
-                for (var i = 0; i < data[0].camaras; i++) {
+                for (var i = 0; i < data[0].transportes; i++) {
 
-                  locais.innerHTML += `<div class="local" onclick="erro()">Câmara ${i+1}</div>`
+                  locais.innerHTML += `<div class="local" onclick="erro()">Transporte ${i+1}</div>`
                 }
             })
             .catch(function (error) {
@@ -145,8 +148,5 @@
             });
     }
 
-    selecionarCamaras();
+    selecionarTransporte();
   </script>
-</body>
-
-</html>

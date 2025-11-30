@@ -28,4 +28,12 @@ router.get("/selecionarCamaras/:fkEmpresa", function (req, res) {
     empresaController.selecionarCamaras(req, res);
 });
 
+router.get("/selecionarFreezer/:fkEmpresa", function (req, res) {
+    empresaController.selecionarFreezer(req, res);
+});
+
+router.get("/selecionarTransporte/:fkEmpresa", function (req, res) {
+    empresaController.selecionarTransporte(req, res);
+});
+
 module.exports = router;

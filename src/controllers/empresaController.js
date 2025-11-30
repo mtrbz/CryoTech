@@ -230,6 +230,48 @@ function selecionarCamaras(req, res) {
             );
 }
 
+function selecionarTransporte(req, res) {
+
+    var idEmpresa = req.params.fkEmpresa;
+   
+        empresaModel.selecionarTransporte(idEmpresa)
+            .then(
+                function (resposta) {
+                    console.log(`\nResultados encontrados da temperatura média: ${resposta}`);
+                    console.log(`Resultados: ${JSON.stringify(resposta)}`); // transforma JSON em String
+                    
+                    res.json(resposta); 
+                }
+            ).catch(
+                function (erro) {
+                    console.log(erro);
+                    console.log("\nHouve um ERRO: ", erro.sqlMessage);
+                    res.status(500).json(erro.sqlMessage);
+                }
+            );
+}
+
+function selecionarFreezer(req, res) {
+
+    var idEmpresa = req.params.fkEmpresa;
+   
+        empresaModel.selecionarFreezer(idEmpresa)
+            .then(
+                function (resposta) {
+                    console.log(`\nResultados encontrados da temperatura média: ${resposta}`);
+                    console.log(`Resultados: ${JSON.stringify(resposta)}`); // transforma JSON em String
+                    
+                    res.json(resposta); 
+                }
+            ).catch(
+                function (erro) {
+                    console.log(erro);
+                    console.log("\nHouve um ERRO: ", erro.sqlMessage);
+                    res.status(500).json(erro.sqlMessage);
+                }
+            );
+}
+
 module.exports = {
     cadastrarEmpresa,
     cadastrarFuncionario,
@@ -237,5 +279,7 @@ module.exports = {
     enviarFaleConosco,
     obterTemperaturaMedia,
     atualizarTemperaturaMedia,
-    selecionarCamaras
+    selecionarCamaras,
+    selecionarFreezer,
+    selecionarTransporte
 }

@@ -59,6 +59,7 @@
 
     .btn-voltar {
       background: linear-gradient(90deg, #0094cc, #00b7ff);
+      width: 120px;
       height: 40px;
       color: #fff;
       align-self: center;
@@ -98,39 +99,54 @@
 </head>
 
 <body>
-  <h1>Bem-vindo à <span>Cryo</span>Tech!</h1>
-  <p>Escolha o local que você deseja monitorar:</p>
+  <h1>Sessão de Monitoramento <span>Cryo</span>Tech!</h1>
+  <p>Veja a baixo a situação dos locais sob Monitoramento:</p>
 
-  <div class="locais">
-    <div class="local" onclick="abrirCamaras()">Câmaras Frias</div>
-    <div class="local" onclick="abrirTransporte()"> Transporte</div>
-    <div class="local" onclick="abrirFreezer()">Freezers</div>
+  <div id="locais" class="locais">
+    <!-- <div class="local" onclick="abrirDashboard()">Câmara 1</div>
+    <div class="local" onclick="erro()">Câmara 2</div>
+    <div class="local" onclick="erro()">Câmara 3</div>
+    <div class="local" onclick="erro()">Câmara 4</div> -->
   </div>
-  <button class="btn-voltar" onclick="voltarHome()">Voltar para a Home</button>
+  <button class="btn-voltar" onclick="voltarHome()">Voltar</button>
   <img src="../css/Imagens/suporte.png" class="btn-suporte" onclick="suporte()">
+</body>
+</html>
 
   <script>
-    function abrirCamaras() {
-      window.location.href = "camaras.html";
-    }
-    function abrirTransporte() {
-      window.location.href = "transporte.html";
-    }
-    function abrirFreezer() {
-      window.location.href = "freezer.html";
+    function abrirDashboard() {
+      window.location.href = "dashboard.html";
     }
 
     function erro() {
       alert('Nenhum sensor ativo no local escolhido.')
     }
     function voltarHome() {
-      window.location.href = "../index.html";
+      window.location.href = "escolha-dashboard.html";
     }
     function suporte() {
-      window.location.href = "../index.html";
+      window.location.href = "escolha-dashboard.html";
     }
-    
-  </script>
-</body>
 
-</html>
+    function selecionarCamaras(){
+        var fkEmpresa = sessionStorage.ID_EMPRESA;
+
+        fetch(`/empresas/selecionarCamaras/${fkEmpresa}`)
+            .then(resposta => resposta.json())
+            .then(function (data) {
+                console.log('to dentro do favorito', data)
+
+                console.log(`Dados recebidos do favorito: ${JSON.stringify(data)}`);
+
+                for (var i = 0; i < data[0].camaras; i++) {
+
+                  locais.innerHTML += `<div class="local" onclick="erro()">Câmara ${i+1}</div>`
+                }
+            })
+            .catch(function (error) {
+                console.error(`Erro na obtenção dos pontos: ${error.message}`);
+            });
+    }
+
+    selecionarCamaras();
+  </script>

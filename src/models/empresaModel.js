@@ -91,6 +91,28 @@ function selecionarCamaras(idEmpresa) {
   return database.executar(instrucaoSql);
 }
 
+function selecionarTransporte(idEmpresa) {
+    console.log('Acessei o model de selecionar os transportes!');
+    
+    var instrucaoSql = `
+        SELECT transportes FROM servico
+        WHERE fkEmpresa = ${idEmpresa};
+    `;
+
+  return database.executar(instrucaoSql);
+}
+
+function selecionarFreezer(idEmpresa) {
+    console.log('Acessei o model de selecionar os freezers!');
+    
+    var instrucaoSql = `
+        SELECT freezers FROM servico
+        WHERE fkEmpresa = ${idEmpresa};
+    `;
+
+  return database.executar(instrucaoSql);
+}
+
 module.exports = {
     cadastrarEmpresa,
     cadastrarFuncionario,
@@ -99,5 +121,7 @@ module.exports = {
     obterTemperaturaMedia,
     atualizarTemperaturaMedia,
     cadastrarServicos,
-    selecionarCamaras
+    selecionarCamaras,
+    selecionarTransporte,
+    selecionarFreezer
 }
