@@ -7,7 +7,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>CryoTech | Página Inicial</title>
   <link rel="stylesheet" href="css/estilo.css" />
-  <link rel="icon" href="../Site/css/Imagens/logo1png">
+  <link rel="icon" href="css/Imagens/logo1.png" />
 </head>
 
 <body class="pagina-cadastro">
@@ -15,7 +15,7 @@
     <div class="cadastro">
       <div class="img-cadastro">
         <ul>
-          <li><img onclick="imagem()" src="../Site/css/Imagens/logo1.png" alt=""></li>
+          <li><img onclick="imagem()" src="css/Imagens/logo1.png" alt=""></li>
         </ul>
       </div>
 
@@ -63,10 +63,32 @@
       </div>
     </div>
   </div>
+    <div class="footer">
+    <div class="footer-container">
+      <div class="footer-logo">
+        <h2>CryoTech</h2>
+        <p>Garantindo a temperatura ideal do início ao fim da cadeia de frio.</p>
+      </div>
+
+      <div class="footer-links">
+        <a href="index.html">Início</a>
+        <a href="#solucoes">Soluções</a>
+        <a href="calcfinanceira.html">Calculadora</a>
+        <a href="#contato">Contato</a>
+      </div>
+
+      <div class="footer-copy">
+        <p>&copy; 2025 CryoTech. Todos os direitos reservados.</p>
+      </div>
+    </div>
+  </div>
 </body>
 
 <script>
 
+      function imagem() {
+      window.location.href = "index.html";
+    }
   // Array para armazenar empresas cadastradas para validação de código de ativação 
   function cadastrar() {
 

@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="pt-BR">
+<html lang="en">
 
 <head>
   <meta charset="UTF-8" />
@@ -207,6 +207,20 @@
       transform: scale(1.05);
       box-shadow: 0 0 12px rgba(0, 183, 255, 0.5);
     }
+
+    .btn-suporte {
+      position: fixed;
+      bottom: 10px;
+      right: 10px;
+      width: 200px;
+      cursor: pointer;
+      z-index: 9999;
+      transition: 0.3s;
+    }
+
+    .btn-suporte:hover {
+      transform: scale(1.1);
+    }
   </style>
 </head>
 
@@ -292,6 +306,7 @@
           data-base-url="https://jsd-widget.atlassian.com" 
           src="https://jsd-widget.atlassian.com/assets/embed.js">
   </script> -->
+  <img src="../css/Imagens/suporte.png" class="btn-suporte" onclick="suporte()">
 </body>
 
 </html>
@@ -410,7 +425,7 @@
   }
 
   function voltarDashboard() {
-    window.location.href = "inicio-dashboard.html";
+    window.location.href = "locais.html";
   }
 
 </script>

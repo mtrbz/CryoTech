@@ -17,7 +17,7 @@
 </head>
 
 <body>
-  <div class="header">
+  <div  id="inicio" class="header">
     <div class="container">
       <ul class="navbar">
         <li class="agora">
@@ -236,9 +236,9 @@
 
 
 
-  <div id="contato" class="contato-container">
+  <div class="contato-container">
     <div class="img-contato">
-      <img src="css\Imagens\home-img5.png" />
+      <img id="contato" src="css\Imagens\home-img5.png" />
     </div>
 
     <div class="formulario">
@@ -250,10 +250,16 @@
         <input id="emailFC" type="email" placeholder="Insira um email para contato" required />
         <span>Nome da empresa:</span>
         <input id="empresaFC" type="text" placeholder="Insira um email para contato" required />
-        <span>Qual sua necessidade:</span>
-        <input type="checkbox" required /> <label>Câmara fria</label>
-        <input type="checkbox" required /> <label>Transporte</label>
-        <input type="checkbox" required /> <label>Pontos de venda</label>
+        <span>Serviço(s) de interesse:</span>
+        <label>
+          <input id="chk1" type="checkbox" value="Câmara fria"> Câmara fria
+        </label>
+        <label>
+          <input id="chk2" type="checkbox" value="Transporte"> Transporte
+        </label>
+        <label>
+          <input id="chk3" type="checkbox" value="Freezers"> Freezers
+        </label> <br>
         <span>Qual sua necessidade:</span>
         <textarea id="necessidadeFC"
           placeholder="Ex: 'Preciso monitorar a temperatura de 15 caminhões' ou 'Tenho 3 câmaras frias de 50m²'"></textarea>
@@ -270,7 +276,7 @@
       </div>
 
       <div class="footer-links">
-        <a href="index.html">Início</a>
+        <a href="#inicio">Início</a>
         <a href="#solucoes">Soluções</a>
         <a href="calcfinanceira.html">Calculadora</a>
         <a href="#contato">Contato</a>
@@ -338,6 +344,21 @@
       var email = emailFC.value;
       var empresa = empresaFC.value;
       var necessidade = necessidadeFC.value;
+      var necessidadeCamara = "Não";
+      var necessidadeTransporte = "Não";
+      var necessidadeFreezer = "Não";
+
+      if (chk1.checked) {
+        necessidadeCamara = "Sim";
+      }
+
+      if (chk2.checked) {
+        necessidadeTransporte = "Sim";
+      }
+
+      if (chk3.checked) {
+        necessidadeFreezer = "Sim";
+      }
 
       fetch('/empresas/enviarFaleConosco', {
         method: 'POST',
@@ -346,7 +367,10 @@
           nomeServer: nome,
           emailServer: email,
           empresaServer: empresa,
-          necessidadeServer: necessidade
+          necessidadeServer: necessidade,
+          camaraFriaServer: necessidadeCamara,
+          transporteServer: necessidadeTransporte,
+          freezerServer: necessidadeFreezer
         }),
 
       })
@@ -368,68 +392,68 @@
     atualizar();
 
     function entrar() {
-        // aguardar();
+      // aguardar();
 
-        var emailVar = email_input.value;
-        var senhaVar = senha_input.value;
+      var emailVar = email_input.value;
+      var senhaVar = senha_input.value;
 
-        if (emailVar == "" || senhaVar == "") {
-            cardErro.style.display = "block"
-            mensagem_erro.innerHTML = "(Mensagem de erro para todos os campos em branco)";
-            // finalizarAguardar();
-            return false;
-        }
-        else {
-            // setInterval(sumirMensagem, 5000)
-            console.log('oi')
-        }
-
-        console.log("FORM LOGIN: ", emailVar);
-        console.log("FORM SENHA: ", senhaVar);
-
-        fetch("/usuarios/autenticar", {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json"
-            },
-            body: JSON.stringify({
-                emailServer: emailVar,
-                senhaServer: senhaVar
-            })
-        }).then(function (resposta) {
-            console.log("ESTOU NO THEN DO entrar()!")
-
-            if (resposta.ok) {
-                console.log(resposta);
-
-                resposta.json().then(json => {
-                    console.log(json);
-                    console.log(JSON.stringify(json));
-                    sessionStorage.EMAIL_USUARIO = json.email;
-                    sessionStorage.NOME_USUARIO = json.nome;
-                    sessionStorage.ID_USUARIO = json.idFuncionario;
-
-                    setTimeout(function () {
-                        window.location = "./dashboard/inicio-dashboard.html";
-                    }, 1000); // apenas para exibir o loading
-
-                });
-
-            } else {
-
-                console.log("Houve um erro ao tentar realizar o login!");
-
-                resposta.text().then(texto => {
-                    console.error(texto);
-                    // finalizarAguardar(texto);
-                });
-            }
-
-        }).catch(function (erro) {
-            console.log(erro);
-        })
-
+      if (emailVar == "" || senhaVar == "") {
+        cardErro.style.display = "block"
+        mensagem_erro.innerHTML = "(Mensagem de erro para todos os campos em branco)";
+        // finalizarAguardar();
         return false;
+      }
+      else {
+        // setInterval(sumirMensagem, 5000)
+        console.log('oi')
+      }
+
+      console.log("FORM LOGIN: ", emailVar);
+      console.log("FORM SENHA: ", senhaVar);
+
+      fetch("/usuarios/autenticar", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify({
+          emailServer: emailVar,
+          senhaServer: senhaVar
+        })
+      }).then(function (resposta) {
+        console.log("ESTOU NO THEN DO entrar()!")
+
+        if (resposta.ok) {
+          console.log(resposta);
+
+          resposta.json().then(json => {
+            console.log(json);
+            console.log(JSON.stringify(json));
+            sessionStorage.EMAIL_USUARIO = json.email;
+            sessionStorage.NOME_USUARIO = json.nome;
+            sessionStorage.ID_USUARIO = json.idFuncionario;
+
+            setTimeout(function () {
+              window.location = "./dashboard/escolha-dashboard.html";
+            }, 1000); // apenas para exibir o loading
+
+          });
+
+        } else {
+
+          console.log("Houve um erro ao tentar realizar o login!");
+
+          resposta.text().then(texto => {
+            console.error(texto);
+            // finalizarAguardar(texto);
+          });
+        }
+
+      }).catch(function (erro) {
+        console.log(erro);
+      })
+
+      return false;
     }
   </script>
 

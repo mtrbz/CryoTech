@@ -131,6 +131,9 @@ function enviarFaleConosco(req, res) {
     var email = req.body.emailServer;
     var empresa = req.body.empresaServer;
     var necessidade = req.body.necessidadeServer;
+    var camara = req.body.camaraFriaServer;
+    var transporte = req.body.transporteServer;
+    var freezer = req.body.freezerServer;
 
     if (nome == undefined) {
         res.status(400).send("Nome está undefined!");
@@ -142,7 +145,7 @@ function enviarFaleConosco(req, res) {
         res.status(400).send("Necessidade está undefined!");
     } else {
 
-        empresaModel.enviarFaleConosco(nome, email, empresa, necessidade)
+        empresaModel.enviarFaleConosco(nome, email, empresa, necessidade, camara, transporte, freezer)
         .then((resposta) => {
 
             if (resposta.length == 0) {

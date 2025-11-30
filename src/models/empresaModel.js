@@ -43,12 +43,12 @@ function cadastrarFuncionario(fkEmpresa, nome, cpf, dtNasc, email, telefone, sen
     return database.executar(instrucaoSql);
 }
 
-function enviarFaleConosco(nome, email, empresa, necessidade) {
-    console.log('ACESSEI O FALE CONOSCO MODEL \n \n\t\t >> function enviarFaleConosco():', nome, email, empresa, necessidade);
+function enviarFaleConosco(nome, email, empresa, necessidade, camara, transporte, freezer) {
+    console.log('ACESSEI O FALE CONOSCO MODEL \n \n\t\t >> function enviarFaleConosco():', nome, email, empresa, necessidade, camara, transporte, freezer);
 
     var instrucaoSql = `
-        INSERT INTO faleConosco (nome, email, empresa, necessidade) VALUES
-        ('${nome}', '${email}', '${empresa}', '${necessidade}');
+        INSERT INTO faleConosco (nome, email, empresa, necessidade, camara, transporte, freezer) VALUES
+        ('${nome}', '${email}', '${empresa}', '${necessidade}', '${camara}', '${transporte}', '${freezer}');
     `;
     console.log('Executando a instrução SQL: \n' + instrucaoSql);
     return database.executar(instrucaoSql);

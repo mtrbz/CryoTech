@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CryoTech - Início</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Inter', 'Poppins', sans-serif;
+      background: linear-gradient(120deg, #0b1e45, #171a2d);
+      color: white;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+    }
+
+    h1 {
+      font-size: 2.2rem;
+      margin-bottom: 10px;
+    }
+
+    p {
+      font-size: 1.1rem;
+      margin-bottom: 40px;
+      opacity: 0.9;
+    }
+
+    .locais {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 25px;
+    }
+
+    .local {
+      background-color: #ffffff;
+      color: #0b1e45;
+      width: 200px;
+      height: 120px;
+      border-radius: 14px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: bold;
+      font-size: 1.1rem;
+      cursor: pointer;
+      transition: 0.3s;
+      margin-bottom: 50px;
+    }
+
+    .local:hover {
+      transform: translateY(-5px);
+      background-color: #e2e8f0;
+    }
+
+    .btn-voltar {
+      background: linear-gradient(90deg, #0094cc, #00b7ff);
+      height: 40px;
+      color: #fff;
+      align-self: center;
+      font-weight: bold;
+      border: none;
+      border-radius: 10px;
+      padding: 6px 10px;
+      font-size: 12px;
+      margin-top: 10px;
+      transition: 0.3s;
+    }
+
+    .btn-voltar:hover {
+      background: linear-gradient(90deg, #00b7ff, #0094cc);
+      transform: scale(1.05);
+      box-shadow: 0 0 12px rgba(0, 183, 255, 0.2);
+    }
+
+    span {
+      color: #8fd1db;
+    }
+
+    .btn-suporte {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      width: 200px;
+      cursor: pointer;
+      z-index: 9999;
+      transition: 0.3s;
+    }
+
+    .btn-suporte:hover {
+      transform: scale(1.1);
+    }
+  </style>
+</head>
+
+<body>
+  <h1>Bem-vindo à <span>Cryo</span>Tech!</h1>
+  <p>Escolha o local que você deseja monitorar:</p>
+
+  <div class="locais">
+    <div class="local" onclick="abrirDashboard()">Câmaras Frias</div>
+    <div class="local" onclick="erro()"> Transporte</div>
+    <div class="local" onclick="erro()">Freezers</div>
+  </div>
+  <button class="btn-voltar" onclick="voltarHome()">Voltar para a Home</button>
+  <img src="../css/Imagens/suporte.png" class="btn-suporte" onclick="suporte()">
+
+  <script>
+    function abrirDashboard() {
+      window.location.href = "locais.html";
+    }
+
+    function erro() {
+      alert('Nenhum sensor ativo no local escolhido.')
+    }
+    function voltarHome() {
+      window.location.href = "../index.html";
+    }
+    function suporte() {
+      window.location.href = "../index.html";
+    }
+
+  </script>
+</body>
+
+</html>

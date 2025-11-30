@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="pt-br">
+<html lang="en">
 
 <head>
   <meta charset="UTF-8" />
@@ -11,8 +11,8 @@
   <script src="./js/sessao.js"></script>
 
   <link rel="stylesheet" href="css/estilo.css" />
-  <link rel="icon" href="./assets/icon/favicon2.ico" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" />  
+  <link rel="icon" href="css/Imagens/logo1.png" />
+
 </head>
 
 <body class="pagina-cadastro">
@@ -38,18 +38,18 @@
         <label>CNPJ</label>
         <input id="input_cnpj" type="text" placeholder="XX.XXX.XXX/0001-XX">
         <label>CEP</label>
-        <input id="input_cep" type="text" placeholder="XXXXXXXXXX"> 
+        <input id="input_cep" type="text" placeholder="XXXXXXXXXX">
         <label>Cidade</label>
-        <input id="input_cidade" type="text" placeholder="São Paulo"> 
+        <input id="input_cidade" type="text" placeholder="São Paulo">
         <label>Bairro</label>
-        <input id="input_bairro" type="text" placeholder="Morumbi"> 
+        <input id="input_bairro" type="text" placeholder="Morumbi">
         <label>Numero Endereço</label>
-        <input id="input_numero" type="text" placeholder="XXX"> 
+        <input id="input_numero" type="text" placeholder="XXX">
         <label>Locais de Serviço</label>
         <div class="empresa-servicos">
-          <input id="input_camaras" type="number" placeholder="Nº de Câmaras"> 
-          <input id="input_transportes" type="number" placeholder="Nº de Transportes"> 
-          <input id="input_freezers" type="number" placeholder="Nº de Freezers"> 
+          <input id="input_camaras" type="number" placeholder="Nº de Câmaras">
+          <input id="input_transportes" type="number" placeholder="Nº de Transportes">
+          <input id="input_freezers" type="number" placeholder="Nº de Freezers">
         </div>
         <label>Token de cadastro</label>
         <input id="input_token" type="text" placeholder="HF65G8DR2J">
@@ -71,12 +71,35 @@
       <!-- </div> -->
     </div>
   </div>
+  <div class="footer">
+    <div class="footer-container">
+      <div class="footer-logo">
+        <h2>CryoTech</h2>
+        <p>Garantindo a temperatura ideal do início ao fim da cadeia de frio.</p>
+      </div>
+
+      <div class="footer-links">
+        <a href="index.html">Início</a>
+        <a href="#solucoes">Soluções</a>
+        <a href="calcfinanceira.html">Calculadora</a>
+        <a href="#contato">Contato</a>
+      </div>
+
+      <div class="footer-copy">
+        <p>&copy; 2025 CryoTech. Todos os direitos reservados.</p>
+      </div>
+    </div>
+  </div>
 
 </body>
 
 </html>
 
 <script>
+
+  function imagem() {
+    window.location.href = "index.html";
+  }
 
   // Array para armazenar empresas cadastradas para validação de código de ativação 
   let listaEmpresasCadastradas = [];
