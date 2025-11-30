@@ -80,6 +80,17 @@ function atualizarTemperaturaMedia(limite) {
   return database.executar(instrucaoSql);
 }
 
+function selecionarCamaras(idEmpresa) {
+    console.log('Acessei o model de selecionar as camaras!');
+    
+    var instrucaoSql = `
+        SELECT camaras FROM servico
+        WHERE fkEmpresa = ${idEmpresa};
+    `;
+
+  return database.executar(instrucaoSql);
+}
+
 module.exports = {
     cadastrarEmpresa,
     cadastrarFuncionario,
@@ -87,5 +98,6 @@ module.exports = {
     enviarFaleConosco,
     obterTemperaturaMedia,
     atualizarTemperaturaMedia,
-    cadastrarServicos
+    cadastrarServicos,
+    selecionarCamaras
 }

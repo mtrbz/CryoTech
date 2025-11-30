@@ -209,11 +209,33 @@ function atualizarTemperaturaMedia(req, res) {
         });
 }
 
+function selecionarCamaras(req, res) {
+
+    var idEmpresa = req.params.fkEmpresa;
+   
+        empresaModel.selecionarCamaras(idEmpresa)
+            .then(
+                function (resposta) {
+                    console.log(`\nResultados encontrados da temperatura média: ${resposta}`);
+                    console.log(`Resultados: ${JSON.stringify(resposta)}`); // transforma JSON em String
+                    
+                    res.json(resposta); 
+                }
+            ).catch(
+                function (erro) {
+                    console.log(erro);
+                    console.log("\nHouve um ERRO: ", erro.sqlMessage);
+                    res.status(500).json(erro.sqlMessage);
+                }
+            );
+}
+
 module.exports = {
     cadastrarEmpresa,
     cadastrarFuncionario,
     buscarPorToken,
     enviarFaleConosco,
     obterTemperaturaMedia,
-    atualizarTemperaturaMedia
+    atualizarTemperaturaMedia,
+    selecionarCamaras
 }

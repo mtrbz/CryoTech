@@ -24,4 +24,8 @@ router.get("/atualizarTemperaturaMedia", function (req, res) {
     empresaController.atualizarTemperaturaMedia(req, res);
 });
 
+router.get("/selecionarCamaras/:fkEmpresa", function (req, res) {
+    empresaController.selecionarCamaras(req, res);
+});
+
 module.exports = router;

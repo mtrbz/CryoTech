@@ -102,11 +102,11 @@
   <h1>Sessão de Monitoramento <span>Cryo</span>Tech!</h1>
   <p>Veja a baixo a situação dos locais sob Monitoramento:</p>
 
-  <div class="locais">
-    <div class="local" onclick="abrirDashboard()">Câmara 1</div>
+  <div id="locais" class="locais">
+    <!-- <div class="local" onclick="abrirDashboard()">Câmara 1</div>
     <div class="local" onclick="erro()">Câmara 2</div>
     <div class="local" onclick="erro()">Câmara 3</div>
-    <div class="local" onclick="erro()">Câmara 4</div>
+    <div class="local" onclick="erro()">Câmara 4</div> -->
   </div>
   <button class="btn-voltar" onclick="voltarHome()">Voltar</button>
   <img src="../css/Imagens/suporte.png" class="btn-suporte" onclick="suporte()">
@@ -124,6 +124,28 @@
     function suporte() {
       window.location.href = "escolha-dashboard.html";
     }
+
+    function selecionarCamaras(){
+        var fkEmpresa = sessionStorage.ID_EMPRESA;
+
+        fetch(`/empresas/selecionarCamaras/${fkEmpresa}`)
+            .then(resposta => resposta.json())
+            .then(function (data) {
+                console.log('to dentro do favorito', data)
+
+                console.log(`Dados recebidos do favorito: ${JSON.stringify(data)}`);
+
+                for (var i = 0; i < data[0].camaras; i++) {
+
+                  locais.innerHTML += `<div class="local" onclick="erro()">Câmara ${i+1}</div>`
+                }
+            })
+            .catch(function (error) {
+                console.error(`Erro na obtenção dos pontos: ${error.message}`);
+            });
+    }
+
+    selecionarCamaras();
   </script>
 </body>
 
