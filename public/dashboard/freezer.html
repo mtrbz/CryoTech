@@ -140,7 +140,7 @@
 
                 for (var i = 0; i < data[0].freezers; i++) {
 
-                  locais.innerHTML += `<div class="local" onclick="erro()">Freezer ${i+1}</div>`
+                  locais.innerHTML += `<div class="local" onclick="dashboard()">Freezer ${i+1}</div>`
                 }
             })
             .catch(function (error) {
@@ -149,4 +149,8 @@
     }
 
     selecionarFreezer();
+
+    function dashboard() {
+      window.location.href = "dashboard.html";
+    }
   </script>

@@ -140,7 +140,7 @@
 
                 for (var i = 0; i < data[0].transportes; i++) {
 
-                  locais.innerHTML += `<div class="local" onclick="erro()">Transporte ${i+1}</div>`
+                  locais.innerHTML += `<div class="local" onclick="dashboard()">Transporte ${i+1}</div>`
                 }
             })
             .catch(function (error) {
@@ -149,4 +149,9 @@
     }
 
     selecionarTransporte();
+
+    function dashboard() {
+      window.location.href = "dashboard.html";
+    }
+    
   </script>
