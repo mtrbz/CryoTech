@@ -22,9 +22,9 @@ const serial = async (
         {
             host: '127.0.0.1',
             user: 'aluno',
-            password: 'Sptech#2024',
+            password: 'sptech',
             database: 'cryotech',
-            port: 3307
+            port: 3306
         }
     ).promise();
 
