@@ -1,0 +1,409 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>CryoTech - Dashboard</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="stylesheet" href="css/estilo.css">
+    <style>
+        body {
+            font-family: "Inter", "Poppins", Arial, sans-serif;
+            margin: 0;
+            overflow-x: hidden;
+            background-color: #b1c7d6;
+        }
+
+        .header {
+            background: #0b0e22;
+            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.5);
+            height: 80px;
+        }
+
+        .header img {
+            position: absolute;
+            top: 7px;
+            left: 10px;
+            width: 160px;
+            padding: 0px 0px;
+            height: 60px;
+        }
+
+        .header h1 {
+            color: #fff;
+            font-size: 1.4rem;
+            letter-spacing: 0.5px;
+            font-weight: 500;
+        }
+
+        .dashboard {
+            display: flex;
+            flex: 1;
+            height: calc(100vh - 70px);
+            overflow: hidden;
+        }
+
+        .lateral {
+            display: flex;
+            flex-direction: column;
+            background: #171a2d;
+            color: #ffffff;
+            width: 20%;
+            padding: 30px 25px;
+            box-shadow: 2px 0 8px rgba(0, 0, 0, 0.2);
+        }
+
+        .lateral h2 {
+            font-size: 2.5rem;
+            font-weight: bold;
+            text-align: center;
+            margin-bottom: 15px;
+            color: #e0e7ff;
+        }
+
+        .lateral .legenda {
+            font-size: 14px;
+            line-height: 1.6;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 8px;
+            padding: 10px;
+            margin-bottom: 20px;
+        }
+
+        .card {
+            background: #f8fafc;
+            color: #1a2b4c;
+            border-radius: 10px;
+            text-align: center;
+            padding: 10px;
+            height: 60px;
+            margin-bottom: 18px;
+            box-shadow: 0 3px 8px rgba(0, 0, 0, 0.15);
+        }
+
+        .card .img_trello {
+            display: flex;
+            justify-self: center;
+            width: 75%;
+            margin-top: -65px;
+        }
+
+        .card .img_jira {
+            display: flex;
+            justify-self: center;
+            width: 70%;
+            margin-left: -20px;
+            margin-top: -55px;
+            cursor: pointer;
+        }
+
+        .img_documentação {
+            display: flex;
+            justify-self: center;
+            width: 70%;
+            margin-right: 90%;
+            margin-top: 90%;
+
+        }
+
+        .card h3,
+        .card-alerta h3 {
+            font-size: 2.1em;
+            margin: 0;
+        }
+
+        .card p,
+        .card-alerta p {
+            font-size: 14px;
+            margin-top: 4px;
+            opacity: 0.9;
+        }
+
+        .container {
+            flex: 1;
+            padding: 30px;
+            display: flex;
+            flex-direction: column;
+            overflow-y: auto;
+        }
+
+        .titulo-centro {
+            text-align: center;
+            font-size: 1.3rem;
+            color: #0b1e45;
+            margin-bottom: 10px;
+        }
+
+        select {
+            padding: 10px;
+            border-radius: 8px;
+            border: 1px solid #ccc;
+            font-size: 15px;
+            width: 220px;
+            background-color: #fff;
+            color: #1a1a1a;
+            margin-bottom: 25px;
+        }
+
+        .info {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+
+        .box {
+            background-color: #ffffff;
+            border-radius: 12px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+            padding: 20px;
+            width: 230px;
+            text-align: center;
+            transition: transform 0.2s ease;
+        }
+
+        .box:hover {
+            transform: translateY(-4px);
+        }
+
+        .box p {
+            font-size: 15px;
+            margin-bottom: 6px;
+        }
+
+        .metrica {
+            font-size: 26px;
+            font-weight: bold;
+            color: #1e4d92;
+        }
+
+        .graficos {
+            display: flex;
+            justify-content: space-around;
+            flex-wrap: wrap;
+            margin-top: 30px;
+            gap: 25px;
+        }
+
+        .grafico {
+            background-color: #ffffff;
+            border-radius: 12px;
+            box-shadow: 0 4px 14px rgba(0, 0, 0, 0.05);
+            padding: 15px;
+            width: 42%;
+            height: 320px;
+        }
+
+        .grafico-grande {
+            width: 90%;
+            height: 400px;
+            background-color: #ffffff;
+            border-radius: 12px;
+            box-shadow: 0 4px 14px rgba(0, 0, 0, 0.05);
+            padding: 15px;
+        }
+
+        .grafico-inferior {
+            display: flex;
+            justify-content: center;
+            margin-top: 35px;
+        }
+
+        button {
+            background: linear-gradient(90deg, #0094cc, #00b7ff);
+            color: #fff;
+            font-weight: 600;
+            border: none;
+            border-radius: 10px;
+            padding: 8px 25px;
+            font-size: 18px;
+            margin-top: 10px;
+            transition: 0.3s;
+        }
+
+        button:hover {
+            background: linear-gradient(90deg, #00b7ff, #0094cc);
+            transform: scale(1.05);
+            box-shadow: 0 0 12px rgba(0, 183, 255, 0.5);
+        }
+
+        .btn-suporte {
+            position: fixed;
+            bottom: 10px;
+            right: 10px;
+            width: 100px;
+            cursor: pointer;
+            z-index: 9999;
+            transition: 0.3s;
+        }
+
+        .btn-suporte:hover {
+            transform: scale(1.1);
+        }
+
+        .btn-voltar {
+            width: 370px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="header">
+        <img onclick="voltarHome()" src="../css/Imagens/logo1.png" alt="Logo" />
+    </div>
+
+    <div class="dashboard">
+        <div class="lateral">
+            <h2>Suporte <br></h2>
+            <!-- <div class="legenda">
+        <p>
+          <span style="color: rgb(0, 119, 255)">Ideal:</span> -18°C a -21°C
+        </p>
+        <p><span style="color: green">Boa:</span> -22°C a -39°C</p>
+        <p><span style="color: red">Crítica:</span> acima de -18°C</p>
+      </div> -->
+
+            <div class="card"">
+        <img class=" img_jira" src="../css/Imagens/jira.png">
+                <div id="botao_jira" onclick="botao_jira()"> <a id="suporte_imagem"
+                        href="https://gabrielsenna.atlassian.net/servicedesk/customer/portal/1">
+                </div>
+            </div>
+            <div class="card">
+                <img class="img_trello" src="../css/Imagens/trello.png" alt="">
+                <div id="botao_trello" onclick="botao_trello()"> <a id="trello_imagem"
+                        href="https://trello.com/b/IcC6lDal/cryotech"></a>
+                </div>
+                <button class="btn-voltar" onclick="voltarDashboard()">Voltar</button>
+                <div id="botao_documentação" onclick="documentacao()">
+                    <img class="img_documentação" src="../css/Imagens/documentação.png">
+                </div>
+            </div>
+
+            <!-- <div class="jira-header">
+        <div class="jira-container">
+          <script data-jsd-embedded data-key="f62d9333-2935-478b-ab14-350a7dc326bf" data-base-url="https://jsd-widget.atlassian.com" src="https://jsd-widget.atlassian.com/assets/embed.js"></script>
+
+        </div>
+      </div> -->
+
+
+
+        </div>
+    </div>
+
+    <a id="suporte_imagem" href="https://gabrielsenna.atlassian.net/servicedesk/customer/portal/1" target="_blank">
+        <img class="btn-suporte" onclick="suporte()" id="suporte_imagem"
+            src="../css/Imagens/bob_logo.png"
+            alt="Descrição da Imagem">
+    </a>
+
+</body>
+
+</html>
+<script>
+
+    function botao_trello() {
+        document.addEventListener('DOMContentLoaded', (event) => {
+            const linkExterno = document.getElementById('trello_imagem');
+
+            linkExterno.href = 'https://trello.com/b/IcC6lDal/cryotech';
+
+
+        });
+
+    }
+
+    function botao_jira() {
+        document.addEventListener('DOMContentLoaded', (event) => {
+            const linkExterno = document.getElementById('suporte_imagem');
+
+            linkExterno.href = 'https://gabrielsenna.atlassian.net/servicedesk/customer/portal/1';
+
+
+        });
+    }
+
+    function documentacao() {
+
+    }
+
+    function suporte() {
+        document.addEventListener('DOMContentLoaded', (event) => {
+            const linkExterno = document.getElementById('suporte_imagem');
+
+            linkExterno.href = 'https://gabrielsenna.atlassian.net/servicedesk/customer/portal/1';
+
+
+        });
+    }
+
+    let dadosTemperatura = null;
+    let chartTemperatura = null;
+    let proximaAtualizacao = null;
+
+    obterTemperaturaMedia();
+
+    function obterTemperaturaMedia() {
+
+        var fkEmpresa = sessionStorage.ID_EMPRESA;
+
+        if (proximaAtualizacao != null) {
+            clearTimeout(proximaAtualizacao);
+        }
+
+        fetch(`/empresas/obterTemperaturaMedia/${fkEmpresa}`)
+            .then(res => res.json())
+            .then(resposta => {
+                console.log("Histórico inicial:", resposta);
+                plotarTemperaturaMedia(resposta);
+
+                proximaAtualizacao = setTimeout(atualizarTemperaturaMedia, 2000);
+            })
+            .catch(erro => console.error("ERRO histórico:", erro));
+    }
+
+    function plotarTemperaturaMedia(resposta) {
+
+        let labels = [];
+        let temperaturas = [];
+
+        for (let i = 0; i < resposta.length; i++) {
+            labels.push(i + 1);
+            temperaturas.push(resposta[i].medTemp);
+        }
+
+        dadosTemperatura = {
+            labels: labels,
+            datasets: [{
+                label: "Média de Temperatura da Câmara",
+                data: temperaturas,
+                borderColor: "#0077ff",
+                backgroundColor: "transparent",
+                tension: 0.2
+            }]
+        };
+
+        const ctx = document.getElementById("g1");
+
+        chartTemperatura = new Chart(ctx, {
+            type: "line",
+            data: dadosTemperatura,
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                scales: {
+                    y: {
+                        reverse: true,
+                        beginAtZero: false
+                    }
+                }
+            }
+        });
+    }
+
+
+
+
+</script>
