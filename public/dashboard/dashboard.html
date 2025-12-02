@@ -340,11 +340,13 @@
 
   function obterTemperaturaMedia() {
 
+    var fkEmpresa = sessionStorage.ID_EMPRESA;
+
     if (proximaAtualizacao != null) {
       clearTimeout(proximaAtualizacao);
     }
 
-    fetch(`/empresas/obterTemperaturaMedia`)
+    fetch(`/empresas/obterTemperaturaMedia/${fkEmpresa}`)
       .then(res => res.json())
       .then(resposta => {
         console.log("Histórico inicial:", resposta);
@@ -402,17 +404,15 @@
 
         const valor = novo[0].medTemp;
         const ultimo = dadosTemperatura.datasets[0].data[dadosTemperatura.datasets[0].data.length - 1];
-
-        if (valor !== ultimo) {
+        var hora = new Date().toLocaleTimeString();
 
           dadosTemperatura.labels.shift();
-          dadosTemperatura.labels.push(dadosTemperatura.labels.length + 1);
+          dadosTemperatura.labels.push(hora);
 
           dadosTemperatura.datasets[0].data.shift();
           dadosTemperatura.datasets[0].data.push(valor);
 
           chartTemperatura.update();
-        }
 
         proximaAtualizacao = setTimeout(atualizarTemperaturaMedia, 2000);
 

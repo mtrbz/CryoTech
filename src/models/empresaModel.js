@@ -54,27 +54,26 @@ function enviarFaleConosco(nome, email, empresa, necessidade, camara, transporte
     return database.executar(instrucaoSql);
 }
 
-function obterTemperaturaMedia() {
+function obterTemperaturaMedia(idEmpresa) {
     console.log('Acessei o model da temperatura!');
     
     var instrucaoSql = `
-        SELECT medicao AS medTemp
-        FROM registro
-        ORDER BY idRegistro DESC
+        SELECT temperatura FROM 
+        vw_tempMedia WHERE idEmpresa = ${idEmpresa}
         LIMIT 10;
     `;
 
   return database.executar(instrucaoSql);
 }
 
-function atualizarTemperaturaMedia(limite) {
+function atualizarTemperaturaMedia() {
     console.log('Acessei o model de atualizar temperatura!');
     
     var instrucaoSql = `
         SELECT medicao AS medTemp
         FROM registro
         ORDER BY idRegistro DESC
-        LIMIT ${limite};
+        LIMIT 1;
     `;
 
   return database.executar(instrucaoSql);

@@ -168,8 +168,10 @@ function enviarFaleConosco(req, res) {
 }
 
 function obterTemperaturaMedia(req, res) {
+
+    var idEmpresa = req.params.fkEmpresa;
    
-        empresaModel.obterTemperaturaMedia()
+        empresaModel.obterTemperaturaMedia(idEmpresa)
             .then(
                 function (resposta) {
                     console.log(`\nResultados encontrados da temperatura média: ${resposta}`);
@@ -188,12 +190,10 @@ function obterTemperaturaMedia(req, res) {
 }
 
 function atualizarTemperaturaMedia(req, res) {
-    
-        const limite = 10;
 
-        console.log(`Buscando as últimas ${limite} medições...`);
+        console.log(`Buscando as últimas medições...`);
 
-        empresaModel.atualizarTemperaturaMedia(limite)
+        empresaModel.atualizarTemperaturaMedia()
             .then(function (resposta) {
 
                 if (resposta.length > 0) {

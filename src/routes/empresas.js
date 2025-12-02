@@ -16,7 +16,7 @@ router.post("/enviarFaleConosco", function (req, res) {
     empresaController.enviarFaleConosco(req, res);
 });
 
-router.get("/obterTemperaturaMedia", function (req, res) {
+router.get("/obterTemperaturaMedia/:fkEmpresa", function (req, res) {
     empresaController.obterTemperaturaMedia(req, res);
 });
 
