@@ -36,4 +36,28 @@ router.get("/selecionarTransporte/:fkEmpresa", function (req, res) {
     empresaController.selecionarTransporte(req, res);
 });
 
+router.get("/kpiTempMedia/:fkEmpresa", function (req, res) {
+    empresaController.kpiTempMedia(req, res);
+});
+
+router.get("/kpiTempMaxima/:fkEmpresa", function (req, res) {
+    empresaController.kpiTempMaxima(req, res);
+});
+
+router.get("/kpiTempMinima/:fkEmpresa", function (req, res) {
+    empresaController.kpiTempMinima(req, res);
+});
+
+router.get("/kpiTotalSensores/:fkEmpresa", function (req, res) {
+    empresaController.kpiTotalSensores(req, res);
+});
+
+router.get("/kpiSensoresAtivos/:fkEmpresa", function (req, res) {
+    empresaController.kpiSensoresAtivos(req, res);
+});
+
+router.get("/kpiSensoresDefeito/:fkEmpresa", function (req, res) {
+    empresaController.kpiSensoresDefeito(req, res);
+});
+
 module.exports = router;

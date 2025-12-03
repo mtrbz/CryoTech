@@ -249,15 +249,15 @@
         <h3>Atenção</h3>
       </div>
       <div class="card">
-        <h3>5</h3>
+        <h3 id="totalSensores"></h3>
         <p>Sensores Totais</p>
       </div>
       <div class="card">
-        <h3>5</h3>
+        <h3 id="sensoresAtivos"></h3>
         <p>Sensores Ativos</p>
       </div>
       <div class="card">
-        <h3><span style="color: green">0</span></h3>
+        <h3><span id="sensoresDefeito" style="color: green"></span></h3>
         <p>Sensores com Defeito</p>
       </div>
       <button class="btn-voltar" onclick="voltarDashboard()">Voltar</button>
@@ -279,15 +279,15 @@
       <div class="info">
         <div class="box">
           <p>Média de Temperatura</p>
-          <p class="metrica"><span style="color: #0077ff">-16°C</span></p>
+          <p class="metrica"><span id="tempMedia" style="color: #0077ff"></span></p>
         </div>
         <div class="box">
           <p>Temperatura Mais Alta</p>
-          <p class="metrica"><span style="color: red">-14°C</span></p>
+          <p class="metrica"><span id="tempMaxima" style="color: red"></span></p>
         </div>
         <div class="box">
           <p>Temperatura Mais Baixa</p>
-          <p class="metrica"><span style="color: green">-19°C</span></p>
+          <p class="metrica"><span id="tempMinima" style="color: green"></span></p>
         </div>
       </div>
 
@@ -362,7 +362,7 @@
     let labels = [];
     let temperaturas = [];
 
-    for (let i = 0; i < resposta.length; i++) {
+    for (let i = 0; i < 10; i++) {
       labels.push(i + 1);
       temperaturas.push(resposta[i].medTemp);
     }
@@ -447,5 +447,101 @@
   function voltarDashboard() {
     window.location.href = "locais.html";
   }
+
+  function kpiTempMedia() {
+    var fkEmpresa = sessionStorage.ID_EMPRESA;
+
+    fetch(`/empresas/kpiTempMedia/${fkEmpresa}`)
+      .then(res => res.json())
+      .then(resposta => {
+        console.log("Histórico inicial:", resposta);
+
+        tempMedia.innerHTML = `${resposta[0].tempMedia}°C`;
+
+        setTimeout(kpiTempMedia, 10000);
+      })
+      .catch(erro => console.error("ERRO histórico:", erro));
+  }
+  kpiTempMedia();
+
+  function kpiTempMaxima() {
+    var fkEmpresa = sessionStorage.ID_EMPRESA;
+
+    fetch(`/empresas/kpiTempMaxima/${fkEmpresa}`)
+      .then(res => res.json())
+      .then(resposta => {
+        console.log("Histórico inicial:", resposta);
+
+        tempMaxima.innerHTML = `${resposta[0].tempMaxima}°C`;
+
+        setTimeout(kpiTempMaxima, 10000);
+      })
+      .catch(erro => console.error("ERRO histórico:", erro));
+  }
+  kpiTempMaxima();
+
+  function kpiTempMinima() {
+    var fkEmpresa = sessionStorage.ID_EMPRESA;
+
+    fetch(`/empresas/kpiTempMinima/${fkEmpresa}`)
+      .then(res => res.json())
+      .then(resposta => {
+        console.log("Histórico inicial:", resposta);
+
+        tempMinima.innerHTML = `${resposta[0].tempMinima}°C`;
+
+        setTimeout(kpiTempMinima, 10000);
+      })
+      .catch(erro => console.error("ERRO histórico:", erro));
+  }
+  kpiTempMinima();
+
+  function kpiTotalSensores() {
+    var fkEmpresa = sessionStorage.ID_EMPRESA;
+
+    fetch(`/empresas/kpiTotalSensores/${fkEmpresa}`)
+      .then(res => res.json())
+      .then(resposta => {
+        console.log("Histórico inicial:", resposta);
+
+        totalSensores.innerHTML = `${resposta[0].total}`;
+
+        setTimeout(kpiTotalSensores, 10000);
+      })
+      .catch(erro => console.error("ERRO histórico:", erro));
+  }
+  kpiTotalSensores();
+
+  function kpiSensoresAtivos() {
+    var fkEmpresa = sessionStorage.ID_EMPRESA;
+
+    fetch(`/empresas/kpiSensoresAtivos/${fkEmpresa}`)
+      .then(res => res.json())
+      .then(resposta => {
+        console.log("Histórico inicial:", resposta);
+
+        sensoresAtivos.innerHTML = `${resposta[0].ativos}`;
+
+        setTimeout(kpiSensoresAtivos, 10000);
+      })
+      .catch(erro => console.error("ERRO histórico:", erro));
+  }
+  kpiSensoresAtivos();
+
+  function kpiSensoresDefeito() {
+    var fkEmpresa = sessionStorage.ID_EMPRESA;
+
+    fetch(`/empresas/kpiSensoresDefeito/${fkEmpresa}`)
+      .then(res => res.json())
+      .then(resposta => {
+        console.log("Histórico inicial:", resposta);
+
+        sensoresDefeito.innerHTML = `${resposta[0].defeito}!`;
+
+        setTimeout(kpiSensoresDefeito, 10000);
+      })
+      .catch(erro => console.error("ERRO histórico:", erro));
+  }
+  kpiSensoresDefeito();
 
 </script>

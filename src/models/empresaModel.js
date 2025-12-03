@@ -112,6 +112,82 @@ function selecionarFreezer(idEmpresa) {
   return database.executar(instrucaoSql);
 }
 
+function kpiTempMedia(idEmpresa) {
+    console.log('Acessei o model da temperatura!');
+    
+    var instrucaoSql = `
+        SELECT ROUND(AVG(temperatura)) AS tempMedia 
+        FROM vw_temp;
+    `;
+
+  return database.executar(instrucaoSql);
+}
+
+function kpiTempMaxima(idEmpresa) {
+    console.log('Acessei o model da temperatura!');
+    
+    var instrucaoSql = `
+        SELECT MAX(temperatura) AS tempMaxima 
+        FROM vw_temp
+        WHERE temperatura <> 0.00;
+    `;
+
+  return database.executar(instrucaoSql);
+}
+
+function kpiTempMinima(idEmpresa) {
+    console.log('Acessei o model da temperatura!');
+    
+    var instrucaoSql = `
+        SELECT MIN(temperatura) AS tempMinima 
+        FROM vw_temp;
+    `;
+
+  return database.executar(instrucaoSql);
+}
+
+function kpiTotalSensores(idEmpresa) {
+    console.log('Acessei o model da temperatura!');
+    
+    var instrucaoSql = `
+        SELECT COUNT(idSensor) AS total
+        FROM sensor JOIN  localServ 
+        ON fkLocal = idLocal JOIN servico
+        ON fkServico = idServico JOIN empresa
+        ON fkEmpresa = ${idEmpresa};
+    `;
+
+  return database.executar(instrucaoSql);
+}
+
+function kpiSensoresAtivos(idEmpresa) {
+    console.log('Acessei o model da temperatura!');
+    
+    var instrucaoSql = `
+        SELECT COUNT(idSensor) AS ativos
+        FROM sensor JOIN  localServ 
+        ON fkLocal = idLocal JOIN servico
+        ON fkServico = idServico JOIN empresa
+        ON fkEmpresa = ${idEmpresa} WHERE status = 'ativo';
+    `;
+
+  return database.executar(instrucaoSql);
+}
+
+function kpiSensoresDefeito(idEmpresa) {
+    console.log('Acessei o model da temperatura!');
+    
+    var instrucaoSql = `
+        SELECT COUNT(idSensor) AS defeito
+        FROM sensor JOIN  localServ 
+        ON fkLocal = idLocal JOIN servico
+        ON fkServico = idServico JOIN empresa
+        ON fkEmpresa = ${idEmpresa} WHERE status <> 'ativo';
+    `;
+
+  return database.executar(instrucaoSql);
+}
+
 module.exports = {
     cadastrarEmpresa,
     cadastrarFuncionario,
@@ -122,5 +198,11 @@ module.exports = {
     cadastrarServicos,
     selecionarCamaras,
     selecionarTransporte,
-    selecionarFreezer
+    selecionarFreezer,
+    kpiTempMedia,
+    kpiTempMaxima,
+    kpiTempMinima,
+    kpiTotalSensores,
+    kpiSensoresAtivos,
+    kpiSensoresDefeito
 }

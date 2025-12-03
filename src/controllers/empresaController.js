@@ -272,6 +272,138 @@ function selecionarFreezer(req, res) {
             );
 }
 
+function kpiTempMedia(req, res) {
+
+    var idEmpresa = req.params.fkEmpresa;
+   
+        empresaModel.kpiTempMedia(idEmpresa)
+            .then(
+                function (resposta) {
+                    console.log(`\nResultados encontrados da temperatura média: ${resposta}`);
+                    console.log(`Resultados: ${JSON.stringify(resposta)}`); // transforma JSON em String
+                    
+                    res.json(resposta);
+                    
+                }
+            ).catch(
+                function (erro) {
+                    console.log(erro);
+                    console.log("\nHouve um ERRO: ", erro.sqlMessage);
+                    res.status(500).json(erro.sqlMessage);
+                }
+            );
+}
+
+function kpiTempMaxima(req, res) {
+
+    var idEmpresa = req.params.fkEmpresa;
+   
+        empresaModel.kpiTempMaxima(idEmpresa)
+            .then(
+                function (resposta) {
+                    console.log(`\nResultados encontrados da temperatura média: ${resposta}`);
+                    console.log(`Resultados: ${JSON.stringify(resposta)}`); // transforma JSON em String
+                    
+                    res.json(resposta);
+                    
+                }
+            ).catch(
+                function (erro) {
+                    console.log(erro);
+                    console.log("\nHouve um ERRO: ", erro.sqlMessage);
+                    res.status(500).json(erro.sqlMessage);
+                }
+            );
+}
+
+function kpiTempMinima(req, res) {
+
+    var idEmpresa = req.params.fkEmpresa;
+   
+        empresaModel.kpiTempMinima(idEmpresa)
+            .then(
+                function (resposta) {
+                    console.log(`\nResultados encontrados da temperatura média: ${resposta}`);
+                    console.log(`Resultados: ${JSON.stringify(resposta)}`); // transforma JSON em String
+                    
+                    res.json(resposta);
+                    
+                }
+            ).catch(
+                function (erro) {
+                    console.log(erro);
+                    console.log("\nHouve um ERRO: ", erro.sqlMessage);
+                    res.status(500).json(erro.sqlMessage);
+                }
+            );
+}
+
+function kpiTotalSensores(req, res) {
+
+    var idEmpresa = req.params.fkEmpresa;
+   
+        empresaModel.kpiTotalSensores(idEmpresa)
+            .then(
+                function (resposta) {
+                    console.log(`\nResultados encontrados da temperatura média: ${resposta}`);
+                    console.log(`Resultados: ${JSON.stringify(resposta)}`); // transforma JSON em String
+                    
+                    res.json(resposta);
+                    
+                }
+            ).catch(
+                function (erro) {
+                    console.log(erro);
+                    console.log("\nHouve um ERRO: ", erro.sqlMessage);
+                    res.status(500).json(erro.sqlMessage);
+                }
+            );
+}
+
+function kpiSensoresAtivos(req, res) {
+
+    var idEmpresa = req.params.fkEmpresa;
+   
+        empresaModel.kpiSensoresAtivos(idEmpresa)
+            .then(
+                function (resposta) {
+                    console.log(`\nResultados encontrados da temperatura média: ${resposta}`);
+                    console.log(`Resultados: ${JSON.stringify(resposta)}`); // transforma JSON em String
+                    
+                    res.json(resposta);
+                    
+                }
+            ).catch(
+                function (erro) {
+                    console.log(erro);
+                    console.log("\nHouve um ERRO: ", erro.sqlMessage);
+                    res.status(500).json(erro.sqlMessage);
+                }
+            );
+}
+
+function kpiSensoresDefeito(req, res) {
+
+    var idEmpresa = req.params.fkEmpresa;
+   
+        empresaModel.kpiSensoresDefeito(idEmpresa)
+            .then(
+                function (resposta) {
+                    console.log(`\nResultados encontrados da temperatura média: ${resposta}`);
+                    console.log(`Resultados: ${JSON.stringify(resposta)}`); // transforma JSON em String
+                    
+                    res.json(resposta);
+                    
+                }
+            ).catch(
+                function (erro) {
+                    console.log(erro);
+                    console.log("\nHouve um ERRO: ", erro.sqlMessage);
+                    res.status(500).json(erro.sqlMessage);
+                }
+            );
+}
+
 module.exports = {
     cadastrarEmpresa,
     cadastrarFuncionario,
@@ -281,5 +413,11 @@ module.exports = {
     atualizarTemperaturaMedia,
     selecionarCamaras,
     selecionarFreezer,
-    selecionarTransporte
+    selecionarTransporte,
+    kpiTempMedia,
+    kpiTempMaxima,
+    kpiTempMinima,
+    kpiTotalSensores,
+    kpiSensoresAtivos,
+    kpiSensoresDefeito
 }
