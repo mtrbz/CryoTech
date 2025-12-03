@@ -384,10 +384,10 @@
           .then((resposta) => {
 
             if (resposta.ok) {
-              console.log('entrei na sua mãe', resposta);
+              console.log('Solicitação enviada!', resposta);
               alert('Solicitação enviada');
             } else {
-              alert('PENIS')
+              alert('Um ou mais dados inválidos!')
             }
           })
           .catch(erro => {

@@ -114,6 +114,8 @@
 </html>
 
   <script>
+    var aleatorio = 0;
+
     function abrirDashboard() {
       window.location.href = "dashboard.html";
     }
@@ -130,6 +132,8 @@
 
     function selecionarFreezer(){
         var fkEmpresa = sessionStorage.ID_EMPRESA;
+        aleatorio = Math.round(Math.random() * 8) + 1;
+        sessionStorage.ID_SENSOR = aleatorio;
 
         fetch(`/empresas/selecionarFreezer/${fkEmpresa}`)
             .then(resposta => resposta.json())
