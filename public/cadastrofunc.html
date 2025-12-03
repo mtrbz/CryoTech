@@ -10,7 +10,13 @@
   <link rel="icon" href="css/Imagens/logo1.png" />
 </head>
 
+
 <body class="pagina-cadastro">
+  <div class="alerta_erro">
+    <div class="card_erro" id="cardErro">
+      <span id="mensagem_erro"></span>
+    </div>
+  </div>
   <div class="background-cadastro">
     <div class="cadastro">
       <div class="img-cadastro">
@@ -25,45 +31,45 @@
         </div>
 
         <label>Nome do responsável</label>
-        <input id="nome_input" type="text" value="Gabriel Senna">
+        <input id="nome_input" type="text" value="">
 
         <label>CPF</label>
-        <input id="cpf_input" type="text" value="52532532523">
+        <input id="cpf_input" type="text" value="">
 
         <label>Data de nascimento</label>
-        <input id="dtNasc_input" type="date" value="2006-10-22">
+        <input id="dtNasc_input" type="date" value="">
 
         <label>E-mail</label>
-        <input id="email_input" type="text" value="meuemail@gmail.com">
+        <input id="email_input" type="text" value="">
 
         <label>Telefone para contato</label>
-        <input id="telefone_input" type="text" value="142414241">
+        <input id="telefone_input" type="text" value="">
 
         <label>Senha</label>
-        <input id="senha_input" type="password" value="sccp1910">
+        <input id="senha_input" type="password" value="">
         <div id="forca_senha"></div>
 
         <label>Confirmar Senha</label>
-        <input id="confirmacao_senha_input" type="password" value="sccp1910">
+        <input id="confirmacao_senha_input" type="password" value="">
         <div id="forca_senha"></div>
 
         <label>Token da empresa</label>
-        <input id="token_input" type="text" value="SCCP">
+        <input id="token_input" type="text" value="">
 
-        <div id="div_msg"></div>  
+        <div id="div_msg"></div>
 
         <div class="remember">
           <input type="checkbox" id="remember">
           <label for="remember">Lembrar-me</label>
         </div>
 
-        <p>Caso sua empresa ainda não tenha um cadastro <a href="cadastro.html">clique aqui</a></p>
+        <p>Caso sua empresa ainda não tenha um cadastro <a href="index.html#contato ">clique aqui</a></p>
 
         <button onclick="cadastrar()">Cadastre-se</button>
       </div>
     </div>
   </div>
-    <div class="footer">
+  <div class="footer">
     <div class="footer-container">
       <div class="footer-logo">
         <h2>CryoTech</h2>
@@ -86,35 +92,50 @@
 
 <script>
 
-      function imagem() {
-      window.location.href = "index.html";
-    }
+  function imagem() {
+    window.location.href = "index.html";
+  }
+
+  function erro(msg) {
+    document.querySelector(".alerta_erro").style.display = "flex";
+    mensagem_erro.innerHTML = msg;
+    setTimeout(() => document.querySelector(".alerta_erro").style.display = "none", 1500);
+  }
   // Array para armazenar empresas cadastradas para validação de código de ativação 
+
   function cadastrar() {
 
-    //Recupere o valor da nova input pelo nome do id
-    // Agora vá para o método fetch logo abaixo
-    var nomeVar = nome_input.value;
-    var cpfVar = cpf_input.value;
+    var nomeVar = nome_input.value.trim();
+    var cpfVar = cpf_input.value.trim();
     var dtNascVar = dtNasc_input.value;
-    var emailVar = email_input.value;
-    var telefoneVar = telefone_input.value;
+    var emailVar = email_input.value.trim();
+    var telefoneVar = telefone_input.value.trim();
     var senhaVar = senha_input.value;
     var confirmacaoSenhaVar = confirmacao_senha_input.value;
-    var tokenVar = token_input.value;
+    var tokenVar = token_input.value.trim();
 
-    // Verificando se há algum campo em branco
-    if (
-      nomeVar == "" ||
-      emailVar == "" ||
-      senhaVar == "" ||
-      confirmacaoSenhaVar == "" ||
-      tokenVar == ""
-    ) {
-      alert('Mensagem de erro para todos os campos em branco');
 
+    if (nomeVar.length < 3) {
+      return erro("O nome deve ter pelo menos 3 caracteres.");
     }
-
+    if (!/^\d{11}$/.test(cpfVar)) {
+      return erro("O CPF deve conter exatamente 11 números.");
+    }
+    if (!emailVar.includes('@')) {
+      return erro("Digite um e-mail válido.");
+    }
+    if (!/^\d{10,11}$/.test(telefoneVar)) {
+      return erro("O telefone deve conter 10 a 11 dígitos.");
+    }
+    if (!/^(?=.*[A-Z])(?=.*[a-z])(?=.*\d)(?=.*[\W_]).{8,}$/.test(senhaVar)) {
+      return erro("A senha deve conter: 8 caracteres, 1 letra maiúscula, 1 minúscula, 1 número e 1 caractere especial.");
+    }
+    if (senhaVar != confirmacaoSenhaVar)  {
+      return erro("As senhas não coincidem.");
+    }
+    if (tokenVar == "") {
+      return erro("O token da empresa não pode estar vazio.");
+    }
     // Enviando o valor da nova input
     fetch("/empresas/cadastrarFuncionario", {
       method: "POST",
@@ -137,25 +158,36 @@
         console.log("resposta: ", resposta);
 
         if (resposta.ok) {
-          
-          alert('Dados salvos')
+          document.querySelector(".alerta_erro").style.display = "flex";
+
 
           mensagem_erro.innerHTML =
-            "Cadastro realizado com sucesso! Redirecionando para tela de Login...";
+            "Cadastro realizado com sucesso! Redirecionando para home...";
 
           setTimeout(() => {
-            window.location = "../dashboard.html";
-          }, "2000"); 
+            window.location = "index.html";
+          }, "2000");
 
         } else {
-          throw "Houve um erro ao tentar realizar o cadastro!";
+          document.querySelector(".alerta_erro").style.display = "flex";
+
+          mensagem_erro.innerHTML = "Houve um erro ao realizar o cadastro!";
+
+          setTimeout(sumirMensagem, 2000);
         }
       })
-
       .catch(function (resposta) {
         console.log(`#ERRO: ${resposta}`);
       });
+
+    return false;
   }
+
+  function sumirMensagem() {
+
+    document.querySelector(".alerta_erro").style.display = "none";
+  }
+
 
   // Listando empresas cadastradas 
   // function listar() {
@@ -177,8 +209,5 @@
   //     });
   // }
 
-  function sumirMensagem() {
-    cardErro.style.display = "none";
-  }
 
 </script>

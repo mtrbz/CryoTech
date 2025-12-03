@@ -1456,7 +1456,71 @@ textarea {
 
 
 
+/*popu */
 
+.popup {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0,0,0,0.7);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 999;
+}
+
+.popup-content {
+    background: #0b0e22;
+    padding: 20px 30px;
+    border-radius: 12px;
+    text-align: center;
+    color: white;
+    border: 2px solid #d0fcf4;
+}
+
+.popup-content button {
+    margin-top: 15px;
+    padding: 8px 20px;
+    border: none;
+    background: #0b0e22;
+    background: linear-gradient(90deg, #0094cc, #00b7ff);
+    font-weight: bold;
+    border-radius: 6px;
+    cursor: pointer;
+}
+
+.popup-content button:hover {
+    transform: scale(1.05);
+    box-shadow: 0 0 12px rgba(0, 183, 255, 0.2);
+}
+
+.alerta_erro {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.65);
+  display: none; 
+  justify-content: center;
+  align-items: center;
+  z-index: 99;
+}
+
+.card_erro {
+  background: #0b0e22;
+  padding: 25px 35px;
+  border: 2px solid #ffffff;
+  border-radius: 10px;
+  font-size: 20px;
+  color: #f2e9d0;
+  max-width: 400px;
+  text-align: center;
+  box-shadow: 0 0 20px #000;
+}
+ /* fim do poupup */
 
 /* Fim CSS cryotech */
 

@@ -29,7 +29,7 @@
             padding: 0px 0px;
             height: 60px;
         }
-        
+
         .lateral {
             display: flex;
             flex-direction: column;
@@ -105,7 +105,7 @@
             margin-top: 4px;
             opacity: 0.9;
         }
-      
+
         button {
             background: linear-gradient(90deg, #0094cc, #00b7ff);
             color: #fff;
@@ -306,8 +306,6 @@
             background: rgba(11, 46, 86, 0.12);
             border-radius: 8px;
         }
-
-     
     </style>
 </head>
 
@@ -328,21 +326,23 @@
       </div> -->
 
             <div class="card"">
-       <a href="https://gabrielsenna.atlassian.net/servicedesk/customer/portal/1" target="_blank">
-    <img class="img_jira" src="../css/Imagens/jira.png" alt=""></a>
+       <a href=" https://gabrielsenna.atlassian.net/servicedesk/customer/portal/1" target="_blank">
+                <img class="img_jira" src="../css/Imagens/jira.png" alt=""></a>
 
             </div>
             <div class="card">
                 <a href="https://trello.com/b/IcC6lDal/cryotech" target="_blank">
-    <img class="img_trello" src="../css/Imagens/trello.png" alt=""></a>
+                    <img class="img_trello" src="../css/Imagens/trello.png" alt=""></a>
 
-                </div>
-                <button class="btn-voltar" onclick="voltarDashboard()">Voltar</button>
-                <a href="../css/Imagens/Projeto de P.I Sprint2.pdf" download="documentacao_cryotech.docx">
-    <img class="img_documentação" src="../css/Imagens/documentação.png" alt=""></a>
             </div>
+            <button class="btn-voltar" onclick="cadastrar()">Cadastrar Empresa</button>
+            <button class="btn-voltar" onclick="voltarDashboard()">Voltar</button>
+            <a href="../css/Imagens/Projeto de P.I Sprint2.pdf" download="documentacao_cryotech.docx">
+                <img class="img_documentação" src="../css/Imagens/documentação.png" alt=""></a>
+        </div>
 
-            <!-- <div class="jira-header">
+
+        <!-- <div class="jira-header">
         <div class="jira-container">
           <script data-jsd-embedded data-key="f62d9333-2935-478b-ab14-350a7dc326bf" data-base-url="https://jsd-widget.atlassian.com" src="https://jsd-widget.atlassian.com/assets/embed.js"></script>
 
@@ -351,7 +351,7 @@
 
 
 
-        </div>
+    </div>
     </div>
     <img id="img_div" class="btn-suporte" onclick="bobia()" src="../css/Imagens/bob_logo.png" alt="">
 
@@ -372,7 +372,7 @@
     </div>
     </div>
     <script>
-        function fecharChat(){
+        function fecharChat() {
             bobia_div.style.display = 'none';
             img_div.style.display = 'block';
         }
@@ -405,11 +405,13 @@
 
 </html>
 <script>
-    
-    function voltarHome(){
+
+    function voltarHome() {
         window.location.href = "../index.html";
     }
-
+    function cadastrar() {
+        window.location.href = "../cadastro.html";
+    }
     function botao_trello() {
         document.addEventListener('DOMContentLoaded', (event) => {
             const linkExterno = document.getElementById('trello_imagem');

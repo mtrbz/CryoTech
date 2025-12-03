@@ -406,13 +406,13 @@
         const ultimo = dadosTemperatura.datasets[0].data[dadosTemperatura.datasets[0].data.length - 1];
         var hora = new Date().toLocaleTimeString();
 
-          dadosTemperatura.labels.shift();
-          dadosTemperatura.labels.push(hora);
+        dadosTemperatura.labels.shift();
+        dadosTemperatura.labels.push(hora);
 
-          dadosTemperatura.datasets[0].data.shift();
-          dadosTemperatura.datasets[0].data.push(valor);
+        dadosTemperatura.datasets[0].data.shift();
+        dadosTemperatura.datasets[0].data.push(valor);
 
-          chartTemperatura.update();
+        chartTemperatura.update();
 
         proximaAtualizacao = setTimeout(atualizarTemperaturaMedia, 2000);
 
@@ -445,8 +445,9 @@
   }
 
   function voltarDashboard() {
-    window.location.href = "locais.html";
+    window.history.back();
   }
+
 
   function kpiTempMedia() {
     var fkEmpresa = sessionStorage.ID_EMPRESA;

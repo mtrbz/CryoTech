@@ -16,6 +16,11 @@
 </head>
 
 <body class="pagina-cadastro">
+  <div class="alerta_erro">
+    <div class="card_erro" id="cardErro">
+      <span id="mensagem_erro"></span>
+    </div>
+  </div>
   <div class="background-cadastro">
 
     <div class="cadastro">
@@ -29,7 +34,7 @@
 
       <div class="cadastro-left">
         <div class="cadastro-texto">
-          <h2 onclick="imagem()">Bem vindo a <span>Cryo</span>Tech, <br> aqui você poderá fazer o cadastro da sua
+          <h2 onclick="imagem()">Bem vindo a <span>Cryo</span>Tech, <br> Faça abaixo o cadastro da
             empresa : </h2> <br> <br>
         </div>
 
@@ -57,13 +62,6 @@
         <input id="input_telefone" type="text" placeholder="XX-XXXXXXXXXX">
         <div id="div_msg"></div>
 
-        <div class="remember">
-          <input type="checkbox" id="remember">
-          <label
-            for="remember">Lembrar-me</label><!--  O atributo for="remember" liga o label ao input com o mesmo id -->
-        </div>
-        <p>Caso sua empresa ja tenha um cadastro <a href="cadastrofunc.html">clique aqui</a></p>
-
         <button onclick="cadastrar()">Cadastre-se</button>
 
       </div>
@@ -80,7 +78,7 @@
 
       <div class="footer-links">
         <a href="index.html">Início</a>
-        <a href="#solucoes">Soluções</a>
+        <a href="index.html#solucoes">Soluções</a>
         <a href="calcfinanceira.html">Calculadora</a>
         <a href="#contato">Contato</a>
       </div>
@@ -165,10 +163,10 @@
           alert('Dados salvos');
 
           mensagem_erro.innerHTML =
-            "Cadastro realizado com sucesso! Redirecionando para tela de Login...";
+            "Cadastro realizado com sucesso! Redirecionando para tela de serviço...";
 
           setTimeout(() => {
-            window.location = "cadastroFuncionario.html";
+            window.location = "../dashboard/Suporte.html";
           }, "2000");
 
         } else {

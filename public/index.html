@@ -17,7 +17,7 @@
 </head>
 
 <body>
-  <div  id="inicio" class="header">
+  <div id="inicio" class="header">
     <div class="container">
       <ul class="navbar">
         <li class="agora">
@@ -288,175 +288,193 @@
     </div>
   </div>
 
-  <script>
+  <div id="popup" class="popup" style="display: none;">
+    <div class="popup-content">
+      <h2 id="popup-msg"></h2>
+      <button onclick="fecharPopup()">OK</button>
+    </div>
 
-    function login() {
-      var modal = document.getElementById("modal");
-      modal.classList.add("ativo");
-      document.getElementById("fecharModal").onclick = () =>
-        modal.classList.remove("ativo");
-      window.onclick = (e) => {
-        if (e.target === modal) modal.classList.remove("ativo");
-      };
-    }
 
-    function cadastrar() {
-      window.location.href = "cadastro.html";
-    }
+    <script>
 
-    var index = 0;
-    var items = document.querySelectorAll('.card-item');
-    var visible = 3;
-
-    function atualizar() {
-      var larguraCard = 250;
-      var espacamento = 20;
-      var desloc = (larguraCard + espacamento) * index;
-
-      for (var i = 0; i < items.length; i++) {
-        items[i].style.display = 'none';
+      function login() {
+        var modal = document.getElementById("modal");
+        modal.classList.add("ativo");
+        document.getElementById("fecharModal").onclick = () =>
+          modal.classList.remove("ativo");
+        window.onclick = (e) => {
+          if (e.target === modal) modal.classList.remove("ativo");
+        };
       }
 
-      for (var i = index; i < index + visible; i++) {
-        if (items[i]) {
-          items[i].style.display = 'block';
+      function cadastrar() {
+        window.location.href = "cadastrofunc.html";
+      }
+
+      var index = 0;
+      var items = document.querySelectorAll('.card-item');
+      var visible = 3;
+
+      function atualizar() {
+        var larguraCard = 250;
+        var espacamento = 20;
+        var desloc = (larguraCard + espacamento) * index;
+
+        for (var i = 0; i < items.length; i++) {
+          items[i].style.display = 'none';
+        }
+
+        for (var i = index; i < index + visible; i++) {
+          if (items[i]) {
+            items[i].style.display = 'block';
+          }
         }
       }
-    }
 
-    function proximo() {
-      var max = items.length - visible;
-      if (index < max) {
-        index++;
-        atualizar();
-      }
-    }
-
-    function voltar() {
-      if (index > 0) {
-        index--;
-        atualizar();
-      }
-    }
-
-    function enviarFaleConosco() {
-      var nome = nomeFC.value;
-      var email = emailFC.value;
-      var empresa = empresaFC.value;
-      var necessidade = necessidadeFC.value;
-      var necessidadeCamara = "Não";
-      var necessidadeTransporte = "Não";
-      var necessidadeFreezer = "Não";
-
-      if (chk1.checked) {
-        necessidadeCamara = "Sim";
+      function proximo() {
+        var max = items.length - visible;
+        if (index < max) {
+          index++;
+          atualizar();
+        }
       }
 
-      if (chk2.checked) {
-        necessidadeTransporte = "Sim";
+      function voltar() {
+        if (index > 0) {
+          index--;
+          atualizar();
+        }
       }
 
-      if (chk3.checked) {
-        necessidadeFreezer = "Sim";
+      function enviarFaleConosco() {
+        var nome = nomeFC.value;
+        var email = emailFC.value;
+        var empresa = empresaFC.value;
+        var necessidade = necessidadeFC.value;
+        var necessidadeCamara = "Não";
+        var necessidadeTransporte = "Não";
+        var necessidadeFreezer = "Não";
+
+        if (chk1.checked) {
+          necessidadeCamara = "Sim";
+        }
+
+        if (chk2.checked) {
+          necessidadeTransporte = "Sim";
+        }
+
+        if (chk3.checked) {
+          necessidadeFreezer = "Sim";
+        }
+
+        fetch('/empresas/enviarFaleConosco', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            nomeServer: nome,
+            emailServer: email,
+            empresaServer: empresa,
+            necessidadeServer: necessidade,
+            camaraFriaServer: necessidadeCamara,
+            transporteServer: necessidadeTransporte,
+            freezerServer: necessidadeFreezer
+          }),
+
+        })
+          .then((resposta) => {
+
+            if (resposta.ok) {
+              console.log('entrei na sua mãe', resposta);
+              alert('Solicitação enviada');
+            } else {
+              alert('PENIS')
+            }
+          })
+          .catch(erro => {
+            console.log(`erro, ${erro}`);
+          })
       }
 
-      fetch('/empresas/enviarFaleConosco', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          nomeServer: nome,
-          emailServer: email,
-          empresaServer: empresa,
-          necessidadeServer: necessidade,
-          camaraFriaServer: necessidadeCamara,
-          transporteServer: necessidadeTransporte,
-          freezerServer: necessidadeFreezer
-        }),
+      window.addEventListener('resize', atualizar);
+      atualizar();
 
-      })
-        .then((resposta) => {
+      function entrar() {
+        // aguardar();
+
+        var emailVar = email_input.value;
+        var senhaVar = senha_input.value;
+
+        if (emailVar == "" || senhaVar == "") {
+          abrirPopup('Preencha todos os campos!');
+          return false;
+        } else {
+          abrirPopup('Logando...')
+        }
+
+        console.log("FORM LOGIN: ", emailVar);
+        console.log("FORM SENHA: ", senhaVar);
+
+        fetch("/usuarios/autenticar", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json"
+          },
+          body: JSON.stringify({
+            emailServer: emailVar,
+            senhaServer: senhaVar
+          })
+        }).then(function (resposta) {
+          console.log("ESTOU NO THEN DO entrar()!")
 
           if (resposta.ok) {
-            console.log('entrei na sua mãe', resposta);
-            alert('Solicitação enviada');
+            console.log(resposta);
+
+            resposta.json().then(json => {
+              console.log(json);
+              console.log(JSON.stringify(json));
+              sessionStorage.EMAIL_USUARIO = json.email;
+              sessionStorage.NOME_USUARIO = json.nome;
+              sessionStorage.ID_USUARIO = json.idFuncionario;
+              sessionStorage.ID_EMPRESA = json.idEmpresa;
+
+              if (emailVar.includes('@cryotech')) {
+                setTimeout(function () {
+                  window.location = "./dashboard/Suporte.html";
+                }, 1000); // apenas para exibir o loading
+
+              } else {
+
+                setTimeout(function () {
+                  window.location = "./dashboard/escolha-dashboard.html";
+                }, 1000); // apenas para exibir o loading
+              }
+
+            });
+
           } else {
-            alert('PENIS')
+            abrirPopup('Erro ao fazer login');
+            console.log("Houve um erro ao tentar realizar o login!");
+            resposta.text().then(texto => {
+              console.error(texto);
+            });
           }
+        }).catch(function (erro) {
+          console.log(erro);
+          abrirPopup('Erro de rede: verifique sua conexão.');
         })
-        .catch(erro => {
-          console.log(`erro, ${erro}`);
-        })
-    }
 
-    window.addEventListener('resize', atualizar);
-    atualizar();
-
-    function entrar() {
-      // aguardar();
-
-      var emailVar = email_input.value;
-      var senhaVar = senha_input.value;
-
-      if (emailVar == "" || senhaVar == "") {
-        cardErro.style.display = "block"
-        mensagem_erro.innerHTML = "(Mensagem de erro para todos os campos em branco)";
-        // finalizarAguardar();
         return false;
       }
-      else {
-        // setInterval(sumirMensagem, 5000)
-        console.log('oi')
+
+      function abrirPopup(msg) {
+        document.getElementById("popup-msg").innerHTML = msg;
+        document.getElementById("popup").style.display = "flex";
       }
 
-      console.log("FORM LOGIN: ", emailVar);
-      console.log("FORM SENHA: ", senhaVar);
-
-      fetch("/usuarios/autenticar", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json"
-        },
-        body: JSON.stringify({
-          emailServer: emailVar,
-          senhaServer: senhaVar
-        })
-      }).then(function (resposta) {
-        console.log("ESTOU NO THEN DO entrar()!")
-
-        if (resposta.ok) {
-          console.log(resposta);
-
-          resposta.json().then(json => {
-            console.log(json);
-            console.log(JSON.stringify(json));
-            sessionStorage.EMAIL_USUARIO = json.email;
-            sessionStorage.NOME_USUARIO = json.nome;
-            sessionStorage.ID_USUARIO = json.idFuncionario;
-            sessionStorage.ID_EMPRESA = json.idEmpresa;
-
-            setTimeout(function () {
-              window.location = "./dashboard/escolha-dashboard.html";
-            }, 1000); // apenas para exibir o loading
-
-          });
-
-        } else {
-
-          console.log("Houve um erro ao tentar realizar o login!");
-
-          resposta.text().then(texto => {
-            console.error(texto);
-            // finalizarAguardar(texto);
-          });
-        }
-
-      }).catch(function (erro) {
-        console.log(erro);
-      })
-
-      return false;
-    }
-  </script>
+      function fecharPopup() {
+        document.getElementById("popup").style.display = "none";
+      }
+    </script>
 
 </body>
 
