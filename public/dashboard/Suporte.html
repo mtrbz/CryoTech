@@ -4,9 +4,7 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>CryoTech - Dashboard</title>
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-    <link rel="stylesheet" href="css/estilo.css">
+    <title>CryoTech - Suporte</title>
     <style>
         body {
             font-family: "Inter", "Poppins", Arial, sans-serif;
@@ -447,69 +445,10 @@
         });
     }
 
-    let dadosTemperatura = null;
-    let chartTemperatura = null;
-    let proximaAtualizacao = null;
+    
 
-    obterTemperaturaMedia();
-
-    function obterTemperaturaMedia() {
-
-        var fkEmpresa = sessionStorage.ID_EMPRESA;
-
-        if (proximaAtualizacao != null) {
-            clearTimeout(proximaAtualizacao);
-        }
-
-        fetch(`/empresas/obterTemperaturaMedia/${fkEmpresa}`)
-            .then(res => res.json())
-            .then(resposta => {
-                console.log("Histórico inicial:", resposta);
-                plotarTemperaturaMedia(resposta);
-
-                proximaAtualizacao = setTimeout(atualizarTemperaturaMedia, 2000);
-            })
-            .catch(erro => console.error("ERRO histórico:", erro));
-    }
-
-    function plotarTemperaturaMedia(resposta) {
-
-        let labels = [];
-        let temperaturas = [];
-
-        for (let i = 0; i < resposta.length; i++) {
-            labels.push(i + 1);
-            temperaturas.push(resposta[i].medTemp);
-        }
-
-        dadosTemperatura = {
-            labels: labels,
-            datasets: [{
-                label: "Média de Temperatura da Câmara",
-                data: temperaturas,
-                borderColor: "#0077ff",
-                backgroundColor: "transparent",
-                tension: 0.2
-            }]
-        };
-
-        const ctx = document.getElementById("g1");
-
-        chartTemperatura = new Chart(ctx, {
-            type: "line",
-            data: dadosTemperatura,
-            options: {
-                responsive: true,
-                maintainAspectRatio: false,
-                scales: {
-                    y: {
-                        reverse: true,
-                        beginAtZero: false
-                    }
-                }
-            }
-        });
-    }
+  
+  
 
 
 
