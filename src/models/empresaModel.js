@@ -66,14 +66,13 @@ function obterTemperaturaMedia(idSensor) {
   return database.executar(instrucaoSql);
 }
 
-function atualizarTemperaturaMedia() {
+function atualizarTemperaturaMedia(idSensor) {
     console.log('Acessei o model de atualizar temperatura!');
     
     var instrucaoSql = `
-        SELECT medicao AS medTemp
-        FROM registro
-        ORDER BY idRegistro DESC
-        LIMIT 1;
+        SELECT medicao as medTemp
+        FROM vw_sensor WHERE idSensor = ${idSensor}
+        ORDER BY idRegistro DESC LIMIT 1;
     `;
 
   return database.executar(instrucaoSql);

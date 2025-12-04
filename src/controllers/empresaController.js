@@ -191,9 +191,11 @@ function obterTemperaturaMedia(req, res) {
 
 function atualizarTemperaturaMedia(req, res) {
 
+    var idSensor = req.params.idSensor;
+
         console.log(`Buscando as últimas medições...`);
 
-        empresaModel.atualizarTemperaturaMedia()
+        empresaModel.atualizarTemperaturaMedia(idSensor)
             .then(function (resposta) {
 
                 if (resposta.length > 0) {

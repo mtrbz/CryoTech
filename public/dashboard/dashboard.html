@@ -462,7 +462,9 @@
 
   function atualizarTemperaturaMedia() {
 
-    fetch(`/empresas/atualizarTemperaturaMedia`)
+    var idSensor = sessionStorage.ID_SENSOR;
+
+    fetch(`/empresas/atualizarTemperaturaMedia/${idSensor}`)
       .then(res => res.json())
       .then(novo => {
 
