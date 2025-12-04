@@ -171,7 +171,7 @@
       border-radius: 12px;
       box-shadow: 0 4px 14px rgba(0, 0, 0, 0.05);
       padding: 15px;
-      width: 42%;
+      width: 72%;
       height: 320px;
     }
 
@@ -226,12 +226,13 @@
 
 <body>
   <div class="header">
-    <img onclick="voltarHome()" src="../Site/css/Imagens/logo1.png" alt="Logo" />
+    <img onclick="voltarHome()" src="../css/Imagens/logo1.png" alt="Logo" />
   </div>
 
   <div class="dashboard">
     <div class="lateral">
-      <h2>Câmara 1 <br> <br>Sensor selecionado:</h2>
+      <h2 id="titulo_local"></h2>
+      <br><br>
       <div class="legenda">
         <p>
           <span style="color: rgb(0, 119, 255)">Ideal:</span> -18°C a -21°C
@@ -265,16 +266,6 @@
 
     <div class="container">
       <h2 class="titulo-centro">Métricas do Sensor Selecionado</h2>
-      <center>
-        <select id="select_sensor">
-          <option value="#" disabled>Selecione o sensor:</option>
-          <option value="1">Sensor 1</option>
-          <option value="2">Sensor 2</option>
-          <option value="3">Sensor 3</option>
-          <option value="4">Sensor 4</option>
-          <option value="5" selected>Sensor 5</option>
-        </select>
-      </center>
 
       <div class="info">
         <div class="box">
@@ -293,7 +284,10 @@
 
       <div class="graficos">
         <div class="grafico"><canvas id="g1"></canvas></div>
+      </div>
+      <div class="graficos">
         <div class="grafico"><canvas id="g2"></canvas></div>
+
       </div>
       <!-- <div class="jira-header">
         <div class="jira-container">
@@ -301,10 +295,6 @@
 
         </div>
       </div> -->
-
-      <div class="grafico-inferior">
-        <div class="grafico-grande"><canvas id="temperatura"></canvas></div>
-      </div>
     </div>
   </div>
   <!-- <script data-jsd-embedded 
@@ -320,8 +310,18 @@
 </body>
 
 </html>
+
+<script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-annotation@1.4.0"></script>
+
 <script>
 
+  window.onload = function () {
+    if (sessionStorage.NOME_LOCAL) {
+      document.getElementById("titulo_local").innerHTML = sessionStorage.NOME_LOCAL;
+    } else {
+      document.getElementById("titulo_local").innerHTML = "Local Não Identificada";
+    }
+  };
   function suporte() {
     document.addEventListener('DOMContentLoaded', (event) => {
       const linkExterno = document.getElementById('suporte_imagem');
@@ -390,6 +390,50 @@
       options: {
         responsive: true,
         maintainAspectRatio: false,
+
+        plugins: {
+          annotation: {
+            annotations: {
+              linhaCritica: {
+                type: 'line',
+                yMin: -18,
+                yMax: -18,
+                borderColor: 'red',
+                borderWidth: 2,
+                label: {
+                  enabled: true,
+                  content: '-18°C',
+                  position: 'start'
+                }
+              },
+              linhaIdeal: {
+                type: 'line',
+                yMin: -21,
+                yMax: -21,
+                borderColor: 'green',
+                borderWidth: 2,
+                label: {
+                  enabled: true,
+                  content: '-21°C',
+                  position: 'start'
+                }
+              },
+              linhaProfunda: {
+                type: 'line',
+                yMin: -25,
+                yMax: -25,
+                borderColor: 'blue',
+                borderWidth: 2,
+                label: {
+                  enabled: true,
+                  content: '-25°C',
+                  position: 'start'
+                }
+              }
+            }
+          }
+        },
+
         scales: {
           y: {
             reverse: true,
@@ -550,6 +594,8 @@
   }
   kpiSensoresDefeito();
 
+  var valoresIniciais = [-20, -21, -22, -23, -24, -25, -21];
+
   function obterGraficoBarra() {
 
     var idSensor = sessionStorage.ID_SENSOR;
@@ -560,19 +606,22 @@
       .then(r => r.json())
       .then(resposta => {
 
-        let labels = [];
+        let labels = ["Dom", "Seg", "Ter", "Qua", "Qui", "Sex", "Sáb"];
         let valores = [];
 
-        for (let i = 0; i < 10; i++) {
-          labels.push(i + 1);
-          valores.push(resposta[i].medTemp);
+        for (let i = 0; i < 7; i++) {
+          if (resposta[i] !== undefined) {
+            valores.push(resposta[i].medTemp);
+          } else {
+            valores.push(0);
+          }
         }
 
         dados2 = {
           labels: labels,
           datasets: [{
-            label: "Temperatura Média",
-            data: valores,
+            label: "Temperatura Média dos Dias da Semana",
+            data: valoresIniciais,
             backgroundColor: "#0077ff"
           }]
         };
@@ -591,7 +640,7 @@
           }
         });
 
-        atualizacao2 = setTimeout(atualizarGraficoBarra, 2000);
+        atualizacao2 = setTimeout(atualizarGraficoBarra, 5000);
       })
       .catch(err => console.error("Erro ao carregar gráfico 2:", err));
   }
@@ -610,17 +659,15 @@
       .then(function (novoRegistro) {
 
         var novoValor = novoRegistro[0].medTemp;
-        var novoHorario = new Date().toLocaleTimeString();
-
-        dados2.labels.shift();
-        dados2.labels.push(novoHorario);
 
         dados2.datasets[0].data.shift();
         dados2.datasets[0].data.push(novoValor);
 
+        girarDias(dados2.labels);
+
         chart2.update();
 
-        proximaAtualizacao2 = setTimeout(atualizarGraficoBarra, 2000);
+        proximaAtualizacao2 = setTimeout(atualizarGraficoBarra, 50000);
       })
       .catch(function (erro) {
         console.log("Erro ao atualizar gráfico 2:", erro);
@@ -658,4 +705,12 @@
       .catch(erro => console.error("ERRO histórico:", erro));
   }
   kpiTipoLote();
+
+  function girarDias(labels) {
+    labels.push(labels.shift());
+  }
+
+  function voltarHome() {
+    window.location = "../index.html";
+  }
 </script>

@@ -111,49 +111,55 @@
   <button class="btn-voltar" onclick="voltarHome()">Voltar</button>
   <img src="../css/Imagens/suporte.png" class="btn-suporte" onclick="suporte()">
 </body>
+
 </html>
 
-  <script>
-    var aleatorio = Math.round(Math.random() * 8) + 1;
-    sessionStorage.ID_SENSOR = aleatorio;
-    
-    function abrirDashboard() {
-      window.location.href = "dashboard.html";
-    }
+<script>
+  var aleatorio = Math.round(Math.random() * 8) + 1;
+  sessionStorage.ID_SENSOR = aleatorio;
 
-    function erro() {
-      alert('Nenhum sensor ativo no local escolhido.')
-    }
-    function voltarHome() {
-      window.location.href = "escolha-dashboard.html";
-    }
-    function suporte() {
-      window.location.href = "escolha-dashboard.html";
-    }
+  function abrirDashboard() {
+    window.location.href = "dashboard.html";
+  }
 
-    function selecionarCamaras(){
-        var fkEmpresa = sessionStorage.ID_EMPRESA;
+  function erro() {
+    alert('Nenhum sensor ativo no local escolhido.')
+  }
+  function voltarHome() {
+    window.location.href = "escolha-dashboard.html";
+  }
+  function suporte() {
+    window.location.href = "escolha-dashboard.html";
+  }
 
-        fetch(`/empresas/selecionarCamaras/${fkEmpresa}`)
-            .then(resposta => resposta.json())
-            .then(function (data) {
-                console.log('to dentro do favorito', data)
+  function selecionarCamaras() {
+    var fkEmpresa = sessionStorage.ID_EMPRESA;
 
-                console.log(`Dados recebidos do favorito: ${JSON.stringify(data)}`);
+    fetch(`/empresas/selecionarCamaras/${fkEmpresa}`)
+      .then(resposta => resposta.json())
+      .then(function (data) {
+        console.log('to dentro do favorito', data)
 
-                for (var i = 0; i < data[0].camaras; i++) {
+        console.log(`Dados recebidos do favorito: ${JSON.stringify(data)}`);
 
-                  locais.innerHTML += `<div class="local" onclick="dashboard()">Câmara ${i+1}</div>`
-                }
-            })
-            .catch(function (error) {
-                console.error(`Erro na obtenção dos pontos: ${error.message}`);
-            });
-    }
+        for (var i = 0; i < data[0].camaras; i++) {
 
-    selecionarCamaras();
+          locais.innerHTML += `<div class="local" onclick="selecionarCamera(${i + 1})">Câmara ${i + 1}</div>`;
+        }
+      })
+      .catch(function (error) {
+        console.error(`Erro na obtenção dos pontos: ${error.message}`);
+      });
+  }
 
-    function dashboard() {
-      window.location.href = "dashboard.html";
-    }
-  </script>
+  selecionarCamaras();
+
+  function selecionarCamera(numero) {
+    sessionStorage.NOME_LOCAL = `Local: Câmara ${numero}`;
+    dashboard();
+}
+
+  function dashboard() {
+    window.location.href = "dashboard.html";
+  }
+</script>

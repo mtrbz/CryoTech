@@ -111,49 +111,56 @@
   <button class="btn-voltar" onclick="voltarHome()">Voltar</button>
   <img src="../css/Imagens/suporte.png" class="btn-suporte" onclick="suporte()">
 </body>
+
 </html>
 
-  <script>
-    var aleatorio = Math.round(Math.random() * 8) + 1;
-    sessionStorage.ID_SENSOR = aleatorio;
+<script>
+  var aleatorio = Math.round(Math.random() * 8) + 1;
+  sessionStorage.ID_SENSOR = aleatorio;
 
-    function abrirDashboard() {
-      window.location.href = "dashboard.html";
-    }
+  function abrirDashboard() {
+    window.location.href = "dashboard.html";
+  }
 
-    function erro() {
-      alert('Nenhum sensor ativo no local escolhido.')
-    }
-    function voltarHome() {
-      window.location.href = "escolha-dashboard.html";
-    }
-    function suporte() {
-      window.location.href = "escolha-dashboard.html";
-    }
+  function erro() {
+    alert('Nenhum sensor ativo no local escolhido.')
+  }
+  function voltarHome() {
+    window.location.href = "escolha-dashboard.html";
+  }
+  function suporte() {
+    window.location.href = "escolha-dashboard.html";
+  }
 
-    function selecionarFreezer(){
-        var fkEmpresa = sessionStorage.ID_EMPRESA;
+  function selecionarFreezer() {
+    var fkEmpresa = sessionStorage.ID_EMPRESA;
 
-        fetch(`/empresas/selecionarFreezer/${fkEmpresa}`)
-            .then(resposta => resposta.json())
-            .then(function (data) {
-                console.log('to dentro do favorito', data)
+    fetch(`/empresas/selecionarFreezer/${fkEmpresa}`)
+      .then(resposta => resposta.json())
+      .then(function (data) {
+        console.log('to dentro do favorito', data)
 
-                console.log(`Dados recebidos do favorito: ${JSON.stringify(data)}`);
+        console.log(`Dados recebidos do favorito: ${JSON.stringify(data)}`);
 
-                for (var i = 0; i < data[0].freezers; i++) {
+        for (var i = 0; i < data[0].freezers; i++) {
 
-                  locais.innerHTML += `<div class="local" onclick="dashboard()">Freezer ${i+1}</div>`
-                }
-            })
-            .catch(function (error) {
-                console.error(`Erro na obtenção dos pontos: ${error.message}`);
-            });
-    }
+          locais.innerHTML += `<div class="local" onclick="selecionarFreezers(${i + 1})">Freezer ${i + 1}</div>`;
+        }
+      })
+      .catch(function (error) {
+        console.error(`Erro na obtenção dos pontos: ${error.message}`);
+      });
+  }
 
-    selecionarFreezer();
+  selecionarFreezer();
 
-    function dashboard() {
-      window.location.href = "dashboard.html";
-    }
-  </script>
+  function dashboard() {
+    window.location.href = "dashboard.html";
+  }
+
+
+  function selecionarFreezers(numero) {
+    sessionStorage.NOME_LOCAL = `Local: Freezer ${numero}`;
+    dashboard();
+  }
+</script>

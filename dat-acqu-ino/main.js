@@ -30,8 +30,8 @@ const simularSensores = async (
             // port: 3307
 
             host: '127.0.0.1',
-            user: 'root',
-            password: '2M4a1t1h2e0u0s4@',
+            user: 'ribeiro',
+            password: 'Eunice.55',
             database: 'cryotech',
             port: 3306
         }
