@@ -169,9 +169,9 @@ function enviarFaleConosco(req, res) {
 
 function obterTemperaturaMedia(req, res) {
 
-    var idEmpresa = req.params.fkEmpresa;
+    var idSensor = req.params.idSensor;
    
-        empresaModel.obterTemperaturaMedia(idEmpresa)
+        empresaModel.obterTemperaturaMedia(idSensor)
             .then(
                 function (resposta) {
                     console.log(`\nResultados encontrados da temperatura média: ${resposta}`);
@@ -274,9 +274,9 @@ function selecionarFreezer(req, res) {
 
 function kpiTempMedia(req, res) {
 
-    var idEmpresa = req.params.fkEmpresa;
+    var idSensor = req.params.idSensor;
    
-        empresaModel.kpiTempMedia(idEmpresa)
+        empresaModel.kpiTempMedia(idSensor)
             .then(
                 function (resposta) {
                     console.log(`\nResultados encontrados da temperatura média: ${resposta}`);
@@ -296,9 +296,9 @@ function kpiTempMedia(req, res) {
 
 function kpiTempMaxima(req, res) {
 
-    var idEmpresa = req.params.fkEmpresa;
+    var idSensor = req.params.idSensor;
    
-        empresaModel.kpiTempMaxima(idEmpresa)
+        empresaModel.kpiTempMaxima(idSensor)
             .then(
                 function (resposta) {
                     console.log(`\nResultados encontrados da temperatura média: ${resposta}`);
@@ -318,9 +318,9 @@ function kpiTempMaxima(req, res) {
 
 function kpiTempMinima(req, res) {
 
-    var idEmpresa = req.params.fkEmpresa;
+    var idSensor = req.params.idSensor;
    
-        empresaModel.kpiTempMinima(idEmpresa)
+        empresaModel.kpiTempMinima(idSensor)
             .then(
                 function (resposta) {
                     console.log(`\nResultados encontrados da temperatura média: ${resposta}`);
@@ -340,9 +340,9 @@ function kpiTempMinima(req, res) {
 
 function kpiTotalSensores(req, res) {
 
-    var idEmpresa = req.params.fkEmpresa;
+    var idSensor = req.params.idSensor;
    
-        empresaModel.kpiTotalSensores(idEmpresa)
+        empresaModel.kpiTotalSensores(idSensor)
             .then(
                 function (resposta) {
                     console.log(`\nResultados encontrados da temperatura média: ${resposta}`);
@@ -362,9 +362,9 @@ function kpiTotalSensores(req, res) {
 
 function kpiSensoresAtivos(req, res) {
 
-    var idEmpresa = req.params.fkEmpresa;
+    var idSensor = req.params.idSensor;
    
-        empresaModel.kpiSensoresAtivos(idEmpresa)
+        empresaModel.kpiSensoresAtivos(idSensor)
             .then(
                 function (resposta) {
                     console.log(`\nResultados encontrados da temperatura média: ${resposta}`);
@@ -384,9 +384,95 @@ function kpiSensoresAtivos(req, res) {
 
 function kpiSensoresDefeito(req, res) {
 
-    var idEmpresa = req.params.fkEmpresa;
+    var idSensor = req.params.idSensor;
    
-        empresaModel.kpiSensoresDefeito(idEmpresa)
+        empresaModel.kpiSensoresDefeito(idSensor)
+            .then(
+                function (resposta) {
+                    console.log(`\nResultados encontrados da temperatura média: ${resposta}`);
+                    console.log(`Resultados: ${JSON.stringify(resposta)}`); // transforma JSON em String
+                    
+                    res.json(resposta);
+                    
+                }
+            ).catch(
+                function (erro) {
+                    console.log(erro);
+                    console.log("\nHouve um ERRO: ", erro.sqlMessage);
+                    res.status(500).json(erro.sqlMessage);
+                }
+            );
+}
+
+function obterGraficoBarra(req, res) {
+
+    var idSensor = req.params.idSensor;
+   
+        empresaModel.obterGraficoBarra(idSensor)
+            .then(
+                function (resposta) {
+                    console.log(`\nResultados encontrados da temperatura média: ${resposta}`);
+                    console.log(`Resultados: ${JSON.stringify(resposta)}`); // transforma JSON em String
+                    
+                    res.json(resposta);
+                    
+                }
+            ).catch(
+                function (erro) {
+                    console.log(erro);
+                    console.log("\nHouve um ERRO: ", erro.sqlMessage);
+                    res.status(500).json(erro.sqlMessage);
+                }
+            );
+}
+
+function atualizarGraficoBarra(req, res) {
+
+        console.log(`Buscando as últimas medições...`);
+
+        empresaModel.atualizarGraficoBarra()
+            .then(function (resposta) {
+
+                if (resposta.length > 0) {
+                    res.status(200).json(resposta);
+                } else {
+                    res.status(204).send('Nenhum resultado encontrado!');
+                }
+
+            })
+            .catch(function (erro) {
+                console.log("Erro ao buscar medições: ", erro.sqlMessage);
+                res.status(500).json(erro.sqlMessage);
+        });
+}
+
+function kpiValorLote(req, res) {
+
+    var idSensor = req.params.idSensor;
+   
+        empresaModel.kpiValorLote(idSensor)
+            .then(
+                function (resposta) {
+                    console.log(`\nResultados encontrados da temperatura média: ${resposta}`);
+                    console.log(`Resultados: ${JSON.stringify(resposta)}`); // transforma JSON em String
+                    
+                    res.json(resposta);
+                    
+                }
+            ).catch(
+                function (erro) {
+                    console.log(erro);
+                    console.log("\nHouve um ERRO: ", erro.sqlMessage);
+                    res.status(500).json(erro.sqlMessage);
+                }
+            );
+}
+
+function kpiTipoLote(req, res) {
+
+    var idSensor = req.params.idSensor;
+   
+        empresaModel.kpiTipoLote(idSensor)
             .then(
                 function (resposta) {
                     console.log(`\nResultados encontrados da temperatura média: ${resposta}`);
@@ -419,5 +505,9 @@ module.exports = {
     kpiTempMinima,
     kpiTotalSensores,
     kpiSensoresAtivos,
-    kpiSensoresDefeito
+    kpiSensoresDefeito,
+    obterGraficoBarra,
+    atualizarGraficoBarra,
+    kpiValorLote,
+    kpiTipoLote
 }

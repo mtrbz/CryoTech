@@ -241,12 +241,12 @@
       </div>
 
       <div class="card-alerta" onclick="alerta()">
-        <h3>4</h3>
-        <p>Alerta(s) Crítico(s)</p>
+        <h3 id="valorLote"></h3>
+        <p>Valor do Lote</p>
       </div>
       <div class="card" onclick="atencao()">
-        <p>Estado:</p>
-        <h3>Atenção</h3>
+        <p>Tipo do Lote:</p>
+        <h3 id="tipoLote"></h3>
       </div>
       <div class="card">
         <h3 id="totalSensores"></h3>
@@ -336,17 +336,21 @@
   let chartTemperatura = null;
   let proximaAtualizacao = null;
 
+  let dados2 = null;
+  let temp2 = null;
+  let atualizacao2 = null;
+
   obterTemperaturaMedia();
 
   function obterTemperaturaMedia() {
 
-    var fkEmpresa = sessionStorage.ID_EMPRESA;
+    var idSensor = sessionStorage.ID_SENSOR;
 
     if (proximaAtualizacao != null) {
       clearTimeout(proximaAtualizacao);
     }
 
-    fetch(`/empresas/obterTemperaturaMedia/${fkEmpresa}`)
+    fetch(`/empresas/obterTemperaturaMedia/${idSensor}`)
       .then(res => res.json())
       .then(resposta => {
         console.log("Histórico inicial:", resposta);
@@ -445,14 +449,15 @@
   }
 
   function voltarDashboard() {
-    window.history.back();
+    // window.history.back();
+    window.location.href = 'escolha-dashboard.html';
   }
 
 
   function kpiTempMedia() {
-    var fkEmpresa = sessionStorage.ID_EMPRESA;
+    var idSensor = sessionStorage.ID_SENSOR;
 
-    fetch(`/empresas/kpiTempMedia/${fkEmpresa}`)
+    fetch(`/empresas/kpiTempMedia/${idSensor}`)
       .then(res => res.json())
       .then(resposta => {
         console.log("Histórico inicial:", resposta);
@@ -466,9 +471,9 @@
   kpiTempMedia();
 
   function kpiTempMaxima() {
-    var fkEmpresa = sessionStorage.ID_EMPRESA;
+    var idSensor = sessionStorage.ID_SENSOR;
 
-    fetch(`/empresas/kpiTempMaxima/${fkEmpresa}`)
+    fetch(`/empresas/kpiTempMaxima/${idSensor}`)
       .then(res => res.json())
       .then(resposta => {
         console.log("Histórico inicial:", resposta);
@@ -482,9 +487,9 @@
   kpiTempMaxima();
 
   function kpiTempMinima() {
-    var fkEmpresa = sessionStorage.ID_EMPRESA;
+    var idSensor = sessionStorage.ID_SENSOR;
 
-    fetch(`/empresas/kpiTempMinima/${fkEmpresa}`)
+    fetch(`/empresas/kpiTempMinima/${idSensor}`)
       .then(res => res.json())
       .then(resposta => {
         console.log("Histórico inicial:", resposta);
@@ -498,9 +503,9 @@
   kpiTempMinima();
 
   function kpiTotalSensores() {
-    var fkEmpresa = sessionStorage.ID_EMPRESA;
+    var idSensor = sessionStorage.ID_SENSOR;
 
-    fetch(`/empresas/kpiTotalSensores/${fkEmpresa}`)
+    fetch(`/empresas/kpiTotalSensores/${idSensor}`)
       .then(res => res.json())
       .then(resposta => {
         console.log("Histórico inicial:", resposta);
@@ -514,9 +519,9 @@
   kpiTotalSensores();
 
   function kpiSensoresAtivos() {
-    var fkEmpresa = sessionStorage.ID_EMPRESA;
+    var idSensor = sessionStorage.ID_SENSOR;
 
-    fetch(`/empresas/kpiSensoresAtivos/${fkEmpresa}`)
+    fetch(`/empresas/kpiSensoresAtivos/${idSensor}`)
       .then(res => res.json())
       .then(resposta => {
         console.log("Histórico inicial:", resposta);
@@ -530,14 +535,14 @@
   kpiSensoresAtivos();
 
   function kpiSensoresDefeito() {
-    var fkEmpresa = sessionStorage.ID_EMPRESA;
+    var idSensor = sessionStorage.ID_SENSOR;
 
-    fetch(`/empresas/kpiSensoresDefeito/${fkEmpresa}`)
+    fetch(`/empresas/kpiSensoresDefeito/${idSensor}`)
       .then(res => res.json())
       .then(resposta => {
         console.log("Histórico inicial:", resposta);
 
-        sensoresDefeito.innerHTML = `${resposta[0].defeito}!`;
+        sensoresDefeito.innerHTML = `${resposta[0].defeito}`;
 
         setTimeout(kpiSensoresDefeito, 10000);
       })
@@ -545,4 +550,112 @@
   }
   kpiSensoresDefeito();
 
+  function obterGraficoBarra() {
+
+    var idSensor = sessionStorage.ID_SENSOR;
+
+    if (atualizacao2 != null) clearTimeout(atualizacao2);
+
+    fetch(`/empresas/obterGraficoBarra/${idSensor}`)
+      .then(r => r.json())
+      .then(resposta => {
+
+        let labels = [];
+        let valores = [];
+
+        for (let i = 0; i < 10; i++) {
+          labels.push(i + 1);
+          valores.push(resposta[i].medTemp);
+        }
+
+        dados2 = {
+          labels: labels,
+          datasets: [{
+            label: "Temperatura Média",
+            data: valores,
+            backgroundColor: "#0077ff"
+          }]
+        };
+
+        const ctx = document.getElementById("g2");
+
+        chart2 = new Chart(ctx, {
+          type: "bar",
+          data: dados2,
+          options: {
+            responsive: true,
+            maintainAspectRatio: false,
+            scales: {
+              y: { reverse: true }
+            }
+          }
+        });
+
+        atualizacao2 = setTimeout(atualizarGraficoBarra, 2000);
+      })
+      .catch(err => console.error("Erro ao carregar gráfico 2:", err));
+  }
+  obterGraficoBarra();
+
+  function atualizarGraficoBarra() {
+
+    fetch(`/empresas/atualizarGraficoBarra`)
+      .then(function (resposta) {
+        if (!resposta.ok) {
+          throw new Error("Erro na API");
+        }
+
+        return resposta.json();
+      })
+      .then(function (novoRegistro) {
+
+        var novoValor = novoRegistro[0].medTemp;
+        var novoHorario = new Date().toLocaleTimeString();
+
+        dados2.labels.shift();
+        dados2.labels.push(novoHorario);
+
+        dados2.datasets[0].data.shift();
+        dados2.datasets[0].data.push(novoValor);
+
+        chart2.update();
+
+        proximaAtualizacao2 = setTimeout(atualizarGraficoBarra, 2000);
+      })
+      .catch(function (erro) {
+        console.log("Erro ao atualizar gráfico 2:", erro);
+      });
+  }
+
+  function kpiValorLote() {
+    var idSensor = sessionStorage.ID_SENSOR;
+
+    fetch(`/empresas/kpiValorLote/${idSensor}`)
+      .then(res => res.json())
+      .then(resposta => {
+        console.log("Histórico inicial:", resposta);
+
+        valorLote.innerHTML = `${resposta[0].valor}`;
+
+        setTimeout(kpiValorLote, 10000);
+      })
+      .catch(erro => console.error("ERRO histórico:", erro));
+  }
+  kpiValorLote();
+
+  function kpiTipoLote() {
+    var idSensor = sessionStorage.ID_SENSOR;
+
+    fetch(`/empresas/kpiTipoLote/${idSensor}`)
+      .then(res => res.json())
+      .then(resposta => {
+        console.log("Histórico inicial:", resposta);
+
+        tipoLote.innerHTML = `${resposta[0].tipo}`;
+
+        setTimeout(kpiTipoLote, 10000);
+      })
+      .catch(erro => console.error("ERRO histórico:", erro));
+  }
+  kpiTipoLote();
 </script>

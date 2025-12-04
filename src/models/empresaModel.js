@@ -54,12 +54,12 @@ function enviarFaleConosco(nome, email, empresa, necessidade, camara, transporte
     return database.executar(instrucaoSql);
 }
 
-function obterTemperaturaMedia(idEmpresa) {
+function obterTemperaturaMedia(idSensor) {
     console.log('Acessei o model da temperatura!');
     
     var instrucaoSql = `
         SELECT temperatura FROM 
-        vw_tempMedia WHERE idEmpresa = ${idEmpresa}
+        vw_temp WHERE idSensor = ${idSensor}
         LIMIT 10;
     `;
 
@@ -112,77 +112,116 @@ function selecionarFreezer(idEmpresa) {
   return database.executar(instrucaoSql);
 }
 
-function kpiTempMedia(idEmpresa) {
+function kpiTempMedia(idSensor) {
     console.log('Acessei o model da temperatura!');
     
     var instrucaoSql = `
-        SELECT ROUND(AVG(temperatura)) AS tempMedia 
-        FROM vw_temp;
+        SELECT ROUND(AVG(medicao)) AS tempMedia 
+        FROM vw_temp WHERE idSensor = ${idSensor};
     `;
 
   return database.executar(instrucaoSql);
 }
 
-function kpiTempMaxima(idEmpresa) {
+function kpiTempMaxima(idSensor) {
     console.log('Acessei o model da temperatura!');
     
     var instrucaoSql = `
-        SELECT MAX(temperatura) AS tempMaxima 
-        FROM vw_temp
-        WHERE temperatura <> 0.00;
+        SELECT MAX(medicao) AS tempMaxima 
+        FROM vw_temp WHERE idSensor = ${idSensor} 
+        AND medicao <> 0.00;
     `;
 
   return database.executar(instrucaoSql);
 }
 
-function kpiTempMinima(idEmpresa) {
+function kpiTempMinima(idSensor) {
     console.log('Acessei o model da temperatura!');
     
     var instrucaoSql = `
-        SELECT MIN(temperatura) AS tempMinima 
-        FROM vw_temp;
+        SELECT MIN(medicao) AS tempMinima 
+        FROM vw_temp WHERE idSensor = ${idSensor};
     `;
 
   return database.executar(instrucaoSql);
 }
 
-function kpiTotalSensores(idEmpresa) {
+function kpiTotalSensores(idSensor) {
     console.log('Acessei o model da temperatura!');
     
     var instrucaoSql = `
         SELECT COUNT(idSensor) AS total
-        FROM sensor JOIN  localServ 
-        ON fkLocal = idLocal JOIN servico
-        ON fkServico = idServico JOIN empresa
-        ON fkEmpresa = ${idEmpresa};
+        FROM sensor;
     `;
 
   return database.executar(instrucaoSql);
 }
 
-function kpiSensoresAtivos(idEmpresa) {
+function kpiSensoresAtivos(idSensor) {
     console.log('Acessei o model da temperatura!');
     
     var instrucaoSql = `
         SELECT COUNT(idSensor) AS ativos
-        FROM sensor JOIN  localServ 
-        ON fkLocal = idLocal JOIN servico
-        ON fkServico = idServico JOIN empresa
-        ON fkEmpresa = ${idEmpresa} WHERE status = 'ativo';
+        FROM sensor WHERE status = 'ativo';
     `;
 
   return database.executar(instrucaoSql);
 }
 
-function kpiSensoresDefeito(idEmpresa) {
+function kpiSensoresDefeito(idSensor) {
     console.log('Acessei o model da temperatura!');
     
     var instrucaoSql = `
         SELECT COUNT(idSensor) AS defeito
-        FROM sensor JOIN  localServ 
-        ON fkLocal = idLocal JOIN servico
-        ON fkServico = idServico JOIN empresa
-        ON fkEmpresa = ${idEmpresa} WHERE status <> 'ativo';
+        FROM sensor WHERE idSensor = ${idSensor} 
+        AND status <> 'ativo';
+    `;
+
+  return database.executar(instrucaoSql);
+}
+
+function obterGraficoBarra(idSensor) {
+    console.log('Acessei o model da temperatura!');
+    
+    var instrucaoSql = `
+        SELECT temperatura FROM 
+        vw_temp WHERE idSensor = ${idSensor}
+        LIMIT 10;
+    `;
+
+  return database.executar(instrucaoSql);
+}
+
+function atualizarGraficoBarra() {
+    console.log('Acessei o model de atualizar temperatura!');
+    
+    var instrucaoSql = `
+        SELECT medicao AS medTemp
+        FROM registro
+        ORDER BY idRegistro DESC
+        LIMIT 1;
+    `;
+
+  return database.executar(instrucaoSql);
+}
+
+function kpiValorLote(idSensor) {
+    console.log('Acessei o model da temperatura!');
+    
+    var instrucaoSql = `
+       SELECT valor FROM vw_lote
+       WHERE fkLocal = ${idSensor};
+    `;
+
+  return database.executar(instrucaoSql);
+}
+
+function kpiTipoLote(idSensor) {
+    console.log('Acessei o model da temperatura!');
+    
+    var instrucaoSql = `
+       SELECT tipo FROM vw_lote
+       WHERE fkLocal = ${idSensor};
     `;
 
   return database.executar(instrucaoSql);
@@ -204,5 +243,9 @@ module.exports = {
     kpiTempMinima,
     kpiTotalSensores,
     kpiSensoresAtivos,
-    kpiSensoresDefeito
+    kpiSensoresDefeito,
+    obterGraficoBarra,
+    atualizarGraficoBarra,
+    kpiValorLote,
+    kpiTipoLote
 }

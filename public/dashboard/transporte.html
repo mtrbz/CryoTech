@@ -114,6 +114,9 @@
 </html>
 
   <script>
+    var aleatorio = Math.round(Math.random() * 8) + 1;
+    sessionStorage.ID_SENSOR = aleatorio;
+    
     function abrirDashboard() {
       window.location.href = "dashboard.html";
     }

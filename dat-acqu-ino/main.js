@@ -23,11 +23,17 @@ const simularSensores = async (
     // conexão com o banco de dados MySQL
     let poolBancoDados = mysql.createPool(
         {
+            // host: '127.0.0.1',
+            // user: 'aluno',
+            // password: 'Sptech#2024',
+            // database: 'cryotech',
+            // port: 3307
+
             host: '127.0.0.1',
-            user: 'aluno',
-            password: 'Sptech#2024',
+            user: 'root',
+            password: '2M4a1t1h2e0u0s4@',
             database: 'cryotech',
-            port: 3307
+            port: 3306
         }
     ).promise();
 
@@ -61,7 +67,6 @@ const simularSensores = async (
         // insere no banco se estiver habilitado
         if (HABILITAR_OPERACAO_INSERIR) {
             try {
-                    var aleatorio = Math.floor(Math.random() * 50 - 25);
 
                 await poolBancoDados.execute(
                     'INSERT INTO registro (medicao, fkSensor) VALUES (?,?)',
