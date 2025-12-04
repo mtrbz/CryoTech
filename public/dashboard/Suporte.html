@@ -87,8 +87,16 @@
             justify-self: center;
             width: 70%;
             margin-right: 82%;
-            margin-top: 90%;
+            margin-top: 70%;
 
+        }
+
+        .img_documentação:hover{
+              transform: scale(1.1);
+        }
+
+        .a .img_documentação{
+             width: 10px;
         }
 
         .card h3,
@@ -226,16 +234,17 @@
         }
 
         .bobia-container #resposta {
-            background: #f7fbff;
-            border-radius: 8px;
-            padding: 10px;
-            color: #0b2a56;
-            min-height: 80px;
-            max-height: 180px;
-            overflow-y: auto;
-            border: 1px solid #e6f0fb;
-            box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.6);
+        background: #f7fbff;
+         border-radius: 8px;
+        padding: 10px;
+        color: #0b2a56;
+         min-height: 80px;
+        max-height: none; /* Aumentei para caber textos grandes */
+        overflow-y: auto;
+        border: 1px solid #e6f0fb;
+        box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.6);
         }
+
 
         .bobia-container textarea#pergunta {
             width: 100%;
@@ -291,19 +300,41 @@
             .bobia-container textarea#pergunta {
                 min-height: 80px;
             }
-        }
+            }
 
-        #bobia_div .bobia-container::-webkit-scrollbar,
-        #bobia_div #resposta::-webkit-scrollbar {
+            #bobia_div .bobia-container::-webkit-scrollbar,
+            #bobia_div #resposta::-webkit-scrollbar {
             height: 9px;
             width: 9px;
-        }
+            }
 
-        #bobia_div .bobia-container::-webkit-scrollbar-thumb,
-        #bobia_div #resposta::-webkit-scrollbar-thumb {
+            #bobia_div .bobia-container::-webkit-scrollbar-thumb,
+            #bobia_div #resposta::-webkit-scrollbar-thumb {
             background: rgba(11, 46, 86, 0.12);
             border-radius: 8px;
-        }
+            }
+
+            .conteudo-central {
+            position: absolute;
+            left: 20%;
+             top: 80px;
+             width: 80%;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-start;
+            align-items: center;
+            gap: 40px;
+            padding-top: 20px;
+            }
+
+            .imagem-centro {
+                max-width: 80%;
+                max-height: 45vh;
+                object-fit: contain;
+            }
+
+        
+        
     </style>
 </head>
 
@@ -324,7 +355,7 @@
       </div> -->
 
             <div class="card"">
-       <a href=" https://gabrielsenna.atlassian.net/servicedesk/customer/portal/1" target="_blank">
+       <a href=" https://gabrielsenna.atlassian.net/jira/for-you" target="_blank">
                 <img class="img_jira" src="../css/Imagens/jira.png" alt=""></a>
 
             </div>
@@ -339,6 +370,8 @@
                 <img class="img_documentação" src="../css/Imagens/documentação.png" alt=""></a>
         </div>
 
+        
+
 
         <!-- <div class="jira-header">
         <div class="jira-container">
@@ -349,8 +382,14 @@
 
 
 
+
     </div>
     </div>
+
+   <div class="conteudo-central">
+    <img class="imagem-centro" src="../css/Imagens/fluxograma.drawio.png" alt="Fluxograma 1">
+    <img class="imagem-centro" src="../css/Imagens/fluxogramaProblema.drawio (1).png" alt="Fluxograma 2">
+</div>
     <img id="img_div" class="btn-suporte" onclick="bobia()" src="../css/Imagens/bob_logo.png" alt="">
 
 
@@ -369,6 +408,8 @@
     </div>
     </div>
     </div>
+
+    
     <script>
         function fecharChat() {
             bobia_div.style.display = 'none';
@@ -419,13 +460,19 @@
 
         });
 
+        
+
+    }
+
+    function voltarDashboard(){
+         window.location.href = "../index.html";
     }
 
     function botao_jira() {
         document.addEventListener('DOMContentLoaded', (event) => {
             const linkExterno = document.getElementById('suporte_imagem');
 
-            linkExterno.href = 'https://gabrielsenna.atlassian.net/servicedesk/customer/portal/1';
+            linkExterno.href = 'https://gabrielsenna.atlassian.net/jira/for-you';
 
 
         });
@@ -439,7 +486,7 @@
         document.addEventListener('DOMContentLoaded', (event) => {
             const linkExterno = document.getElementById('suporte_imagem');
 
-            linkExterno.href = 'https://gabrielsenna.atlassian.net/servicedesk/customer/portal/1';
+            linkExterno.href = 'https://gabrielsenna.atlassian.net/jira/for-you';
 
 
         });
