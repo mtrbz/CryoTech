@@ -221,8 +221,24 @@
     .btn-suporte:hover {
       transform: scale(1.1);
     }
+
+    #alertaCritico {
+      position: fixed;
+      top: 90px;
+      right: 40px;
+      background: #e63946;
+      color: #fff;
+      padding: 15px 20px;
+      border-radius: 10px;
+      font-size: 16px;
+      font-weight: bold;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.25);
+      z-index: 99999;
+      display: none;
+    }
   </style>
 </head>
+<div id="alertaCritico">⚠️ Temperatura acima do ideal! (-18°C)</div>
 
 <body>
   <div class="header">
@@ -460,6 +476,7 @@
         dadosTemperatura.datasets[0].data.shift();
         dadosTemperatura.datasets[0].data.push(valor);
 
+        verificarAlertaTemperatura(valor);
         chartTemperatura.update();
 
         proximaAtualizacao = setTimeout(atualizarTemperaturaMedia, 2000);
@@ -712,5 +729,15 @@
 
   function voltarHome() {
     window.location = "../index.html";
+  }
+  function verificarAlertaTemperatura(valor) {
+    var alerta = document.getElementById("alertaCritico");
+
+    if (valor > -18) {
+      alerta.style.display = "block";
+      alerta.innerHTML = `⚠️ Temperatura crítica: ${valor}°C`;
+    } else {
+      alerta.style.display = "none";
+    }
   }
 </script>
