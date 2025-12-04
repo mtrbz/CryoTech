@@ -699,7 +699,9 @@
       .then(resposta => {
         console.log("Histórico inicial:", resposta);
 
-        valorLote.innerHTML = `${resposta[0].valor}`;
+        var precoLote = resposta[0].valor;
+
+        valorLote.innerHTML = `R$${precoLote}`;
 
         setTimeout(kpiValorLote, 10000);
       })

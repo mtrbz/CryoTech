@@ -158,9 +158,9 @@
     window.location.href = "dashboard.html";
   }
 
-
   function selecionarFreezers(numero) {
     sessionStorage.NOME_LOCAL = `Local: Freezer ${numero}`;
+    sessionStorage.ID_SENSOR = numero + 4;
     dashboard();
   }
 </script>

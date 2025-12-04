@@ -23,17 +23,11 @@ const simularSensores = async (
     // conexão com o banco de dados MySQL
     let poolBancoDados = mysql.createPool(
         {
-            // host: '127.0.0.1',
-            // user: 'aluno',
-            // password: 'Sptech#2024',
-            // database: 'cryotech',
-            // port: 3307
-
             host: '127.0.0.1',
-            user: 'ribeiro',
-            password: 'Eunice.55',
+            user: 'aluno',
+            password: 'Sptech#2024',
             database: 'cryotech',
-            port: 3306
+            port: 3307
         }
     ).promise();
 
@@ -43,8 +37,8 @@ const simularSensores = async (
     setInterval(async () => {
 
         // temperatura simulada: -20 a 10°C
-        const sensorAnalogico = parseFloat(Math.floor((Math.random() * 30 - 20)));
-        const sensorAnalogico2 = sensorAnalogico - 10;
+        const sensorAnalogico = parseFloat(Math.floor((Math.random() * 40 - 20)));
+        const sensorAnalogico2 = sensorAnalogico - 30;
         const sensorAnalogico3 = sensorAnalogico + 10;
         const sensorAnalogico4 = parseFloat(Math.floor((Math.random() * 50 - 25)));
         const sensorAnalogico5 = parseFloat(Math.floor((Math.random() * 15 - 5)));

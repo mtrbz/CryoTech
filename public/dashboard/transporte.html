@@ -115,8 +115,6 @@
 </html>
 
 <script>
-  var aleatorio = Math.round(Math.random() * 8) + 1;
-  sessionStorage.ID_SENSOR = aleatorio;
 
   function abrirDashboard() {
     window.location.href = "dashboard.html";
@@ -160,6 +158,7 @@
 
   function selecionarTransportes(numero) {
     sessionStorage.NOME_LOCAL = `Local: Transporte ${numero}`;
+    sessionStorage.ID_SENSOR = numero + 2;
     dashboard();
   }
 </script>
